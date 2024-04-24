@@ -7,9 +7,9 @@ class admin : public users
 {
 public:
     admin();
-    admin(QString, QString, QString, QString, QString);
+    admin(QString Name,QString PhoneNum, QString Email, QString usrname, QString psswrd, QString Role);
 
-    QString generateReport(QString, QString);
+
 };
 
 #endif // ADMIN_H

@@ -6,9 +6,9 @@
 #include<QStringList>
 #include <QMainWindow>
 #include <QMessageBox>
-#include "database.h"
-#include <admin.h>
 
+#include <admin.h>
+#include <database.h>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -28,7 +28,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    database *db;
+    database db;
     users users;
     admin admin;
 };

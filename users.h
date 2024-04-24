@@ -1,6 +1,7 @@
 #ifndef USERS_H
 #define USERS_H
 
+#include <database.h>
 #include <QString>
 
 class users

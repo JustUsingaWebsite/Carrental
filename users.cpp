@@ -59,3 +59,11 @@ void users::setPassword(QString psswrd){
 QString users::getPassword(){
     return password;
 }
+
+void users::setRole(QString Role){
+    role = Role;
+}
+
+QString users::getRole(){
+    return role;
+}

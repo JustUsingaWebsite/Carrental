@@ -1,8 +1,16 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
+#include <QImageWriter>
 #include <QtSql/QSqlDatabase>
-#include <QStringList>
+#include <QtSql/QSqlQuery>
+#include <QtSql/QSqlError>
+#include <QBuffer>
+#include <QtSql/QSqlQueryModel>
+#include <QImageWriter>
+#include <QImageReader>
+#include <QImage>
+#include <qmessagebox.h>
 
 class database
 {
@@ -14,6 +22,7 @@ public:
 
 private:
     QSqlDatabase db;
+    QString userID;
 };
 
 #endif // DATABASE_H

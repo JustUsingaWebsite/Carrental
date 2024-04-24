@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include<database.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -27,7 +26,7 @@ void MainWindow::on_pushButton_clicked()
     // calls the verifyUser function from the database class that quries the data base for the users information
     // and stores it in userLogin
     QStringList userLogin;
-    userLogin << db->verifyUser(ui->usernameInput->text(), ui->passwordInput->text());
+    userLogin << db.verifyUser(ui->usernameInput->text(), ui->passwordInput->text());
 
     // checks if any of the login fields are empty or if the query for user information came back empty and displays an error message
     if(ui->usernameInput->text().isEmpty() || ui->passwordInput->text().isEmpty() || userLogin.empty()){
