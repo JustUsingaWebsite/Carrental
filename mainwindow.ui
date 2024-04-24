@@ -31,9 +31,9 @@
 </string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
-    <widget class="QWidget" name="page">
+    <widget class="QWidget" name="login_2">
      <widget class="QWidget" name="login_page" native="true">
       <property name="geometry">
        <rect>
@@ -167,7 +167,7 @@ border-radius:10px;
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_2">
+    <widget class="QWidget" name="customer">
      <widget class="QStackedWidget" name="stackedWidget_2">
       <property name="geometry">
        <rect>
@@ -184,7 +184,7 @@ color:black;</string>
       <property name="currentIndex">
        <number>2</number>
       </property>
-      <widget class="QWidget" name="page_3">
+      <widget class="QWidget" name="rent_dets">
        <widget class="QWidget" name="rental_details" native="true">
         <property name="geometry">
          <rect>
@@ -301,7 +301,7 @@ border-radius:10px;
         </widget>
        </widget>
       </widget>
-      <widget class="QWidget" name="page_4">
+      <widget class="QWidget" name="carsAvailable">
        <widget class="QLabel" name="label_5">
         <property name="geometry">
          <rect>
@@ -333,7 +333,7 @@ border-radius:10px;
         </property>
        </widget>
       </widget>
-      <widget class="QWidget" name="page_5">
+      <widget class="QWidget" name="carRental">
        <widget class="QWidget" name="car_rental" native="true">
         <property name="geometry">
          <rect>
@@ -364,7 +364,7 @@ border-radius:10px;
           <rect>
            <x>190</x>
            <y>120</y>
-           <width>209</width>
+           <width>212</width>
            <height>78</height>
           </rect>
          </property>
@@ -538,7 +538,7 @@ border-radius:10px;
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_10">
+    <widget class="QWidget" name="employee">
      <widget class="QStackedWidget" name="stackedWidget_4">
       <property name="geometry">
        <rect>
@@ -552,9 +552,9 @@ border-radius:10px;
        <string notr="true">background-color:gray</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
-      <widget class="QWidget" name="page_11">
+      <widget class="QWidget" name="addCustomer">
        <widget class="QWidget" name="add_user" native="true">
         <property name="geometry">
          <rect>
@@ -745,7 +745,7 @@ border-radius:10px;
         </widget>
        </widget>
       </widget>
-      <widget class="QWidget" name="page_12">
+      <widget class="QWidget" name="editDelCustomer">
        <widget class="QWidget" name="edit_delete_user" native="true">
         <property name="geometry">
          <rect>
@@ -1052,7 +1052,7 @@ border-radius: 10px;</string>
         </widget>
        </widget>
       </widget>
-      <widget class="QWidget" name="page_15">
+      <widget class="QWidget" name="payments">
        <widget class="QWidget" name="widget_2" native="true">
         <property name="geometry">
          <rect>
@@ -1182,7 +1182,7 @@ border-radius:10px;
        </widget>
       </widget>
      </widget>
-     <widget class="QWidget" name="verticalWidget_2" native="true">
+     <widget class="QWidget" name="employeeSideWidget" native="true">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1255,7 +1255,7 @@ background-color: #4981B0;</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_6">
+    <widget class="QWidget" name="admin">
      <widget class="QLabel" name="label_15">
       <property name="geometry">
        <rect>
@@ -1287,9 +1287,9 @@ background-color: #4981B0;</string>
        <string notr="true">Background-color:gray</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
-      <widget class="QWidget" name="page_7">
+      <widget class="QWidget" name="addCar">
        <widget class="QLabel" name="label_16">
         <property name="geometry">
          <rect>
@@ -1419,7 +1419,7 @@ border-radius:10px;
         </layout>
        </widget>
       </widget>
-      <widget class="QWidget" name="page_8">
+      <widget class="QWidget" name="editCar">
        <widget class="QWidget" name="widget" native="true">
         <property name="geometry">
          <rect>
@@ -1705,7 +1705,7 @@ Color:Black;</string>
         </widget>
        </widget>
       </widget>
-      <widget class="QWidget" name="page_9">
+      <widget class="QWidget" name="report">
        <widget class="QLabel" name="label_26">
         <property name="geometry">
          <rect>
@@ -1936,7 +1936,7 @@ border-radius: 10px;</string>
        </widget>
       </widget>
      </widget>
-     <widget class="QWidget" name="verticalWidget_2" native="true">
+     <widget class="QWidget" name="adminSideWidget" native="true">
       <property name="geometry">
        <rect>
         <x>10</x>

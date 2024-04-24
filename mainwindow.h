@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include "database.h"
+#include <admin.h>
+#include <employee.h>
+#include <QMessageBox>
 
 #include <QMainWindow>
 
