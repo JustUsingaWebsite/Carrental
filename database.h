@@ -5,13 +5,14 @@
 #include <QSqlQuery>
 #include <QDebug>
 #include <QObject>
+#include <QMessageBox>
 
 class database
 {
 public:
     database();
     ~database();
-    bool verifyUser(QString, QString);
+    QStringList verifyUser(QString, QString);
 
 private:
     QSqlDatabase mydb;
