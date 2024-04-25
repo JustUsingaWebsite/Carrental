@@ -31,7 +31,7 @@
 </string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="login_2">
      <widget class="QWidget" name="login_page" native="true">
@@ -102,6 +102,12 @@ border-radius: 10px;</string>
            <string notr="true">border-style: solid;
 border-width: 1px;
 border-radius: 10px;</string>
+          </property>
+          <property name="inputMask">
+           <string/>
+          </property>
+          <property name="echoMode">
+           <enum>QLineEdit::Password</enum>
           </property>
          </widget>
         </item>
@@ -182,121 +188,8 @@ border-radius:10px;
 color:black;</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
-      <widget class="QWidget" name="rent_dets">
-       <widget class="QWidget" name="rental_details" native="true">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>20</y>
-          <width>721</width>
-          <height>371</height>
-         </rect>
-        </property>
-        <widget class="QLabel" name="label_10">
-         <property name="geometry">
-          <rect>
-           <x>270</x>
-           <y>10</y>
-           <width>131</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">font: 900 18pt &quot;Segoe UI Black&quot;;</string>
-         </property>
-         <property name="text">
-          <string>Your Car </string>
-         </property>
-        </widget>
-        <widget class="QWidget" name="gridLayoutWidget_3">
-         <property name="geometry">
-          <rect>
-           <x>180</x>
-           <y>50</y>
-           <width>291</width>
-           <height>221</height>
-          </rect>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="2" column="1">
-           <widget class="QDateTimeEdit" name="rentDetsReturnDate"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_12">
-            <property name="text">
-             <string>Start Date</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_11">
-            <property name="text">
-             <string>Car details</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QDateTimeEdit" name="rentDetsStartDate"/>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_13">
-            <property name="text">
-             <string>Return Date</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_14">
-            <property name="text">
-             <string>Total</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QListView" name="listView"/>
-          </item>
-          <item row="3" column="1">
-           <widget class="QLabel" name="totalRentalCost">
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QPushButton" name="cancelRentalBtn">
-         <property name="geometry">
-          <rect>
-           <x>430</x>
-           <y>290</y>
-           <width>91</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">
-.QPushButton{
-background-color: rgb(255, 255, 255);
-border: 2px solid #f1f1f1;
-color:black;
-border-radius:10px;
-}
-
-.QPushButton::hover{
-color: black;
-	background-color: rgb(162, 162, 162);
-border: 2px solid #f1f1f1;
-border-radius:10px;
-}</string>
-         </property>
-         <property name="text">
-          <string>Cancel Rental</string>
-         </property>
-        </widget>
-       </widget>
-      </widget>
       <widget class="QWidget" name="carsAvailable">
        <widget class="QLabel" name="label_5">
         <property name="geometry">
@@ -453,6 +346,119 @@ border-radius:10px;
         </widget>
        </widget>
       </widget>
+      <widget class="QWidget" name="rent_dets">
+       <widget class="QWidget" name="rental_details" native="true">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>721</width>
+          <height>371</height>
+         </rect>
+        </property>
+        <widget class="QLabel" name="label_10">
+         <property name="geometry">
+          <rect>
+           <x>270</x>
+           <y>10</y>
+           <width>131</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 900 18pt &quot;Segoe UI Black&quot;;</string>
+         </property>
+         <property name="text">
+          <string>Your Car </string>
+         </property>
+        </widget>
+        <widget class="QWidget" name="gridLayoutWidget_3">
+         <property name="geometry">
+          <rect>
+           <x>180</x>
+           <y>50</y>
+           <width>291</width>
+           <height>221</height>
+          </rect>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="2" column="1">
+           <widget class="QDateTimeEdit" name="rentDetsReturnDate"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>Start Date</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>Car details</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QDateTimeEdit" name="rentDetsStartDate"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_13">
+            <property name="text">
+             <string>Return Date</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_14">
+            <property name="text">
+             <string>Total</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QListView" name="listView"/>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLabel" name="totalRentalCost">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QPushButton" name="cancelRentalBtn">
+         <property name="geometry">
+          <rect>
+           <x>430</x>
+           <y>290</y>
+           <width>91</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+.QPushButton{
+background-color: rgb(255, 255, 255);
+border: 2px solid #f1f1f1;
+color:black;
+border-radius:10px;
+}
+
+.QPushButton::hover{
+color: black;
+	background-color: rgb(162, 162, 162);
+border: 2px solid #f1f1f1;
+border-radius:10px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Cancel Rental</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
      </widget>
      <widget class="QLabel" name="label_4">
       <property name="geometry">
@@ -472,7 +478,7 @@ background-color: #4981B0;</string>
        <string>Customer</string>
       </property>
      </widget>
-     <widget class="QWidget" name="verticalWidget" native="true">
+     <widget class="QWidget" name="customerSideWidget" native="true">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -557,7 +563,7 @@ border-radius:10px;
        <string notr="true">background-color:gray</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="addCustomer">
        <widget class="QWidget" name="add_user" native="true">
@@ -1291,7 +1297,7 @@ background-color: #4981B0;</string>
        <string notr="true">Background-color:gray</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="addCar">
        <widget class="QLabel" name="label_16">

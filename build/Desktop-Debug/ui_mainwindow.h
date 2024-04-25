@@ -18,14 +18,13 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableView>
-#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -51,43 +50,45 @@ public:
     QPushButton *login;
     QWidget *customer;
     QStackedWidget *stackedWidget_2;
-    QWidget *rent_dets;
-    QWidget *rental_details;
-    QLabel *label_10;
-    QWidget *gridLayoutWidget_3;
-    QGridLayout *gridLayout_3;
-    QDateTimeEdit *dateTimeEdit_4;
-    QLabel *label_12;
-    QPlainTextEdit *plainTextEdit_2;
-    QLabel *label_11;
-    QDateTimeEdit *dateTimeEdit_3;
-    QLabel *label_13;
-    QLabel *label_14;
-    QTextEdit *textEdit_3;
-    QPushButton *pushButton_8;
     QWidget *carsAvailable;
     QLabel *label_5;
-    QPlainTextEdit *plainTextEdit;
+    QListView *carListView;
     QWidget *carRental;
     QWidget *car_rental;
     QLabel *label_6;
     QWidget *gridLayoutWidget_2;
     QGridLayout *gridLayout_2;
     QLabel *label_7;
-    QDateTimeEdit *dateTimeEdit;
+    QDateTimeEdit *rentalStartDate;
     QLabel *label_8;
     QLabel *label_9;
-    QDateTimeEdit *dateTimeEdit_2;
+    QDateTimeEdit *rentalReturnDate;
+    QLineEdit *rentalCarName;
     QWidget *horizontalLayoutWidget_2;
     QHBoxLayout *horizontalLayout_2;
-    QPushButton *pushButton_6;
-    QPushButton *pushButton_7;
+    QPushButton *saveRentalBtn;
+    QPushButton *canelRentalBtn;
+    QWidget *rent_dets;
+    QWidget *rental_details;
+    QLabel *label_10;
+    QWidget *gridLayoutWidget_3;
+    QGridLayout *gridLayout_3;
+    QDateTimeEdit *rentDetsReturnDate;
+    QLabel *label_12;
+    QLabel *label_11;
+    QDateTimeEdit *rentDetsStartDate;
+    QLabel *label_13;
+    QLabel *label_14;
+    QListView *listView;
+    QLabel *totalRentalCost;
+    QPushButton *cancelRentalBtn;
     QLabel *label_4;
-    QWidget *verticalWidget;
+    QWidget *customerSideWidget;
     QVBoxLayout *verticalLayout;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton_4;
-    QPushButton *pushButton_5;
+    QPushButton *customerViewCarBtn;
+    QPushButton *customerViewRentalDetsBtn;
+    QPushButton *customerRentCarBtn;
+    QPushButton *customerLogoutBtn;
     QWidget *employee;
     QStackedWidget *stackedWidget_4;
     QWidget *addCustomer;
@@ -97,63 +98,64 @@ public:
     QGridLayout *gridLayout_8;
     QLabel *label_37;
     QLabel *label_38;
-    QLineEdit *lineEdit_16;
-    QLineEdit *lineEdit_17;
+    QLineEdit *customerUsername;
+    QLineEdit *customerPassword;
     QWidget *gridLayoutWidget_7;
     QGridLayout *gridLayout_7;
     QLabel *label_34;
     QLabel *label_35;
     QLabel *label_36;
-    QLineEdit *lineEdit_13;
-    QLineEdit *lineEdit_14;
-    QLineEdit *lineEdit_15;
+    QLineEdit *addCustomerName;
+    QLineEdit *addCustomerEmail;
+    QLineEdit *addCustomerPhone;
     QWidget *horizontalLayoutWidget_5;
     QHBoxLayout *horizontalLayout_5;
-    QPushButton *pushButton_17;
-    QPushButton *pushButton_16;
+    QPushButton *empSaveCustomerBtn;
+    QPushButton *empCancelAddCustomerBtn;
     QWidget *editDelCustomer;
     QWidget *edit_delete_user;
     QLabel *label_45;
     QWidget *gridLayoutWidget_9;
     QGridLayout *gridLayout_9;
-    QLineEdit *lineEdit_18;
+    QLineEdit *editCustomerName;
     QLabel *label_40;
     QLabel *label_42;
-    QLineEdit *lineEdit_21;
+    QLineEdit *editCustomerUsername;
     QLabel *label_41;
-    QLineEdit *lineEdit_20;
-    QLineEdit *lineEdit_19;
-    QLineEdit *lineEdit_22;
+    QLineEdit *editCustomerPhonenum;
+    QLineEdit *editCustomerEmail;
+    QLineEdit *editCustomerPassword;
     QLabel *label_44;
     QLabel *label_43;
     QWidget *horizontalLayoutWidget_6;
     QHBoxLayout *horizontalLayout_6;
-    QPushButton *pushButton_20;
-    QPushButton *pushButton_19;
-    QPushButton *pushButton_18;
-    QTableView *tableView_3;
+    QPushButton *saveCustomerEditBtn;
+    QPushButton *delCustomerBtn;
+    QPushButton *cancelCustomerEditBtn;
+    QTableView *viewCustomerDets;
     QFrame *editUserSearchFrame_3;
     QLineEdit *edit_car_2;
     QLabel *editUser_SearchLabel_3;
     QWidget *payments;
-    QWidget *widget_2;
+    QWidget *paymentswidget;
     QLabel *label_58;
     QWidget *gridLayoutWidget_13;
     QGridLayout *gridLayout_13;
     QLabel *label_59;
     QLabel *label_60;
-    QLineEdit *lineEdit_33;
-    QDateTimeEdit *dateTimeEdit_8;
+    QLineEdit *customerName;
+    QDateTimeEdit *paymentsReturnDate;
     QLabel *label_61;
     QLabel *label_62;
-    QLineEdit *lineEdit_34;
-    QLineEdit *lineEdit_35;
-    QPushButton *pushButton_26;
+    QListView *paymentsCarDetsView;
+    QLabel *totalPayment;
+    QPushButton *paidBtn;
     QWidget *employeeSideWidget;
     QVBoxLayout *verticalLayout_3;
-    QPushButton *pushButton_14;
-    QPushButton *pushButton_12;
-    QPushButton *pushButton_15;
+    QPushButton *empAddCustomerBtn;
+    QPushButton *empEditDelCustomerBtn;
+    QPushButton *empPaymentsBtn;
+    QPushButton *empLogoutBtn;
     QLabel *label_33;
     QWidget *admin;
     QLabel *label_15;
@@ -166,28 +168,28 @@ public:
     QLabel *label_18;
     QLabel *label_19;
     QLabel *label_20;
-    QLineEdit *lineEdit_2;
-    QLineEdit *lineEdit_3;
-    QLineEdit *lineEdit;
-    QLineEdit *lineEdit_4;
+    QLineEdit *addModelInput;
+    QLineEdit *addYearInput;
+    QLineEdit *addManufactorInput;
+    QLineEdit *addColorInput;
     QWidget *horizontalLayoutWidget_3;
     QHBoxLayout *horizontalLayout_3;
-    QPushButton *pushButton_13;
+    QPushButton *saveAddCarBtn;
     QWidget *editCar;
     QWidget *widget;
     QFrame *editUserSearchFrame_2;
-    QLineEdit *edit_car;
+    QLineEdit *edit_carSearch;
     QLabel *editUser_SearchLabel_2;
     QWidget *gridLayoutWidget_5;
     QGridLayout *gridLayout_5;
-    QLineEdit *lineEdit_5;
+    QLineEdit *editModelInput;
     QLabel *label_21;
-    QLineEdit *lineEdit_6;
-    QLineEdit *lineEdit_7;
+    QLineEdit *editYearInput;
+    QLineEdit *editManufactorInput;
     QLabel *label_22;
     QLabel *label_23;
     QLabel *label_24;
-    QLineEdit *lineEdit_8;
+    QLineEdit *editColorInput;
     QTableView *tableView;
     QWidget *horizontalLayoutWidget_4;
     QHBoxLayout *horizontalLayout_4;
@@ -195,7 +197,7 @@ public:
     QPushButton *previousButton;
     QPushButton *nextButton;
     QPushButton *lastButton;
-    QPushButton *Save;
+    QPushButton *SaveEditCar;
     QLabel *label_25;
     QWidget *report;
     QLabel *label_26;
@@ -215,13 +217,14 @@ public:
     QLineEdit *lineEdit_12;
     QLabel *label_29;
     QLabel *label_32;
-    QDateTimeEdit *dateTimeEdit_5;
-    QDateTimeEdit *dateTimeEdit_6;
+    QDateTimeEdit *reportStartDate;
+    QDateTimeEdit *reportReturnDate;
     QWidget *adminSideWidget;
     QVBoxLayout *verticalLayout_2;
-    QPushButton *pushButton_10;
-    QPushButton *pushButton_9;
-    QPushButton *pushButton_11;
+    QPushButton *reportBtn;
+    QPushButton *addCarBtn;
+    QPushButton *editCarBtn;
+    QPushButton *adminLogoutBtn;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -229,7 +232,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(1150, 665);
+        MainWindow->resize(1041, 665);
         MainWindow->setStyleSheet(QString::fromUtf8("background-color:gray;"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
@@ -278,6 +281,7 @@ public:
         pass_login->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
+        pass_login->setEchoMode(QLineEdit::Password);
 
         gridLayout->addWidget(pass_login, 1, 1, 1, 1);
 
@@ -333,6 +337,106 @@ public:
         stackedWidget_2->setGeometry(QRect(140, 80, 771, 401));
         stackedWidget_2->setStyleSheet(QString::fromUtf8("background-color:gray;\n"
 "color:black;"));
+        carsAvailable = new QWidget();
+        carsAvailable->setObjectName("carsAvailable");
+        label_5 = new QLabel(carsAvailable);
+        label_5->setObjectName("label_5");
+        label_5->setGeometry(QRect(290, 30, 171, 31));
+        label_5->setStyleSheet(QString::fromUtf8("font: 900 18pt \"Segoe UI Black\";"));
+        carListView = new QListView(carsAvailable);
+        carListView->setObjectName("carListView");
+        carListView->setGeometry(QRect(100, 70, 581, 291));
+        stackedWidget_2->addWidget(carsAvailable);
+        carRental = new QWidget();
+        carRental->setObjectName("carRental");
+        car_rental = new QWidget(carRental);
+        car_rental->setObjectName("car_rental");
+        car_rental->setGeometry(QRect(60, 40, 651, 341));
+        label_6 = new QLabel(car_rental);
+        label_6->setObjectName("label_6");
+        label_6->setGeometry(QRect(220, 30, 171, 51));
+        label_6->setStyleSheet(QString::fromUtf8("font: 900 18pt \"Segoe UI Black\";"));
+        gridLayoutWidget_2 = new QWidget(car_rental);
+        gridLayoutWidget_2->setObjectName("gridLayoutWidget_2");
+        gridLayoutWidget_2->setGeometry(QRect(190, 107, 261, 91));
+        gridLayout_2 = new QGridLayout(gridLayoutWidget_2);
+        gridLayout_2->setObjectName("gridLayout_2");
+        gridLayout_2->setContentsMargins(0, 0, 0, 0);
+        label_7 = new QLabel(gridLayoutWidget_2);
+        label_7->setObjectName("label_7");
+
+        gridLayout_2->addWidget(label_7, 0, 0, 1, 1);
+
+        rentalStartDate = new QDateTimeEdit(gridLayoutWidget_2);
+        rentalStartDate->setObjectName("rentalStartDate");
+
+        gridLayout_2->addWidget(rentalStartDate, 1, 1, 1, 1);
+
+        label_8 = new QLabel(gridLayoutWidget_2);
+        label_8->setObjectName("label_8");
+
+        gridLayout_2->addWidget(label_8, 1, 0, 1, 1);
+
+        label_9 = new QLabel(gridLayoutWidget_2);
+        label_9->setObjectName("label_9");
+
+        gridLayout_2->addWidget(label_9, 2, 0, 1, 1);
+
+        rentalReturnDate = new QDateTimeEdit(gridLayoutWidget_2);
+        rentalReturnDate->setObjectName("rentalReturnDate");
+
+        gridLayout_2->addWidget(rentalReturnDate, 2, 1, 1, 1);
+
+        rentalCarName = new QLineEdit(gridLayoutWidget_2);
+        rentalCarName->setObjectName("rentalCarName");
+
+        gridLayout_2->addWidget(rentalCarName, 0, 1, 1, 1);
+
+        horizontalLayoutWidget_2 = new QWidget(car_rental);
+        horizontalLayoutWidget_2->setObjectName("horizontalLayoutWidget_2");
+        horizontalLayoutWidget_2->setGeometry(QRect(160, 240, 301, 51));
+        horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget_2);
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        saveRentalBtn = new QPushButton(horizontalLayoutWidget_2);
+        saveRentalBtn->setObjectName("saveRentalBtn");
+        saveRentalBtn->setStyleSheet(QString::fromUtf8("\n"
+".QPushButton{\n"
+"background-color: rgb(255, 255, 255);\n"
+"border: 2px solid #f1f1f1;\n"
+"color:black;\n"
+"border-radius:10px;\n"
+"}\n"
+"\n"
+".QPushButton::hover{\n"
+"color: black;\n"
+"	background-color: rgb(162, 162, 162);\n"
+"border: 2px solid #f1f1f1;\n"
+"border-radius:10px;\n"
+"}"));
+
+        horizontalLayout_2->addWidget(saveRentalBtn);
+
+        canelRentalBtn = new QPushButton(horizontalLayoutWidget_2);
+        canelRentalBtn->setObjectName("canelRentalBtn");
+        canelRentalBtn->setStyleSheet(QString::fromUtf8("\n"
+".QPushButton{\n"
+"background-color: rgb(255, 255, 255);\n"
+"border: 2px solid #f1f1f1;\n"
+"color:black;\n"
+"border-radius:10px;\n"
+"}\n"
+"\n"
+".QPushButton::hover{\n"
+"color: black;\n"
+"	background-color: rgb(162, 162, 162);\n"
+"border: 2px solid #f1f1f1;\n"
+"border-radius:10px;\n"
+"}"));
+
+        horizontalLayout_2->addWidget(canelRentalBtn);
+
+        stackedWidget_2->addWidget(carRental);
         rent_dets = new QWidget();
         rent_dets->setObjectName("rent_dets");
         rental_details = new QWidget(rent_dets);
@@ -340,39 +444,33 @@ public:
         rental_details->setGeometry(QRect(10, 20, 721, 371));
         label_10 = new QLabel(rental_details);
         label_10->setObjectName("label_10");
-        label_10->setGeometry(QRect(290, 30, 131, 41));
+        label_10->setGeometry(QRect(270, 10, 131, 41));
         label_10->setStyleSheet(QString::fromUtf8("font: 900 18pt \"Segoe UI Black\";"));
         gridLayoutWidget_3 = new QWidget(rental_details);
         gridLayoutWidget_3->setObjectName("gridLayoutWidget_3");
-        gridLayoutWidget_3->setGeometry(QRect(200, 100, 291, 208));
+        gridLayoutWidget_3->setGeometry(QRect(180, 50, 291, 221));
         gridLayout_3 = new QGridLayout(gridLayoutWidget_3);
         gridLayout_3->setObjectName("gridLayout_3");
         gridLayout_3->setContentsMargins(0, 0, 0, 0);
-        dateTimeEdit_4 = new QDateTimeEdit(gridLayoutWidget_3);
-        dateTimeEdit_4->setObjectName("dateTimeEdit_4");
+        rentDetsReturnDate = new QDateTimeEdit(gridLayoutWidget_3);
+        rentDetsReturnDate->setObjectName("rentDetsReturnDate");
 
-        gridLayout_3->addWidget(dateTimeEdit_4, 2, 1, 1, 1);
+        gridLayout_3->addWidget(rentDetsReturnDate, 2, 1, 1, 1);
 
         label_12 = new QLabel(gridLayoutWidget_3);
         label_12->setObjectName("label_12");
 
         gridLayout_3->addWidget(label_12, 1, 0, 1, 1);
 
-        plainTextEdit_2 = new QPlainTextEdit(gridLayoutWidget_3);
-        plainTextEdit_2->setObjectName("plainTextEdit_2");
-        plainTextEdit_2->setStyleSheet(QString::fromUtf8("background-color:white;"));
-
-        gridLayout_3->addWidget(plainTextEdit_2, 0, 1, 1, 1);
-
         label_11 = new QLabel(gridLayoutWidget_3);
         label_11->setObjectName("label_11");
 
         gridLayout_3->addWidget(label_11, 0, 0, 1, 1);
 
-        dateTimeEdit_3 = new QDateTimeEdit(gridLayoutWidget_3);
-        dateTimeEdit_3->setObjectName("dateTimeEdit_3");
+        rentDetsStartDate = new QDateTimeEdit(gridLayoutWidget_3);
+        rentDetsStartDate->setObjectName("rentDetsStartDate");
 
-        gridLayout_3->addWidget(dateTimeEdit_3, 1, 1, 1, 1);
+        gridLayout_3->addWidget(rentDetsStartDate, 1, 1, 1, 1);
 
         label_13 = new QLabel(gridLayoutWidget_3);
         label_13->setObjectName("label_13");
@@ -384,16 +482,20 @@ public:
 
         gridLayout_3->addWidget(label_14, 3, 0, 1, 1);
 
-        textEdit_3 = new QTextEdit(gridLayoutWidget_3);
-        textEdit_3->setObjectName("textEdit_3");
-        textEdit_3->setStyleSheet(QString::fromUtf8("background-color:white;"));
+        listView = new QListView(gridLayoutWidget_3);
+        listView->setObjectName("listView");
 
-        gridLayout_3->addWidget(textEdit_3, 3, 1, 1, 1);
+        gridLayout_3->addWidget(listView, 0, 1, 1, 1);
 
-        pushButton_8 = new QPushButton(rental_details);
-        pushButton_8->setObjectName("pushButton_8");
-        pushButton_8->setGeometry(QRect(420, 270, 91, 41));
-        pushButton_8->setStyleSheet(QString::fromUtf8("\n"
+        totalRentalCost = new QLabel(gridLayoutWidget_3);
+        totalRentalCost->setObjectName("totalRentalCost");
+
+        gridLayout_3->addWidget(totalRentalCost, 3, 1, 1, 1);
+
+        cancelRentalBtn = new QPushButton(rental_details);
+        cancelRentalBtn->setObjectName("cancelRentalBtn");
+        cancelRentalBtn->setGeometry(QRect(430, 290, 91, 41));
+        cancelRentalBtn->setStyleSheet(QString::fromUtf8("\n"
 ".QPushButton{\n"
 "background-color: rgb(255, 255, 255);\n"
 "border: 2px solid #f1f1f1;\n"
@@ -408,113 +510,16 @@ public:
 "border-radius:10px;\n"
 "}"));
         stackedWidget_2->addWidget(rent_dets);
-        carsAvailable = new QWidget();
-        carsAvailable->setObjectName("carsAvailable");
-        label_5 = new QLabel(carsAvailable);
-        label_5->setObjectName("label_5");
-        label_5->setGeometry(QRect(290, 30, 171, 31));
-        label_5->setStyleSheet(QString::fromUtf8("font: 900 18pt \"Segoe UI Black\";"));
-        plainTextEdit = new QPlainTextEdit(carsAvailable);
-        plainTextEdit->setObjectName("plainTextEdit");
-        plainTextEdit->setGeometry(QRect(70, 120, 661, 261));
-        plainTextEdit->setStyleSheet(QString::fromUtf8("background-color: white;\n"
-""));
-        stackedWidget_2->addWidget(carsAvailable);
-        carRental = new QWidget();
-        carRental->setObjectName("carRental");
-        car_rental = new QWidget(carRental);
-        car_rental->setObjectName("car_rental");
-        car_rental->setGeometry(QRect(60, 40, 651, 341));
-        label_6 = new QLabel(car_rental);
-        label_6->setObjectName("label_6");
-        label_6->setGeometry(QRect(220, 30, 171, 51));
-        label_6->setStyleSheet(QString::fromUtf8("font: 900 18pt \"Segoe UI Black\";"));
-        gridLayoutWidget_2 = new QWidget(car_rental);
-        gridLayoutWidget_2->setObjectName("gridLayoutWidget_2");
-        gridLayoutWidget_2->setGeometry(QRect(190, 120, 212, 78));
-        gridLayout_2 = new QGridLayout(gridLayoutWidget_2);
-        gridLayout_2->setObjectName("gridLayout_2");
-        gridLayout_2->setContentsMargins(0, 0, 0, 0);
-        label_7 = new QLabel(gridLayoutWidget_2);
-        label_7->setObjectName("label_7");
-
-        gridLayout_2->addWidget(label_7, 0, 0, 1, 1);
-
-        dateTimeEdit = new QDateTimeEdit(gridLayoutWidget_2);
-        dateTimeEdit->setObjectName("dateTimeEdit");
-
-        gridLayout_2->addWidget(dateTimeEdit, 1, 1, 1, 1);
-
-        label_8 = new QLabel(gridLayoutWidget_2);
-        label_8->setObjectName("label_8");
-
-        gridLayout_2->addWidget(label_8, 1, 0, 1, 1);
-
-        label_9 = new QLabel(gridLayoutWidget_2);
-        label_9->setObjectName("label_9");
-
-        gridLayout_2->addWidget(label_9, 2, 0, 1, 1);
-
-        dateTimeEdit_2 = new QDateTimeEdit(gridLayoutWidget_2);
-        dateTimeEdit_2->setObjectName("dateTimeEdit_2");
-
-        gridLayout_2->addWidget(dateTimeEdit_2, 2, 1, 1, 1);
-
-        horizontalLayoutWidget_2 = new QWidget(car_rental);
-        horizontalLayoutWidget_2->setObjectName("horizontalLayoutWidget_2");
-        horizontalLayoutWidget_2->setGeometry(QRect(160, 240, 301, 51));
-        horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget_2);
-        horizontalLayout_2->setObjectName("horizontalLayout_2");
-        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        pushButton_6 = new QPushButton(horizontalLayoutWidget_2);
-        pushButton_6->setObjectName("pushButton_6");
-        pushButton_6->setStyleSheet(QString::fromUtf8("\n"
-".QPushButton{\n"
-"background-color: rgb(255, 255, 255);\n"
-"border: 2px solid #f1f1f1;\n"
-"color:black;\n"
-"border-radius:10px;\n"
-"}\n"
-"\n"
-".QPushButton::hover{\n"
-"color: black;\n"
-"	background-color: rgb(162, 162, 162);\n"
-"border: 2px solid #f1f1f1;\n"
-"border-radius:10px;\n"
-"}"));
-
-        horizontalLayout_2->addWidget(pushButton_6);
-
-        pushButton_7 = new QPushButton(horizontalLayoutWidget_2);
-        pushButton_7->setObjectName("pushButton_7");
-        pushButton_7->setStyleSheet(QString::fromUtf8("\n"
-".QPushButton{\n"
-"background-color: rgb(255, 255, 255);\n"
-"border: 2px solid #f1f1f1;\n"
-"color:black;\n"
-"border-radius:10px;\n"
-"}\n"
-"\n"
-".QPushButton::hover{\n"
-"color: black;\n"
-"	background-color: rgb(162, 162, 162);\n"
-"border: 2px solid #f1f1f1;\n"
-"border-radius:10px;\n"
-"}"));
-
-        horizontalLayout_2->addWidget(pushButton_7);
-
-        stackedWidget_2->addWidget(carRental);
         label_4 = new QLabel(customer);
         label_4->setObjectName("label_4");
         label_4->setGeometry(QRect(10, 10, 901, 61));
         label_4->setStyleSheet(QString::fromUtf8("font: 900 18pt \"Segoe UI Black\";\n"
 "color:black;\n"
 "background-color: #4981B0;"));
-        verticalWidget = new QWidget(customer);
-        verticalWidget->setObjectName("verticalWidget");
-        verticalWidget->setGeometry(QRect(10, 80, 121, 401));
-        verticalWidget->setStyleSheet(QString::fromUtf8("*{\n"
+        customerSideWidget = new QWidget(customer);
+        customerSideWidget->setObjectName("customerSideWidget");
+        customerSideWidget->setGeometry(QRect(10, 80, 121, 401));
+        customerSideWidget->setStyleSheet(QString::fromUtf8("*{\n"
 "background-color: #4981B0;}\n"
 ".QPushButton{\n"
 "background-color: Gray;\n"
@@ -529,26 +534,32 @@ public:
 "border: 2px solid #f1f1f1;\n"
 "border-radius:10px;\n"
 "}"));
-        verticalLayout = new QVBoxLayout(verticalWidget);
+        verticalLayout = new QVBoxLayout(customerSideWidget);
         verticalLayout->setObjectName("verticalLayout");
-        pushButton_3 = new QPushButton(verticalWidget);
-        pushButton_3->setObjectName("pushButton_3");
-        pushButton_3->setStyleSheet(QString::fromUtf8("color:black;"));
+        customerViewCarBtn = new QPushButton(customerSideWidget);
+        customerViewCarBtn->setObjectName("customerViewCarBtn");
+        customerViewCarBtn->setStyleSheet(QString::fromUtf8("color:black;"));
 
-        verticalLayout->addWidget(pushButton_3);
+        verticalLayout->addWidget(customerViewCarBtn);
 
-        pushButton_4 = new QPushButton(verticalWidget);
-        pushButton_4->setObjectName("pushButton_4");
-        pushButton_4->setStyleSheet(QString::fromUtf8("color:black;\n"
+        customerViewRentalDetsBtn = new QPushButton(customerSideWidget);
+        customerViewRentalDetsBtn->setObjectName("customerViewRentalDetsBtn");
+        customerViewRentalDetsBtn->setStyleSheet(QString::fromUtf8("color:black;\n"
 ""));
 
-        verticalLayout->addWidget(pushButton_4);
+        verticalLayout->addWidget(customerViewRentalDetsBtn);
 
-        pushButton_5 = new QPushButton(verticalWidget);
-        pushButton_5->setObjectName("pushButton_5");
-        pushButton_5->setStyleSheet(QString::fromUtf8("color:balck;"));
+        customerRentCarBtn = new QPushButton(customerSideWidget);
+        customerRentCarBtn->setObjectName("customerRentCarBtn");
+        customerRentCarBtn->setStyleSheet(QString::fromUtf8("color:balck;"));
 
-        verticalLayout->addWidget(pushButton_5);
+        verticalLayout->addWidget(customerRentCarBtn);
+
+        customerLogoutBtn = new QPushButton(customerSideWidget);
+        customerLogoutBtn->setObjectName("customerLogoutBtn");
+        customerLogoutBtn->setStyleSheet(QString::fromUtf8("color:balck;"));
+
+        verticalLayout->addWidget(customerLogoutBtn);
 
         stackedWidget->addWidget(customer);
         employee = new QWidget();
@@ -583,21 +594,21 @@ public:
 
         gridLayout_8->addWidget(label_38, 2, 0, 1, 1);
 
-        lineEdit_16 = new QLineEdit(gridLayoutWidget_8);
-        lineEdit_16->setObjectName("lineEdit_16");
-        lineEdit_16->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        customerUsername = new QLineEdit(gridLayoutWidget_8);
+        customerUsername->setObjectName("customerUsername");
+        customerUsername->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_8->addWidget(lineEdit_16, 1, 1, 1, 1);
+        gridLayout_8->addWidget(customerUsername, 1, 1, 1, 1);
 
-        lineEdit_17 = new QLineEdit(gridLayoutWidget_8);
-        lineEdit_17->setObjectName("lineEdit_17");
-        lineEdit_17->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        customerPassword = new QLineEdit(gridLayoutWidget_8);
+        customerPassword->setObjectName("customerPassword");
+        customerPassword->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_8->addWidget(lineEdit_17, 2, 1, 1, 1);
+        gridLayout_8->addWidget(customerPassword, 2, 1, 1, 1);
 
         gridLayoutWidget_7 = new QWidget(add_user);
         gridLayoutWidget_7->setObjectName("gridLayoutWidget_7");
@@ -620,29 +631,29 @@ public:
 
         gridLayout_7->addWidget(label_36, 2, 0, 1, 1);
 
-        lineEdit_13 = new QLineEdit(gridLayoutWidget_7);
-        lineEdit_13->setObjectName("lineEdit_13");
-        lineEdit_13->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        addCustomerName = new QLineEdit(gridLayoutWidget_7);
+        addCustomerName->setObjectName("addCustomerName");
+        addCustomerName->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_7->addWidget(lineEdit_13, 0, 1, 1, 1);
+        gridLayout_7->addWidget(addCustomerName, 0, 1, 1, 1);
 
-        lineEdit_14 = new QLineEdit(gridLayoutWidget_7);
-        lineEdit_14->setObjectName("lineEdit_14");
-        lineEdit_14->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        addCustomerEmail = new QLineEdit(gridLayoutWidget_7);
+        addCustomerEmail->setObjectName("addCustomerEmail");
+        addCustomerEmail->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_7->addWidget(lineEdit_14, 1, 1, 1, 1);
+        gridLayout_7->addWidget(addCustomerEmail, 1, 1, 1, 1);
 
-        lineEdit_15 = new QLineEdit(gridLayoutWidget_7);
-        lineEdit_15->setObjectName("lineEdit_15");
-        lineEdit_15->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        addCustomerPhone = new QLineEdit(gridLayoutWidget_7);
+        addCustomerPhone->setObjectName("addCustomerPhone");
+        addCustomerPhone->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_7->addWidget(lineEdit_15, 2, 1, 1, 1);
+        gridLayout_7->addWidget(addCustomerPhone, 2, 1, 1, 1);
 
         horizontalLayoutWidget_5 = new QWidget(add_user);
         horizontalLayoutWidget_5->setObjectName("horizontalLayoutWidget_5");
@@ -650,9 +661,9 @@ public:
         horizontalLayout_5 = new QHBoxLayout(horizontalLayoutWidget_5);
         horizontalLayout_5->setObjectName("horizontalLayout_5");
         horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
-        pushButton_17 = new QPushButton(horizontalLayoutWidget_5);
-        pushButton_17->setObjectName("pushButton_17");
-        pushButton_17->setStyleSheet(QString::fromUtf8("\n"
+        empSaveCustomerBtn = new QPushButton(horizontalLayoutWidget_5);
+        empSaveCustomerBtn->setObjectName("empSaveCustomerBtn");
+        empSaveCustomerBtn->setStyleSheet(QString::fromUtf8("\n"
 ".QPushButton{\n"
 "background-color: rgb(255, 255, 255);\n"
 "border: 2px solid #f1f1f1;\n"
@@ -667,11 +678,11 @@ public:
 "border-radius:10px;\n"
 "}"));
 
-        horizontalLayout_5->addWidget(pushButton_17);
+        horizontalLayout_5->addWidget(empSaveCustomerBtn);
 
-        pushButton_16 = new QPushButton(horizontalLayoutWidget_5);
-        pushButton_16->setObjectName("pushButton_16");
-        pushButton_16->setStyleSheet(QString::fromUtf8("\n"
+        empCancelAddCustomerBtn = new QPushButton(horizontalLayoutWidget_5);
+        empCancelAddCustomerBtn->setObjectName("empCancelAddCustomerBtn");
+        empCancelAddCustomerBtn->setStyleSheet(QString::fromUtf8("\n"
 ".QPushButton{\n"
 "background-color: rgb(255, 255, 255);\n"
 "border: 2px solid #f1f1f1;\n"
@@ -686,7 +697,7 @@ public:
 "border-radius:10px;\n"
 "}"));
 
-        horizontalLayout_5->addWidget(pushButton_16);
+        horizontalLayout_5->addWidget(empCancelAddCustomerBtn);
 
         stackedWidget_4->addWidget(addCustomer);
         editDelCustomer = new QWidget();
@@ -705,13 +716,13 @@ public:
         gridLayout_9 = new QGridLayout(gridLayoutWidget_9);
         gridLayout_9->setObjectName("gridLayout_9");
         gridLayout_9->setContentsMargins(0, 0, 0, 0);
-        lineEdit_18 = new QLineEdit(gridLayoutWidget_9);
-        lineEdit_18->setObjectName("lineEdit_18");
-        lineEdit_18->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        editCustomerName = new QLineEdit(gridLayoutWidget_9);
+        editCustomerName->setObjectName("editCustomerName");
+        editCustomerName->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_9->addWidget(lineEdit_18, 0, 1, 1, 1);
+        gridLayout_9->addWidget(editCustomerName, 0, 1, 1, 1);
 
         label_40 = new QLabel(gridLayoutWidget_9);
         label_40->setObjectName("label_40");
@@ -723,42 +734,42 @@ public:
 
         gridLayout_9->addWidget(label_42, 2, 0, 1, 1);
 
-        lineEdit_21 = new QLineEdit(gridLayoutWidget_9);
-        lineEdit_21->setObjectName("lineEdit_21");
-        lineEdit_21->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        editCustomerUsername = new QLineEdit(gridLayoutWidget_9);
+        editCustomerUsername->setObjectName("editCustomerUsername");
+        editCustomerUsername->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_9->addWidget(lineEdit_21, 3, 1, 1, 1);
+        gridLayout_9->addWidget(editCustomerUsername, 3, 1, 1, 1);
 
         label_41 = new QLabel(gridLayoutWidget_9);
         label_41->setObjectName("label_41");
 
         gridLayout_9->addWidget(label_41, 1, 0, 1, 1);
 
-        lineEdit_20 = new QLineEdit(gridLayoutWidget_9);
-        lineEdit_20->setObjectName("lineEdit_20");
-        lineEdit_20->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        editCustomerPhonenum = new QLineEdit(gridLayoutWidget_9);
+        editCustomerPhonenum->setObjectName("editCustomerPhonenum");
+        editCustomerPhonenum->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_9->addWidget(lineEdit_20, 2, 1, 1, 1);
+        gridLayout_9->addWidget(editCustomerPhonenum, 2, 1, 1, 1);
 
-        lineEdit_19 = new QLineEdit(gridLayoutWidget_9);
-        lineEdit_19->setObjectName("lineEdit_19");
-        lineEdit_19->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        editCustomerEmail = new QLineEdit(gridLayoutWidget_9);
+        editCustomerEmail->setObjectName("editCustomerEmail");
+        editCustomerEmail->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_9->addWidget(lineEdit_19, 1, 1, 1, 1);
+        gridLayout_9->addWidget(editCustomerEmail, 1, 1, 1, 1);
 
-        lineEdit_22 = new QLineEdit(gridLayoutWidget_9);
-        lineEdit_22->setObjectName("lineEdit_22");
-        lineEdit_22->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        editCustomerPassword = new QLineEdit(gridLayoutWidget_9);
+        editCustomerPassword->setObjectName("editCustomerPassword");
+        editCustomerPassword->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_9->addWidget(lineEdit_22, 4, 1, 1, 1);
+        gridLayout_9->addWidget(editCustomerPassword, 4, 1, 1, 1);
 
         label_44 = new QLabel(gridLayoutWidget_9);
         label_44->setObjectName("label_44");
@@ -776,9 +787,9 @@ public:
         horizontalLayout_6 = new QHBoxLayout(horizontalLayoutWidget_6);
         horizontalLayout_6->setObjectName("horizontalLayout_6");
         horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
-        pushButton_20 = new QPushButton(horizontalLayoutWidget_6);
-        pushButton_20->setObjectName("pushButton_20");
-        pushButton_20->setStyleSheet(QString::fromUtf8("\n"
+        saveCustomerEditBtn = new QPushButton(horizontalLayoutWidget_6);
+        saveCustomerEditBtn->setObjectName("saveCustomerEditBtn");
+        saveCustomerEditBtn->setStyleSheet(QString::fromUtf8("\n"
 ".QPushButton{\n"
 "background-color: rgb(255, 255, 255);\n"
 "border: 2px solid #f1f1f1;\n"
@@ -793,11 +804,11 @@ public:
 "border-radius:10px;\n"
 "}"));
 
-        horizontalLayout_6->addWidget(pushButton_20);
+        horizontalLayout_6->addWidget(saveCustomerEditBtn);
 
-        pushButton_19 = new QPushButton(horizontalLayoutWidget_6);
-        pushButton_19->setObjectName("pushButton_19");
-        pushButton_19->setStyleSheet(QString::fromUtf8("\n"
+        delCustomerBtn = new QPushButton(horizontalLayoutWidget_6);
+        delCustomerBtn->setObjectName("delCustomerBtn");
+        delCustomerBtn->setStyleSheet(QString::fromUtf8("\n"
 ".QPushButton{\n"
 "background-color: rgb(255, 255, 255);\n"
 "border: 2px solid #f1f1f1;\n"
@@ -812,11 +823,11 @@ public:
 "border-radius:10px;\n"
 "}"));
 
-        horizontalLayout_6->addWidget(pushButton_19);
+        horizontalLayout_6->addWidget(delCustomerBtn);
 
-        pushButton_18 = new QPushButton(horizontalLayoutWidget_6);
-        pushButton_18->setObjectName("pushButton_18");
-        pushButton_18->setStyleSheet(QString::fromUtf8("\n"
+        cancelCustomerEditBtn = new QPushButton(horizontalLayoutWidget_6);
+        cancelCustomerEditBtn->setObjectName("cancelCustomerEditBtn");
+        cancelCustomerEditBtn->setStyleSheet(QString::fromUtf8("\n"
 ".QPushButton{\n"
 "background-color: rgb(255, 255, 255);\n"
 "border: 2px solid #f1f1f1;\n"
@@ -831,12 +842,12 @@ public:
 "border-radius:10px;\n"
 "}"));
 
-        horizontalLayout_6->addWidget(pushButton_18);
+        horizontalLayout_6->addWidget(cancelCustomerEditBtn);
 
-        tableView_3 = new QTableView(edit_delete_user);
-        tableView_3->setObjectName("tableView_3");
-        tableView_3->setGeometry(QRect(450, 131, 281, 221));
-        tableView_3->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        viewCustomerDets = new QTableView(edit_delete_user);
+        viewCustomerDets->setObjectName("viewCustomerDets");
+        viewCustomerDets->setGeometry(QRect(450, 131, 281, 221));
+        viewCustomerDets->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;"));
         editUserSearchFrame_3 = new QFrame(edit_delete_user);
         editUserSearchFrame_3->setObjectName("editUserSearchFrame_3");
@@ -874,17 +885,17 @@ public:
         stackedWidget_4->addWidget(editDelCustomer);
         payments = new QWidget();
         payments->setObjectName("payments");
-        widget_2 = new QWidget(payments);
-        widget_2->setObjectName("widget_2");
-        widget_2->setGeometry(QRect(20, 20, 781, 391));
-        label_58 = new QLabel(widget_2);
+        paymentswidget = new QWidget(payments);
+        paymentswidget->setObjectName("paymentswidget");
+        paymentswidget->setGeometry(QRect(20, 20, 781, 391));
+        label_58 = new QLabel(paymentswidget);
         label_58->setObjectName("label_58");
         label_58->setGeometry(QRect(270, 20, 121, 31));
         label_58->setStyleSheet(QString::fromUtf8("color:black;\n"
 "font: 900 18pt \"Segoe UI Black\";"));
-        gridLayoutWidget_13 = new QWidget(widget_2);
+        gridLayoutWidget_13 = new QWidget(paymentswidget);
         gridLayoutWidget_13->setObjectName("gridLayoutWidget_13");
-        gridLayoutWidget_13->setGeometry(QRect(200, 110, 291, 116));
+        gridLayoutWidget_13->setGeometry(QRect(200, 110, 291, 154));
         gridLayout_13 = new QGridLayout(gridLayoutWidget_13);
         gridLayout_13->setObjectName("gridLayout_13");
         gridLayout_13->setContentsMargins(0, 0, 0, 0);
@@ -898,18 +909,18 @@ public:
 
         gridLayout_13->addWidget(label_60, 1, 0, 1, 1);
 
-        lineEdit_33 = new QLineEdit(gridLayoutWidget_13);
-        lineEdit_33->setObjectName("lineEdit_33");
-        lineEdit_33->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        customerName = new QLineEdit(gridLayoutWidget_13);
+        customerName->setObjectName("customerName");
+        customerName->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_13->addWidget(lineEdit_33, 0, 1, 1, 1);
+        gridLayout_13->addWidget(customerName, 0, 1, 1, 1);
 
-        dateTimeEdit_8 = new QDateTimeEdit(gridLayoutWidget_13);
-        dateTimeEdit_8->setObjectName("dateTimeEdit_8");
+        paymentsReturnDate = new QDateTimeEdit(gridLayoutWidget_13);
+        paymentsReturnDate->setObjectName("paymentsReturnDate");
 
-        gridLayout_13->addWidget(dateTimeEdit_8, 2, 1, 1, 1);
+        gridLayout_13->addWidget(paymentsReturnDate, 2, 1, 1, 1);
 
         label_61 = new QLabel(gridLayoutWidget_13);
         label_61->setObjectName("label_61");
@@ -921,26 +932,20 @@ public:
 
         gridLayout_13->addWidget(label_62, 3, 0, 1, 1);
 
-        lineEdit_34 = new QLineEdit(gridLayoutWidget_13);
-        lineEdit_34->setObjectName("lineEdit_34");
-        lineEdit_34->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
-"border-width: 1px;\n"
-"border-radius: 10px;"));
+        paymentsCarDetsView = new QListView(gridLayoutWidget_13);
+        paymentsCarDetsView->setObjectName("paymentsCarDetsView");
 
-        gridLayout_13->addWidget(lineEdit_34, 1, 1, 1, 1);
+        gridLayout_13->addWidget(paymentsCarDetsView, 1, 1, 1, 1);
 
-        lineEdit_35 = new QLineEdit(gridLayoutWidget_13);
-        lineEdit_35->setObjectName("lineEdit_35");
-        lineEdit_35->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
-"border-width: 1px;\n"
-"border-radius: 10px;"));
+        totalPayment = new QLabel(gridLayoutWidget_13);
+        totalPayment->setObjectName("totalPayment");
 
-        gridLayout_13->addWidget(lineEdit_35, 3, 1, 1, 1);
+        gridLayout_13->addWidget(totalPayment, 3, 1, 1, 1);
 
-        pushButton_26 = new QPushButton(widget_2);
-        pushButton_26->setObjectName("pushButton_26");
-        pushButton_26->setGeometry(QRect(480, 290, 80, 24));
-        pushButton_26->setStyleSheet(QString::fromUtf8("*{\n"
+        paidBtn = new QPushButton(paymentswidget);
+        paidBtn->setObjectName("paidBtn");
+        paidBtn->setGeometry(QRect(480, 290, 80, 24));
+        paidBtn->setStyleSheet(QString::fromUtf8("*{\n"
 "background-color: #4981B0;}\n"
 ".QPushButton{\n"
 "background-color: Gray;\n"
@@ -976,21 +981,26 @@ public:
 "}"));
         verticalLayout_3 = new QVBoxLayout(employeeSideWidget);
         verticalLayout_3->setObjectName("verticalLayout_3");
-        pushButton_14 = new QPushButton(employeeSideWidget);
-        pushButton_14->setObjectName("pushButton_14");
-        pushButton_14->setStyleSheet(QString::fromUtf8(""));
+        empAddCustomerBtn = new QPushButton(employeeSideWidget);
+        empAddCustomerBtn->setObjectName("empAddCustomerBtn");
+        empAddCustomerBtn->setStyleSheet(QString::fromUtf8(""));
 
-        verticalLayout_3->addWidget(pushButton_14);
+        verticalLayout_3->addWidget(empAddCustomerBtn);
 
-        pushButton_12 = new QPushButton(employeeSideWidget);
-        pushButton_12->setObjectName("pushButton_12");
+        empEditDelCustomerBtn = new QPushButton(employeeSideWidget);
+        empEditDelCustomerBtn->setObjectName("empEditDelCustomerBtn");
 
-        verticalLayout_3->addWidget(pushButton_12);
+        verticalLayout_3->addWidget(empEditDelCustomerBtn);
 
-        pushButton_15 = new QPushButton(employeeSideWidget);
-        pushButton_15->setObjectName("pushButton_15");
+        empPaymentsBtn = new QPushButton(employeeSideWidget);
+        empPaymentsBtn->setObjectName("empPaymentsBtn");
 
-        verticalLayout_3->addWidget(pushButton_15);
+        verticalLayout_3->addWidget(empPaymentsBtn);
+
+        empLogoutBtn = new QPushButton(employeeSideWidget);
+        empLogoutBtn->setObjectName("empLogoutBtn");
+
+        verticalLayout_3->addWidget(empLogoutBtn);
 
         label_33 = new QLabel(employee);
         label_33->setObjectName("label_33");
@@ -1045,37 +1055,37 @@ public:
 
         gridLayout_4->addWidget(label_20, 2, 0, 1, 1);
 
-        lineEdit_2 = new QLineEdit(gridLayoutWidget_4);
-        lineEdit_2->setObjectName("lineEdit_2");
-        lineEdit_2->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        addModelInput = new QLineEdit(gridLayoutWidget_4);
+        addModelInput->setObjectName("addModelInput");
+        addModelInput->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_4->addWidget(lineEdit_2, 1, 1, 1, 1);
+        gridLayout_4->addWidget(addModelInput, 1, 1, 1, 1);
 
-        lineEdit_3 = new QLineEdit(gridLayoutWidget_4);
-        lineEdit_3->setObjectName("lineEdit_3");
-        lineEdit_3->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        addYearInput = new QLineEdit(gridLayoutWidget_4);
+        addYearInput->setObjectName("addYearInput");
+        addYearInput->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 9px;"));
 
-        gridLayout_4->addWidget(lineEdit_3, 2, 1, 1, 1);
+        gridLayout_4->addWidget(addYearInput, 2, 1, 1, 1);
 
-        lineEdit = new QLineEdit(gridLayoutWidget_4);
-        lineEdit->setObjectName("lineEdit");
-        lineEdit->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        addManufactorInput = new QLineEdit(gridLayoutWidget_4);
+        addManufactorInput->setObjectName("addManufactorInput");
+        addManufactorInput->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_4->addWidget(lineEdit, 0, 1, 1, 1);
+        gridLayout_4->addWidget(addManufactorInput, 0, 1, 1, 1);
 
-        lineEdit_4 = new QLineEdit(gridLayoutWidget_4);
-        lineEdit_4->setObjectName("lineEdit_4");
-        lineEdit_4->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        addColorInput = new QLineEdit(gridLayoutWidget_4);
+        addColorInput->setObjectName("addColorInput");
+        addColorInput->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_4->addWidget(lineEdit_4, 3, 1, 1, 1);
+        gridLayout_4->addWidget(addColorInput, 3, 1, 1, 1);
 
         horizontalLayoutWidget_3 = new QWidget(addCar);
         horizontalLayoutWidget_3->setObjectName("horizontalLayoutWidget_3");
@@ -1083,9 +1093,9 @@ public:
         horizontalLayout_3 = new QHBoxLayout(horizontalLayoutWidget_3);
         horizontalLayout_3->setObjectName("horizontalLayout_3");
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
-        pushButton_13 = new QPushButton(horizontalLayoutWidget_3);
-        pushButton_13->setObjectName("pushButton_13");
-        pushButton_13->setStyleSheet(QString::fromUtf8("\n"
+        saveAddCarBtn = new QPushButton(horizontalLayoutWidget_3);
+        saveAddCarBtn->setObjectName("saveAddCarBtn");
+        saveAddCarBtn->setStyleSheet(QString::fromUtf8("\n"
 ".QPushButton{\n"
 "background-color: rgb(255, 255, 255);\n"
 "border: 2px solid #f1f1f1;\n"
@@ -1100,7 +1110,7 @@ public:
 "border-radius:10px;\n"
 "}"));
 
-        horizontalLayout_3->addWidget(pushButton_13);
+        horizontalLayout_3->addWidget(saveAddCarBtn);
 
         stackedWidget_3->addWidget(addCar);
         editCar = new QWidget();
@@ -1124,26 +1134,29 @@ public:
 "}"));
         editUserSearchFrame_2 = new QFrame(widget);
         editUserSearchFrame_2->setObjectName("editUserSearchFrame_2");
-        editUserSearchFrame_2->setGeometry(QRect(450, 40, 271, 38));
+        editUserSearchFrame_2->setGeometry(QRect(450, 40, 291, 38));
         sizePolicy.setHeightForWidth(editUserSearchFrame_2->sizePolicy().hasHeightForWidth());
         editUserSearchFrame_2->setSizePolicy(sizePolicy);
+        QFont font1;
+        font1.setBold(false);
+        editUserSearchFrame_2->setFont(font1);
         editUserSearchFrame_2->setFocusPolicy(Qt::NoFocus);
         editUserSearchFrame_2->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
         editUserSearchFrame_2->setFrameShape(QFrame::StyledPanel);
         editUserSearchFrame_2->setFrameShadow(QFrame::Raised);
-        edit_car = new QLineEdit(editUserSearchFrame_2);
-        edit_car->setObjectName("edit_car");
-        edit_car->setGeometry(QRect(50, 10, 471, 21));
-        edit_car->setFont(font);
+        edit_carSearch = new QLineEdit(editUserSearchFrame_2);
+        edit_carSearch->setObjectName("edit_carSearch");
+        edit_carSearch->setGeometry(QRect(50, 10, 471, 21));
+        edit_carSearch->setFont(font);
 #if QT_CONFIG(statustip)
-        edit_car->setStatusTip(QString::fromUtf8("Enter user first name or last name"));
+        edit_carSearch->setStatusTip(QString::fromUtf8("Enter user first name or last name"));
 #endif // QT_CONFIG(statustip)
-        edit_car->setAutoFillBackground(false);
-        edit_car->setStyleSheet(QString::fromUtf8("border: none;"));
-        edit_car->setFrame(false);
-        edit_car->setClearButtonEnabled(true);
+        edit_carSearch->setAutoFillBackground(false);
+        edit_carSearch->setStyleSheet(QString::fromUtf8("border: none;"));
+        edit_carSearch->setFrame(false);
+        edit_carSearch->setClearButtonEnabled(true);
         editUser_SearchLabel_2 = new QLabel(editUserSearchFrame_2);
         editUser_SearchLabel_2->setObjectName("editUser_SearchLabel_2");
         editUser_SearchLabel_2->setGeometry(QRect(20, 10, 21, 21));
@@ -1156,13 +1169,13 @@ public:
         gridLayout_5 = new QGridLayout(gridLayoutWidget_5);
         gridLayout_5->setObjectName("gridLayout_5");
         gridLayout_5->setContentsMargins(0, 0, 0, 0);
-        lineEdit_5 = new QLineEdit(gridLayoutWidget_5);
-        lineEdit_5->setObjectName("lineEdit_5");
-        lineEdit_5->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        editModelInput = new QLineEdit(gridLayoutWidget_5);
+        editModelInput->setObjectName("editModelInput");
+        editModelInput->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_5->addWidget(lineEdit_5, 1, 1, 1, 1);
+        gridLayout_5->addWidget(editModelInput, 1, 1, 1, 1);
 
         label_21 = new QLabel(gridLayoutWidget_5);
         label_21->setObjectName("label_21");
@@ -1170,21 +1183,21 @@ public:
 
         gridLayout_5->addWidget(label_21, 0, 0, 1, 1);
 
-        lineEdit_6 = new QLineEdit(gridLayoutWidget_5);
-        lineEdit_6->setObjectName("lineEdit_6");
-        lineEdit_6->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        editYearInput = new QLineEdit(gridLayoutWidget_5);
+        editYearInput->setObjectName("editYearInput");
+        editYearInput->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_5->addWidget(lineEdit_6, 2, 1, 1, 1);
+        gridLayout_5->addWidget(editYearInput, 2, 1, 1, 1);
 
-        lineEdit_7 = new QLineEdit(gridLayoutWidget_5);
-        lineEdit_7->setObjectName("lineEdit_7");
-        lineEdit_7->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        editManufactorInput = new QLineEdit(gridLayoutWidget_5);
+        editManufactorInput->setObjectName("editManufactorInput");
+        editManufactorInput->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_5->addWidget(lineEdit_7, 0, 1, 1, 1);
+        gridLayout_5->addWidget(editManufactorInput, 0, 1, 1, 1);
 
         label_22 = new QLabel(gridLayoutWidget_5);
         label_22->setObjectName("label_22");
@@ -1204,13 +1217,13 @@ public:
 
         gridLayout_5->addWidget(label_24, 2, 0, 1, 1);
 
-        lineEdit_8 = new QLineEdit(gridLayoutWidget_5);
-        lineEdit_8->setObjectName("lineEdit_8");
-        lineEdit_8->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        editColorInput = new QLineEdit(gridLayoutWidget_5);
+        editColorInput->setObjectName("editColorInput");
+        editColorInput->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_5->addWidget(lineEdit_8, 3, 1, 1, 1);
+        gridLayout_5->addWidget(editColorInput, 3, 1, 1, 1);
 
         tableView = new QTableView(widget);
         tableView->setObjectName("tableView");
@@ -1244,10 +1257,10 @@ public:
 
         horizontalLayout_4->addWidget(lastButton);
 
-        Save = new QPushButton(horizontalLayoutWidget_4);
-        Save->setObjectName("Save");
+        SaveEditCar = new QPushButton(horizontalLayoutWidget_4);
+        SaveEditCar->setObjectName("SaveEditCar");
 
-        horizontalLayout_4->addWidget(Save);
+        horizontalLayout_4->addWidget(SaveEditCar);
 
         label_25 = new QLabel(widget);
         label_25->setObjectName("label_25");
@@ -1365,15 +1378,15 @@ public:
 
         gridLayout_6->addWidget(label_32, 6, 0, 1, 1);
 
-        dateTimeEdit_5 = new QDateTimeEdit(gridLayoutWidget_6);
-        dateTimeEdit_5->setObjectName("dateTimeEdit_5");
+        reportStartDate = new QDateTimeEdit(gridLayoutWidget_6);
+        reportStartDate->setObjectName("reportStartDate");
 
-        gridLayout_6->addWidget(dateTimeEdit_5, 5, 1, 1, 1);
+        gridLayout_6->addWidget(reportStartDate, 5, 1, 1, 1);
 
-        dateTimeEdit_6 = new QDateTimeEdit(gridLayoutWidget_6);
-        dateTimeEdit_6->setObjectName("dateTimeEdit_6");
+        reportReturnDate = new QDateTimeEdit(gridLayoutWidget_6);
+        reportReturnDate->setObjectName("reportReturnDate");
 
-        gridLayout_6->addWidget(dateTimeEdit_6, 6, 1, 1, 1);
+        gridLayout_6->addWidget(reportReturnDate, 6, 1, 1, 1);
 
         stackedWidget_3->addWidget(report);
         adminSideWidget = new QWidget(admin);
@@ -1396,26 +1409,31 @@ public:
 "}"));
         verticalLayout_2 = new QVBoxLayout(adminSideWidget);
         verticalLayout_2->setObjectName("verticalLayout_2");
-        pushButton_10 = new QPushButton(adminSideWidget);
-        pushButton_10->setObjectName("pushButton_10");
+        reportBtn = new QPushButton(adminSideWidget);
+        reportBtn->setObjectName("reportBtn");
 
-        verticalLayout_2->addWidget(pushButton_10);
+        verticalLayout_2->addWidget(reportBtn);
 
-        pushButton_9 = new QPushButton(adminSideWidget);
-        pushButton_9->setObjectName("pushButton_9");
+        addCarBtn = new QPushButton(adminSideWidget);
+        addCarBtn->setObjectName("addCarBtn");
 
-        verticalLayout_2->addWidget(pushButton_9);
+        verticalLayout_2->addWidget(addCarBtn);
 
-        pushButton_11 = new QPushButton(adminSideWidget);
-        pushButton_11->setObjectName("pushButton_11");
+        editCarBtn = new QPushButton(adminSideWidget);
+        editCarBtn->setObjectName("editCarBtn");
 
-        verticalLayout_2->addWidget(pushButton_11);
+        verticalLayout_2->addWidget(editCarBtn);
+
+        adminLogoutBtn = new QPushButton(adminSideWidget);
+        adminLogoutBtn->setObjectName("adminLogoutBtn");
+
+        verticalLayout_2->addWidget(adminLogoutBtn);
 
         stackedWidget->addWidget(admin);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1150, 21));
+        menubar->setGeometry(QRect(0, 0, 1041, 21));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -1423,10 +1441,10 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(0);
         stackedWidget_2->setCurrentIndex(2);
-        stackedWidget_4->setCurrentIndex(2);
-        stackedWidget_3->setCurrentIndex(2);
+        stackedWidget_4->setCurrentIndex(0);
+        stackedWidget_3->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1438,42 +1456,45 @@ public:
         label->setText(QCoreApplication::translate("MainWindow", "Login", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "Password", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Username:", nullptr));
+        pass_login->setInputMask(QString());
         close->setText(QCoreApplication::translate("MainWindow", "Close", nullptr));
         login->setText(QCoreApplication::translate("MainWindow", "Login", nullptr));
-        label_10->setText(QCoreApplication::translate("MainWindow", "Your Car ", nullptr));
-        label_12->setText(QCoreApplication::translate("MainWindow", "Start Date", nullptr));
-        label_11->setText(QCoreApplication::translate("MainWindow", "Car details", nullptr));
-        label_13->setText(QCoreApplication::translate("MainWindow", "Return Date", nullptr));
-        label_14->setText(QCoreApplication::translate("MainWindow", "Total", nullptr));
-        pushButton_8->setText(QCoreApplication::translate("MainWindow", "Cancel Rental", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "Cars Available", nullptr));
         label_6->setText(QCoreApplication::translate("MainWindow", "Car Rental", nullptr));
         label_7->setText(QCoreApplication::translate("MainWindow", "Car name:", nullptr));
         label_8->setText(QCoreApplication::translate("MainWindow", "Start Date ", nullptr));
         label_9->setText(QCoreApplication::translate("MainWindow", "Return Date", nullptr));
-        pushButton_6->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
-        pushButton_7->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
+        saveRentalBtn->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
+        canelRentalBtn->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
+        label_10->setText(QCoreApplication::translate("MainWindow", "Your Car ", nullptr));
+        label_12->setText(QCoreApplication::translate("MainWindow", "Start Date", nullptr));
+        label_11->setText(QCoreApplication::translate("MainWindow", "Car details", nullptr));
+        label_13->setText(QCoreApplication::translate("MainWindow", "Return Date", nullptr));
+        label_14->setText(QCoreApplication::translate("MainWindow", "Total", nullptr));
+        totalRentalCost->setText(QString());
+        cancelRentalBtn->setText(QCoreApplication::translate("MainWindow", "Cancel Rental", nullptr));
         label_4->setText(QCoreApplication::translate("MainWindow", "Customer", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("MainWindow", "View Cars", nullptr));
-        pushButton_4->setText(QCoreApplication::translate("MainWindow", "View Rental Details ", nullptr));
-        pushButton_5->setText(QCoreApplication::translate("MainWindow", "Rent a Car", nullptr));
+        customerViewCarBtn->setText(QCoreApplication::translate("MainWindow", "View Cars", nullptr));
+        customerViewRentalDetsBtn->setText(QCoreApplication::translate("MainWindow", "View Rental Details ", nullptr));
+        customerRentCarBtn->setText(QCoreApplication::translate("MainWindow", "Rent a Car", nullptr));
+        customerLogoutBtn->setText(QCoreApplication::translate("MainWindow", "Logout", nullptr));
         label_39->setText(QCoreApplication::translate("MainWindow", "ADD Customer ", nullptr));
         label_37->setText(QCoreApplication::translate("MainWindow", "Username:", nullptr));
         label_38->setText(QCoreApplication::translate("MainWindow", "Password", nullptr));
         label_34->setText(QCoreApplication::translate("MainWindow", "Name:", nullptr));
         label_35->setText(QCoreApplication::translate("MainWindow", "Email:", nullptr));
         label_36->setText(QCoreApplication::translate("MainWindow", "Phone Number:", nullptr));
-        pushButton_17->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
-        pushButton_16->setText(QCoreApplication::translate("MainWindow", "Cancel ", nullptr));
+        empSaveCustomerBtn->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
+        empCancelAddCustomerBtn->setText(QCoreApplication::translate("MainWindow", "Cancel ", nullptr));
         label_45->setText(QCoreApplication::translate("MainWindow", "Edit / Delete User", nullptr));
         label_40->setText(QCoreApplication::translate("MainWindow", "Name:", nullptr));
         label_42->setText(QCoreApplication::translate("MainWindow", "Phone Number:", nullptr));
         label_41->setText(QCoreApplication::translate("MainWindow", "Email:", nullptr));
         label_44->setText(QCoreApplication::translate("MainWindow", "Password", nullptr));
         label_43->setText(QCoreApplication::translate("MainWindow", "Username:", nullptr));
-        pushButton_20->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
-        pushButton_19->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
-        pushButton_18->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
+        saveCustomerEditBtn->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
+        delCustomerBtn->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
+        cancelCustomerEditBtn->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
 #if QT_CONFIG(tooltip)
         edit_car_2->setToolTip(QCoreApplication::translate("MainWindow", "Enter user first name or last name", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -1485,10 +1506,12 @@ public:
         label_60->setText(QCoreApplication::translate("MainWindow", "Car details", nullptr));
         label_61->setText(QCoreApplication::translate("MainWindow", "Return Date", nullptr));
         label_62->setText(QCoreApplication::translate("MainWindow", "Total", nullptr));
-        pushButton_26->setText(QCoreApplication::translate("MainWindow", "Paid", nullptr));
-        pushButton_14->setText(QCoreApplication::translate("MainWindow", "ADD", nullptr));
-        pushButton_12->setText(QCoreApplication::translate("MainWindow", "Edit/ Delete", nullptr));
-        pushButton_15->setText(QCoreApplication::translate("MainWindow", "Payments", nullptr));
+        totalPayment->setText(QString());
+        paidBtn->setText(QCoreApplication::translate("MainWindow", "Paid", nullptr));
+        empAddCustomerBtn->setText(QCoreApplication::translate("MainWindow", "Add", nullptr));
+        empEditDelCustomerBtn->setText(QCoreApplication::translate("MainWindow", "Edit/ Delete", nullptr));
+        empPaymentsBtn->setText(QCoreApplication::translate("MainWindow", "Payments", nullptr));
+        empLogoutBtn->setText(QCoreApplication::translate("MainWindow", "Logut", nullptr));
         label_33->setText(QCoreApplication::translate("MainWindow", "Employee", nullptr));
         label_15->setText(QCoreApplication::translate("MainWindow", "Admin", nullptr));
         label_16->setText(QCoreApplication::translate("MainWindow", "ADD Car", nullptr));
@@ -1496,12 +1519,12 @@ public:
         label_18->setText(QCoreApplication::translate("MainWindow", "Color", nullptr));
         label_19->setText(QCoreApplication::translate("MainWindow", "Model", nullptr));
         label_20->setText(QCoreApplication::translate("MainWindow", "Year", nullptr));
-        pushButton_13->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
+        saveAddCarBtn->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
 #if QT_CONFIG(tooltip)
-        edit_car->setToolTip(QCoreApplication::translate("MainWindow", "Enter user first name or last name", nullptr));
+        edit_carSearch->setToolTip(QCoreApplication::translate("MainWindow", "Enter user first name or last name", nullptr));
 #endif // QT_CONFIG(tooltip)
-        edit_car->setText(QString());
-        edit_car->setPlaceholderText(QCoreApplication::translate("MainWindow", "Search Car", nullptr));
+        edit_carSearch->setText(QString());
+        edit_carSearch->setPlaceholderText(QCoreApplication::translate("MainWindow", "Search Car", nullptr));
         editUser_SearchLabel_2->setText(QString());
         label_21->setText(QCoreApplication::translate("MainWindow", "Manufacturer", nullptr));
         label_22->setText(QCoreApplication::translate("MainWindow", "Color", nullptr));
@@ -1511,7 +1534,7 @@ public:
         previousButton->setText(QCoreApplication::translate("MainWindow", "<&Previous", nullptr));
         nextButton->setText(QCoreApplication::translate("MainWindow", "&Next>", nullptr));
         lastButton->setText(QCoreApplication::translate("MainWindow", "&Last>>", nullptr));
-        Save->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
+        SaveEditCar->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
         label_25->setText(QCoreApplication::translate("MainWindow", "EDIT CAR", nullptr));
         label_26->setText(QCoreApplication::translate("MainWindow", "Rental Report", nullptr));
 #if QT_CONFIG(tooltip)
@@ -1528,9 +1551,10 @@ public:
         label_30->setText(QCoreApplication::translate("MainWindow", "Year", nullptr));
         label_29->setText(QCoreApplication::translate("MainWindow", "Model", nullptr));
         label_32->setText(QCoreApplication::translate("MainWindow", "Return Date", nullptr));
-        pushButton_10->setText(QCoreApplication::translate("MainWindow", "Add", nullptr));
-        pushButton_9->setText(QCoreApplication::translate("MainWindow", "Edit", nullptr));
-        pushButton_11->setText(QCoreApplication::translate("MainWindow", "Report", nullptr));
+        reportBtn->setText(QCoreApplication::translate("MainWindow", "Report", nullptr));
+        addCarBtn->setText(QCoreApplication::translate("MainWindow", "Add", nullptr));
+        editCarBtn->setText(QCoreApplication::translate("MainWindow", "Edit", nullptr));
+        adminLogoutBtn->setText(QCoreApplication::translate("MainWindow", "Logout", nullptr));
     } // retranslateUi
 
 };

@@ -25,6 +25,16 @@ public:
 private slots:
     void on_login_clicked();
 
+    void onLogoutButtonClicked();
+
+    void showAdminPage();
+
+    void showEmployeePage();
+
+    void showCustomerPage();
+
+    void on_close_clicked();
+
 private:
     Ui::MainWindow *ui;
     database mydb;

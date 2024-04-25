@@ -26,7 +26,7 @@ public:
     void setRole(QString);
     QString getRole();
 
-    QStringList viewCars();
+    QStringList viewCars(); //wondering if i should add the customer functions in here
 
     database mydb;
 
