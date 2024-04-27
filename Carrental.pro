@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     admin.cpp \
+    customer.cpp \
     database.cpp \
     employee.cpp \
     main.cpp \
@@ -18,6 +19,7 @@ SOURCES += \
 
 HEADERS += \
     admin.h \
+    customer.h \
     database.h \
     employee.h \
     mainwindow.h \

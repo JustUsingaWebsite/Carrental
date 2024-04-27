@@ -31,7 +31,7 @@
 </string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="login_2">
      <widget class="QWidget" name="login_page" native="true">
@@ -188,7 +188,7 @@ border-radius:10px;
 color:black;</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="carsAvailable">
        <widget class="QLabel" name="label_5">

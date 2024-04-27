@@ -1,8 +1,6 @@
 #include "admin.h"
 
-admin::admin() {}
-
-admin::admin(QString Name, QString usrname, QString psswd, QString userrole)
-    :users(Name, usrname, psswd, userrole){
+admin::admin(QString username, QString pass, QString email, QString phone)
+    :User(username, pass, email, phone){
 
 }

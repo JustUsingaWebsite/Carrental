@@ -2,40 +2,36 @@
 #define USERS_H
 
 #include <database.h>
-#include <iostream>
 #include <QString>
 
-class users
-{
-public:
-    users();
-    users(QString, QString, QString, QString);
-
-    void setName(QString);
-    QString getName();
-
-    void setUsername(QString);
-    QString getUsername();
-
-    void setUserID(QString);
-    QString getUserID();
-
-    void setPassword(QString);
-    QString getPassword();
-
-    void setRole(QString);
-    QString getRole();
-
-    QStringList viewCars(); //wondering if i should add the customer functions in here
-
-    database mydb;
-
+class User {
 private:
-    QString name;
     QString username;
     QString password;
-    QString userid;
-    QString role;
+    QString email;
+    QString phone;
+
+    enum Role_type{admin, employee, customer};
+    Role_type Role;
+
+public:
+    User(const QString& username, const QString& password, const QString email, const QString phone)
+        : username(username), password(password), email(email), phone(phone) {}
+
+    // Getters
+    QString getUsername() const { return username; }
+    QString getPassword() const { return password; }
+    QString getEmail() const { return email; }
+    QString getPhone() const { return phone; }
+
+    // Setters
+    void setUsername(QString);
+    void setPassword(QString);
+    void setEmail(QString);
+    void setPhone(QString);
+
+    //misc func's
+    Role_type getRole() {return Role;}
 };
 
 #endif // USERS_H

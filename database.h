@@ -12,7 +12,10 @@ class database
 public:
     database();
     ~database();
-    QStringList verifyUser(QString, QString);
+    QStringList verifyUserMySQL(QString, QString);
+    QStringList verifyUserSQLITE(QString, QString);
+    void initMYSQL();
+    void initSQLITE();
 
 private:
     QSqlDatabase mydb;

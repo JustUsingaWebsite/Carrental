@@ -45,10 +45,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+//----------------------------------------LOGIN/LOGOUT SECTION----------------------------------------------------------
+
 void MainWindow::on_login_clicked()
 {
     QStringList userLogin;
-    userLogin << mydb.verifyUser(ui->user_login->text(), ui->pass_login->text());
+    userLogin << mydb.verifyUserSQLITE(ui->user_login->text(), ui->pass_login->text());
 
     // checks if any of the login fields are empty or if the query for user information came back empty and displays an error message
     if(ui->user_login->text().isEmpty() || ui->pass_login->text().isEmpty() || userLogin.isEmpty()){
@@ -60,21 +62,24 @@ void MainWindow::on_login_clicked()
     // with the user information stored in userLogin, and moves the current window to the main page
     else if(userLogin.size() >= 5 && userLogin.at(4) == "Admin")
     {
-        ui->stackedWidget->setCurrentIndex(3);
+        ui->stackedWidget->setCurrentWidget(ui->admin);
+        ui->stackedWidget_3->setCurrentWidget(ui->report);
     }
 
 
     else if(userLogin.size() >= 5 && userLogin.at(4) == "Employee")
     {
 
-        ui->stackedWidget->setCurrentIndex(2);
+        ui->stackedWidget->setCurrentWidget(ui->employee);
+        ui->stackedWidget_4->setCurrentWidget(ui->addCustomer);
 
     }
 
     else if(userLogin.size() >= 5 && userLogin.at(4) == "Customer")
     {
 
-        ui->stackedWidget->setCurrentIndex(1);
+        ui->stackedWidget->setCurrentWidget(ui->customer);
+        ui->stackedWidget_2->setCurrentWidget(ui->carsAvailable);
 
     }
 
@@ -93,6 +98,8 @@ void MainWindow::onLogoutButtonClicked() {
     ui->pass_login->setText("");
 }
 
+//----------------------------------------PAGE NAVIGATION SECTION----------------------------------------------------------
+
 // Implement the slot function to handle page navigation
 void MainWindow::showAdminPage() {
     // Get the sender button
@@ -100,19 +107,13 @@ void MainWindow::showAdminPage() {
     if (button) {
         // Extract the page number from the object name
         QString buttonName = button->objectName();
-        int pageIndex = -1;
 
         if (buttonName == "addCarBtn")
-            pageIndex = 0; // Assuming add car page is at index 0
+            ui->stackedWidget_3->setCurrentWidget(ui->addCar);
         else if (buttonName == "editCarBtn")
-            pageIndex = 1; // Assuming edit car page is at index 1
+           ui->stackedWidget_3->setCurrentWidget(ui->editCar);
         else if (buttonName == "reportBtn")
-            pageIndex = 2; // Assuming report page is at index 2
-
-        if (pageIndex != -1) {
-            // Set the corresponding page in the admin stacked widget
-            ui->stackedWidget_3->setCurrentIndex(pageIndex);
-        }
+          ui->stackedWidget_3->setCurrentWidget(ui->report);
     }
 }
 
@@ -122,19 +123,13 @@ void MainWindow::showEmployeePage() {
     if (button) {
         // Extract the page number from the object name
         QString buttonName = button->objectName();
-        int pageIndex = -1;
 
         if (buttonName == "empAddCustomerBtn")
-            pageIndex = 0; // Assuming add customer page is at index 0
+            ui->stackedWidget_4->setCurrentWidget(ui->addCustomer);
         else if (buttonName == "empEditDelCustomerBtn")
-            pageIndex = 1; // Assuming edit/Del customer page is at index 1
+            ui->stackedWidget_4->setCurrentWidget(ui->editDelCustomer);
         else if (buttonName == "empPaymentsBtn")
-            pageIndex = 2; // Assuming report page is at index 2
-
-        if (pageIndex != -1) {
-            // Set the corresponding page in the admin stacked widget
-            ui->stackedWidget_4->setCurrentIndex(pageIndex);
-        }
+            ui->stackedWidget_4->setCurrentWidget(ui->payments);
     }
 }
 
@@ -144,21 +139,17 @@ void MainWindow::showCustomerPage() {
     if (button) {
         // Extract the page number from the object name
         QString buttonName = button->objectName();
-        int pageIndex = -1;
 
         if (buttonName == "customerViewCarBtn")
-            pageIndex = 0; // view cars page is at index 0
+            ui->stackedWidget_2->setCurrentWidget(ui->carsAvailable);
         else if (buttonName == "customerRentCarBtn")
-            pageIndex = 1; // rent a car page is at index 1
+            ui->stackedWidget_2->setCurrentWidget(ui->carRental);
         else if (buttonName == "customerViewRentalDetsBtn")
-            pageIndex = 2; // rental details page is at index 2
-
-        if (pageIndex != -1) {
-            // Set the corresponding page in the admin stacked widget
-            ui->stackedWidget_2->setCurrentIndex(pageIndex);
+            ui->stackedWidget_2->setCurrentWidget(ui->rent_dets);
         }
-    }
 }
+
+//----------------------------------------ClOSE APPLICATION/LAST SECTION----------------------------------------------------------
 
 void MainWindow::on_close_clicked()
 {

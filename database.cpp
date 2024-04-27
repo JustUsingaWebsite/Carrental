@@ -1,9 +1,6 @@
 #include <database.h>
 
-database::database() {
-    //mydb = QSqlDatabase::addDatabase("QSQLITE");
-    //mydb.setDatabaseName("C:/sqlite/MyFirstDatabase.db");
-
+void database::initMYSQL() {
     mydb = QSqlDatabase::addDatabase("QMYSQL");
     //setting connection credentials
     mydb.setHostName("localhost");
@@ -36,6 +33,21 @@ database::database() {
     }
 }
 
+void database::initSQLITE(){
+    mydb = QSqlDatabase::addDatabase("QSQLITE");
+    mydb.setDatabaseName(QCoreApplication::applicationDirPath() + "/FinalData.db");
+
+    if (mydb.open()){
+        qDebug() << "rasin";
+    }
+}
+
+
+database::database() {
+
+    initSQLITE();
+}
+
 database::~database(){
     //mydb.close();
     //QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
@@ -45,7 +57,41 @@ database::~database(){
     return;
 }
 
-QStringList database::verifyUser(QString name, QString pass){
+QStringList database::verifyUserSQLITE(QString name, QString pass){
+    QStringList userInfo;
+
+    // Prepare the SQL query to verify the user
+    QSqlQuery query;
+    query.prepare("SELECT users.user_id, users.username, users.name, users.password, roles.role_name "
+                  "FROM users "
+                  "INNER JOIN roles ON users.role_id = roles.role_id "
+                  "WHERE users.username = :username AND users.password = :password");
+    query.bindValue(":username", name);
+    query.bindValue(":password", pass);
+
+    // Execute the query
+    if (!query.exec()) {
+        qDebug() << "Error verifying user:" << query.lastError().text();
+        return userInfo; // Return empty QStringList on error
+    }
+
+    // Check if any record is found
+    if (query.next()) {
+        // Retrieve user information
+        QString userId = query.value(0).toString();
+        QString username = query.value(1).toString();
+        QString fullName = query.value(2).toString();
+        QString password = query.value(3).toString();
+        QString roleName = query.value(4).toString();
+
+        // Add user information to the QStringList
+        userInfo << userId << fullName << password << username << roleName;
+    }
+
+    return userInfo;
+}
+
+QStringList database::verifyUserMySQL(QString name, QString pass){
     // query the database
    /* if (name != "" && pass != ""){return true;}
     return false; */

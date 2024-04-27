@@ -3,7 +3,7 @@
 
 #include <users.h>
 
-class admin : public users
+class admin : public User
 {
 public:
     admin();
