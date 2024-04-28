@@ -69,15 +69,13 @@ QStringList database::verifyUserSQLITE(QString name, QString pass){
     query.bindValue(":username", name);
     query.bindValue(":password", pass);
 
-    // Execute the query
     if (!query.exec()) {
         qDebug() << "Error verifying user:" << query.lastError().text();
-        return userInfo; // Return empty QStringList on error
+        return userInfo;
     }
 
-    // Check if any record is found
     if (query.next()) {
-        // Retrieve user information
+
         QString userId = query.value(0).toString();
         QString username = query.value(1).toString();
         QString fullName = query.value(2).toString();

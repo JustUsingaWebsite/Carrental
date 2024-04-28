@@ -46,9 +46,9 @@ MainWindow::~MainWindow()
 
 //----------------------------------------LOGIN/LOGOUT SECTION----------------------------------------------------------
 
+QStringList userLogin;
 void MainWindow::on_login_clicked()
 {
-    QStringList userLogin;
     userLogin << mydb.verifyUserSQLITE(ui->user_login->text(), ui->pass_login->text());
 
     // checks if any of the login fields are empty or if the query for user information came back empty and displays an error message
@@ -109,6 +109,8 @@ void MainWindow::on_login_clicked()
     }
 }
 
+
+//----------------------------------------LOGOUT SECTION----------------------------------------------------------
 void MainWindow::onLogoutButtonClicked() {
     // For example, if you want to switch to the login page:
     ui->stackedWidget->setCurrentIndex(0);
@@ -150,6 +152,15 @@ void MainWindow::showEmployeePage() {
             ui->stackedWidget_4->setCurrentWidget(ui->payments);
     }
 }
+//----------------------------------------EMPLOYEE PAGE FUNCTIONS SECTION----------------------------------------------------------
+
+
+//--------------------------------LOAD INVENTORY [EMPLOYEE PAGE FUNCTIONS SUBSECTION]----------------------------------------------------------
+
+
+//-------------------------------VIEW CAR DETAILS [EMPLOYEE PAGE FUNCTIONS SUBSECTION]-------------------------------------------------------
+
+//----------------------------------------PAGE NAVIGATION SECTION----------------------------------------------------------
 
 void MainWindow::showCustomerPage() {
     // Get the sender button
