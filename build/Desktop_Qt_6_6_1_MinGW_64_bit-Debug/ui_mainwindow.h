@@ -1444,7 +1444,7 @@ public:
         stackedWidget->setCurrentIndex(1);
         stackedWidget_2->setCurrentIndex(0);
         stackedWidget_4->setCurrentIndex(0);
-        stackedWidget_3->setCurrentIndex(0);
+        stackedWidget_3->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

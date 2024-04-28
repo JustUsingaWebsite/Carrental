@@ -17,6 +17,8 @@ public:
     void initMYSQL();
     void initSQLITE();
 
+    std::vector<std::map<QString, QVariant>> getInventory();
+
 private:
     QSqlDatabase mydb;
 

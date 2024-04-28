@@ -1,0 +1,10 @@
+release/admin.o
+release/car.o
+release/customer.o
+release/database.o
+release/employee.o
+release/inventory.o
+release/main.o
+release/mainwindow.o
+release/users.o
+release/moc_mainwindow.o

@@ -10,18 +10,22 @@ CONFIG += c++17
 
 SOURCES += \
     admin.cpp \
+    car.cpp \
     customer.cpp \
     database.cpp \
     employee.cpp \
+    inventory.cpp \
     main.cpp \
     mainwindow.cpp \
     users.cpp
 
 HEADERS += \
     admin.h \
+    car.h \
     customer.h \
     database.h \
     employee.h \
+    inventory.h \
     mainwindow.h \
     users.h
 

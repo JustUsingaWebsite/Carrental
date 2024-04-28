@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include "database.h"
+#include "inventory.h"
+#include "car.h"
 #include <admin.h>
 #include <employee.h>
 #include <QMessageBox>
@@ -38,5 +40,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     database mydb;
+    Inventory inv;
+
 };
 #endif // MAINWINDOW_H

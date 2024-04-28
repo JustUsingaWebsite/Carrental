@@ -1,0 +1,10 @@
+debug/admin.o
+debug/car.o
+debug/customer.o
+debug/database.o
+debug/employee.o
+debug/inventory.o
+debug/main.o
+debug/mainwindow.o
+debug/users.o
+debug/moc_mainwindow.o

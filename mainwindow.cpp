@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->stackedWidget->setCurrentIndex(0);
 
     // connects for login and logout functionality
-     connect(ui->login, SIGNAL(clicked()), SLOT(on_login_clicked()));
+     //connect(ui->login, SIGNAL(clicked()), SLOT(on_login_clicked()));
 
     connect(ui->adminLogoutBtn, SIGNAL(clicked()), this, SLOT(onLogoutButtonClicked()));
     connect(ui->empLogoutBtn, SIGNAL(clicked()), this, SLOT(onLogoutButtonClicked()));
@@ -37,7 +37,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->customerRentCarBtn, SIGNAL(clicked()), this, SLOT(showCustomerPage()));
     connect(ui->customerViewCarBtn, SIGNAL(clicked()), this, SLOT(showCustomerPage()));
     connect(ui->customerViewRentalDetsBtn, SIGNAL(clicked()), this, SLOT(showCustomerPage()));
-
 }
 
 MainWindow::~MainWindow()
@@ -80,6 +79,25 @@ void MainWindow::on_login_clicked()
 
         ui->stackedWidget->setCurrentWidget(ui->customer);
         ui->stackedWidget_2->setCurrentWidget(ui->carsAvailable);
+
+        inv.loadInventory(mydb.getInventory());
+
+        // Get the list of cars from the inventory
+        QStringListModel *carListModel = new QStringListModel(this);
+
+        // Populate the model with formatted strings containing car details
+        QStringList carDetailsList;
+        for (const auto &car : inv.getCars()) {
+            QString availability = car.isAvailable() ? "true" : "false";
+            QString carDetails = QString("%1 %2, Year: %3, Color: %4, Rental Price: %5, Availability: %6")
+                                     .arg(car.getmanufacture()).arg(car.getModel())
+                                     .arg(car.getYear()).arg(car.getColor()).arg(car.getRental_Price()).arg(availability);
+            carDetailsList << carDetails;
+        }
+        carListModel->setStringList(carDetailsList);
+
+        // Set the model to the QListView
+        ui->carListView->setModel(carListModel);
 
     }
 

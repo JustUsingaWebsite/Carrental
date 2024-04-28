@@ -122,3 +122,29 @@ QStringList database::verifyUserMySQL(QString name, QString pass){
     }
     return result;
 }
+
+
+std::vector<std::map<QString, QVariant>> database::getInventory() {
+    std::vector<std::map<QString, QVariant>> inventory;
+
+    QSqlQuery query(mydb);
+    query.prepare("SELECT c.*, i.Availability_Status FROM cars c LEFT JOIN inventory i ON c.CarID = i.CarID");
+    if (!query.exec()) {
+        qDebug() << "Error loading inventory:" << query.lastError().text();
+        return inventory;
+    }
+
+    while (query.next()) {
+        std::map<QString, QVariant> carData;
+        carData["CarID"] = query.value("CarID");
+        carData["Manufacturer"] = query.value("Manufacturer");
+        carData["Model"] = query.value("Model");
+        carData["Year"] = query.value("Year");
+        carData["Color"] = query.value("Color");
+        carData["Rental_Price"] = query.value("Rental_price");
+        carData["Availability_Status"] = query.value("Availability_Status");
+        inventory.push_back(carData);
+    }
+
+    return inventory;
+}

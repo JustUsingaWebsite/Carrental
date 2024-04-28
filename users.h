@@ -6,6 +6,7 @@
 
 class User {
 private:
+    QString userID;
     QString username;
     QString password;
     QString email;
@@ -20,12 +21,14 @@ public:
 
     // Getters
     QString getUsername() const { return username; }
+    QString getUserID() const { return userID; }
     QString getPassword() const { return password; }
     QString getEmail() const { return email; }
     QString getPhone() const { return phone; }
 
     // Setters
     void setUsername(QString);
+    void setUserID(QString);
     void setPassword(QString);
     void setEmail(QString);
     void setPhone(QString);
