@@ -8,6 +8,7 @@
 #include <employee.h>
 #include <customer.h>
 #include <QMessageBox>
+#include <carlistmodel.h>
 
 #include <QMainWindow>
 
@@ -40,10 +41,20 @@ private slots:
 
     void InventoryLoader();
     void ShowCarDetails();
+    void on_cancelRentalBtn_clicked();
+
+    void onCarListViewClicked(const QModelIndex &index);
+    void onPushButtonClicked();
+
+    void on_canelRentalBtn2_clicked();
+
+    void on_saveRentalBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     database mydb;
     Inventory inv;
     customer Customer;
+    Car Universal;
 };
 #endif // MAINWINDOW_H

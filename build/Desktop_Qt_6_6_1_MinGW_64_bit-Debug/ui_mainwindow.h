@@ -67,7 +67,7 @@ public:
     QWidget *horizontalLayoutWidget_2;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *saveRentalBtn;
-    QPushButton *canelRentalBtn;
+    QPushButton *canelRentalBtn2;
     QWidget *rent_dets;
     QWidget *rental_details;
     QLabel *label_10;
@@ -417,9 +417,9 @@ public:
 
         horizontalLayout_2->addWidget(saveRentalBtn);
 
-        canelRentalBtn = new QPushButton(horizontalLayoutWidget_2);
-        canelRentalBtn->setObjectName("canelRentalBtn");
-        canelRentalBtn->setStyleSheet(QString::fromUtf8("\n"
+        canelRentalBtn2 = new QPushButton(horizontalLayoutWidget_2);
+        canelRentalBtn2->setObjectName("canelRentalBtn2");
+        canelRentalBtn2->setStyleSheet(QString::fromUtf8("\n"
 ".QPushButton{\n"
 "background-color: rgb(255, 255, 255);\n"
 "border: 2px solid #f1f1f1;\n"
@@ -434,7 +434,7 @@ public:
 "border-radius:10px;\n"
 "}"));
 
-        horizontalLayout_2->addWidget(canelRentalBtn);
+        horizontalLayout_2->addWidget(canelRentalBtn2);
 
         stackedWidget_2->addWidget(carRental);
         rent_dets = new QWidget();
@@ -469,6 +469,7 @@ public:
 
         rentDetsStartDate = new QDateTimeEdit(gridLayoutWidget_3);
         rentDetsStartDate->setObjectName("rentDetsStartDate");
+        rentDetsStartDate->setEnabled(true);
 
         gridLayout_3->addWidget(rentDetsStartDate, 1, 1, 1, 1);
 
@@ -1442,9 +1443,9 @@ public:
         retranslateUi(MainWindow);
 
         stackedWidget->setCurrentIndex(1);
-        stackedWidget_2->setCurrentIndex(2);
-        stackedWidget_4->setCurrentIndex(2);
-        stackedWidget_3->setCurrentIndex(1);
+        stackedWidget_2->setCurrentIndex(1);
+        stackedWidget_4->setCurrentIndex(1);
+        stackedWidget_3->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1465,7 +1466,7 @@ public:
         label_8->setText(QCoreApplication::translate("MainWindow", "Start Date ", nullptr));
         label_9->setText(QCoreApplication::translate("MainWindow", "Return Date", nullptr));
         saveRentalBtn->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
-        canelRentalBtn->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
+        canelRentalBtn2->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
         label_10->setText(QCoreApplication::translate("MainWindow", "Your Car ", nullptr));
         label_12->setText(QCoreApplication::translate("MainWindow", "Start Date", nullptr));
         label_11->setText(QCoreApplication::translate("MainWindow", "Car details", nullptr));

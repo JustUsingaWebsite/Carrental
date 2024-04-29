@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <QObject>
 #include <QMessageBox>
+#include <tuple>
 
 class database
 {
@@ -19,6 +20,8 @@ public:
 
     std::vector<std::map<QString, QVariant>> getInventory();
     std::map<QString, QVariant> getUserRentedCar(int userId);
+    bool RentCar(std::tuple<int, int, QDateTime, QDateTime, int>);
+    std::tuple<bool, QString> cancelRental(int);
 private:
     QSqlDatabase mydb;
 

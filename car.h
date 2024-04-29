@@ -18,6 +18,7 @@ private:
 
 
 public:
+    Car();
     Car(const QString& manufacture, const QString& model, int year, const QString& color)
         : manufacture(manufacture), model(model), color(color), year(year), available(true) {}
 

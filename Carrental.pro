@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     admin.cpp \
     car.cpp \
+    carlistmodel.cpp \
     customer.cpp \
     database.cpp \
     employee.cpp \
@@ -22,6 +23,7 @@ SOURCES += \
 HEADERS += \
     admin.h \
     car.h \
+    carlistmodel.h \
     customer.h \
     database.h \
     employee.h \

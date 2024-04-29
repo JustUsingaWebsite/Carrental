@@ -1,5 +1,7 @@
 #include "car.h"
 
+Car::Car() {}
+
 void Car::setAvailability(bool val){
     available = val; return;
 }
@@ -26,8 +28,8 @@ void Car::setRental_Price(int val){
 QString Car::getCarDetails(Car& val){
 
     QString availability = val.isAvailable() ? "true" : "false";
-    QString carDetails = QString("%1 %2, Year: %3, Color: %4, Rental Price: %5, Availability: %6")
-                             .arg(val.getmanufacture()).arg(val.getModel())
+    QString carDetails = QString("Car id: %1,  %2 %3, Year: %4, Color: %5, Rental Price: %6, Availability: %7")
+                             .arg(val.getCarId()).arg(val.getmanufacture()).arg(val.getModel())
                              .arg(val.getYear()).arg(val.getColor()).arg(val.getRental_Price()).arg(availability);
 
     return carDetails;

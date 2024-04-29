@@ -37,6 +37,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->customerRentCarBtn, SIGNAL(clicked()), this, SLOT(showCustomerPage()));
     connect(ui->customerViewCarBtn, SIGNAL(clicked()), this, SLOT(showCustomerPage()));
     connect(ui->customerViewRentalDetsBtn, SIGNAL(clicked()), this, SLOT(showCustomerPage()));
+
+    // Connect the clicked signal of the QListView to a slot
+    connect(ui->carListView, &QListView::clicked, this, &MainWindow::onCarListViewClicked);
+
 }
 
 MainWindow::~MainWindow()
@@ -147,13 +151,21 @@ void MainWindow::showCustomerPage() {
         // Extract the page number from the object name
         QString buttonName = button->objectName();
 
-        if (buttonName == "customerViewCarBtn")
+        if (buttonName == "customerViewCarBtn"){
             ui->stackedWidget_2->setCurrentWidget(ui->carsAvailable);
-        else if (buttonName == "customerRentCarBtn")
+            InventoryLoader();
+        }
+
+        else if (buttonName == "customerRentCarBtn"){
             ui->stackedWidget_2->setCurrentWidget(ui->carRental);
-        else if (buttonName == "customerViewRentalDetsBtn")
+            onPushButtonClicked();
+        }
+
+        else if (buttonName == "customerViewRentalDetsBtn"){
             ui->stackedWidget_2->setCurrentWidget(ui->rent_dets);
-        ShowCarDetails();
+            ShowCarDetails();
+        }
+
     }
 }
 
@@ -162,26 +174,18 @@ void MainWindow::showCustomerPage() {
 
 //--------------------------------LOAD INVENTORY [CUSTOMER PAGE FUNCTIONS SUBSECTION]----------------------------------------------------------
 
-void MainWindow::InventoryLoader(){
+void MainWindow::InventoryLoader() {
     inv.loadInventory(mydb.getInventory());
 
-    // Get the list of cars from the inventory
-    QStringListModel *carListModel = new QStringListModel(this);
-
-    // Populate the model with formatted strings containing car details
-    QStringList carDetailsList;
-    for (const auto &car : inv.getCars()) {
-        QString availability = car.isAvailable() ? "true" : "false";
-        QString carDetails = QString("%1 %2, Year: %3, Availability: %4")
-                                 .arg(car.getmanufacture()).arg(car.getModel())
-                                 .arg(car.getYear()).arg(availability);
-        carDetailsList << carDetails;
-    }
-    carListModel->setStringList(carDetailsList);
+    // Create a custom model to associate Car objects with rows
+    CarListModel *carListModel = new CarListModel(this);
+    carListModel->setCarData(inv.getCars());
 
     // Set the model to the QListView
     ui->carListView->setModel(carListModel);
 }
+
+
 
 //-------------------------------VIEW CAR DETAILS [CUSTOMER PAGE FUNCTIONS SUBSECTION]-------------------------------------------------------
 
@@ -192,15 +196,15 @@ void MainWindow::ShowCarDetails(){
     QStringListModel *carListModel = new QStringListModel(this);
     QStringList carDetailsList;
 
-    Car car(carData["Manufacturer"].toString(),
-            carData["Model"].toString(),
-            carData["Year"].toInt(),
-            carData["Color"].toString());
-    car.setRental_Price(carData["Rental_Price"].toInt());
-    car.setCarId(carData["CarID"].toInt());
-    car.setAvailability(carData["Availability_Status"].toString().trimmed() == "available");
+    Universal.setManufacture(carData["Manufacturer"].toString());
+    Universal.setModel(carData["Model"].toString());
+    Universal.setYear(carData["Year"].toInt());
+    Universal.setColor(carData["Color"].toString());
+    Universal.setRental_Price(carData["Rental_Price"].toInt());
+    Universal.setCarId(carData["CarID"].toInt());
+    Universal.setAvailability(carData["Availability_Status"].toString().trimmed() == "available");
 
-    carDetailsList << car.getCarDetails(car).append(", Rental_Status: " + carData["Rental_Status"].toString());
+    carDetailsList << Universal.getCarDetails(Universal).append(", Rental_Status: " + carData["Rental_Status"].toString());
     carListModel->setStringList(carDetailsList);
     ui->listView->setModel(carListModel);
 
@@ -219,5 +223,111 @@ void MainWindow::on_close_clicked()
 {
     // Close the application
     QApplication::quit();
+}
+
+
+void MainWindow::on_cancelRentalBtn_clicked()
+{
+
+    // Check if the list view has a model set
+    if (!ui->listView->model()) {
+        QMessageBox::warning(this, tr("Car Rental System"), tr("No model set for the list view."));
+        return;
+    }
+
+    QModelIndexList selectedIndexes = ui->listView->selectionModel()->selectedIndexes();
+
+    if (selectedIndexes.isEmpty()) {
+        QMessageBox::warning(this, tr("Car Rental System"), tr("Please select a car to cancel the rental."));
+        return;
+    }
+
+    // Get the selected car data from the model
+    QString carDetails = ui->listView->model()->data(selectedIndexes.first(), Qt::DisplayRole).toString();
+
+    // Extract the CarID from the selected data (assuming the CarID is the first part of the details)
+    QStringList parts = carDetails.split(", ");
+    int carId = parts.first().split(": ").last().toInt();
+
+
+    // Update the rental status in the database to "cancelled" for the selected car
+    std::tuple<bool, QString> success = mydb.cancelRental(carId);
+    if (std::get<0>(success)) {
+        QMessageBox::information(this, tr("Car Rental System"), std::get<1>(success));
+
+        // Update the availability status of the car in the inventory table (optional)
+        // Implement this if needed
+        ui->listView->setModel(new QStringListModel(this));
+        ui->rentDetsStartDate->setDateTime(QDateTime::currentDateTime());
+        ui->rentDetsReturnDate->setDateTime(QDateTime::currentDateTime());
+        ui->totalRentalCost->setText("0");
+    } else {
+        QMessageBox::warning(this, tr("Car Rental System"), std::get<1>(success));
+    }
+}
+
+
+void MainWindow::onCarListViewClicked(const QModelIndex &index) {
+    // Retrieve the Car object associated with the clicked row
+    QVariant data = ui->carListView->model()->data(index, Qt::UserRole);
+    if (data.isValid()) {
+        Universal = data.value<Car>();
+
+        // Now you have access to the selected Car object
+        // You can store it or process it further as needed
+    }
+}
+
+void MainWindow::onPushButtonClicked() {
+    // Retrieve the stored data and process it
+    // You can access the stored data from the member variable
+    // or receive it as a parameter if you emitted a signal
+
+    QModelIndexList selectedIndexes = ui->carListView->selectionModel()->selectedIndexes();
+
+    if (selectedIndexes.isEmpty()) {
+        QMessageBox::warning(this, tr("Car Rental System"), tr("Please select a car to rent."));
+        ui->stackedWidget_2->setCurrentWidget(ui->carsAvailable);
+        return;
+    }
+
+    if (!Universal.isAvailable()){
+        QMessageBox::warning(this, tr("Car Rental System"), Universal.getmanufacture() + " " +  Universal.getModel() + " is not available for rent");
+        ui->stackedWidget_2->setCurrentWidget(ui->carsAvailable);
+        return;
+    }
+
+    ui->rentalCarName->setText(Universal.getmanufacture() + " " + Universal.getModel());
+    ui->rentalStartDate->setDateTime(QDateTime::currentDateTime());
+    ui->rentalReturnDate->setDateTime(QDateTime::currentDateTime().addSecs(24 * 3600));
+}
+
+
+
+void MainWindow::on_canelRentalBtn2_clicked()
+{
+    ui->stackedWidget_2->setCurrentWidget(ui->carsAvailable);
+    ui->rentalCarName->setText("");
+}
+
+
+void MainWindow::on_saveRentalBtn_clicked()
+{
+
+
+   bool response = mydb.RentCar(std::make_tuple(Customer.getUserID().toInt(),
+                                 Universal.getCarId(),
+                                 ui->rentalStartDate->dateTime(),
+                                 ui->rentalReturnDate->dateTime(),
+                                 Universal.getRental_Price() * 2));
+
+    if (!response){
+       QMessageBox::warning(this, tr("Car Rental System"), tr("Error while trying to rent car"));
+        ui->stackedWidget_2->setCurrentWidget(ui->carsAvailable);
+       return;
+   }
+
+    QMessageBox::warning(this, tr("Car Rental System"), tr("Success!"));
+    ui->customerViewCarBtn->click();
 }
 

@@ -1,5 +1,6 @@
 release/admin.o
 release/car.o
+release/carlistmodel.o
 release/customer.o
 release/database.o
 release/employee.o

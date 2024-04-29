@@ -188,7 +188,7 @@ border-radius:10px;
 color:black;</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="carsAvailable">
        <widget class="QLabel" name="label_5">
@@ -320,7 +320,7 @@ border-radius:10px;
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="canelRentalBtn">
+           <widget class="QPushButton" name="canelRentalBtn2">
             <property name="styleSheet">
              <string notr="true">
 .QPushButton{
@@ -400,7 +400,11 @@ border-radius:10px;
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QDateTimeEdit" name="rentDetsStartDate"/>
+           <widget class="QDateTimeEdit" name="rentDetsStartDate">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="label_13">
@@ -563,7 +567,7 @@ border-radius:10px;
        <string notr="true">background-color:gray</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="addCustomer">
        <widget class="QWidget" name="add_user" native="true">
@@ -1297,7 +1301,7 @@ background-color: #4981B0;</string>
        <string notr="true">Background-color:gray</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="addCar">
        <widget class="QLabel" name="label_16">
