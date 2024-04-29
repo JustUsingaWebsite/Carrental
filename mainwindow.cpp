@@ -79,25 +79,12 @@ void MainWindow::on_login_clicked()
 
         ui->stackedWidget->setCurrentWidget(ui->customer);
         ui->stackedWidget_2->setCurrentWidget(ui->carsAvailable);
+        Customer.setUserID(userLogin.at(0));
+        Customer.setName(userLogin.at(1));
+        Customer.setPassword(userLogin.at(2));
+        Customer.setUsername(userLogin.at(3));
 
-        inv.loadInventory(mydb.getInventory());
-
-        // Get the list of cars from the inventory
-        QStringListModel *carListModel = new QStringListModel(this);
-
-        // Populate the model with formatted strings containing car details
-        QStringList carDetailsList;
-        for (const auto &car : inv.getCars()) {
-            QString availability = car.isAvailable() ? "true" : "false";
-            QString carDetails = QString("%1 %2, Year: %3, Color: %4, Rental Price: %5, Availability: %6")
-                                     .arg(car.getmanufacture()).arg(car.getModel())
-                                     .arg(car.getYear()).arg(car.getColor()).arg(car.getRental_Price()).arg(availability);
-            carDetailsList << carDetails;
-        }
-        carListModel->setStringList(carDetailsList);
-
-        // Set the model to the QListView
-        ui->carListView->setModel(carListModel);
+        InventoryLoader();
 
     }
 
@@ -152,15 +139,6 @@ void MainWindow::showEmployeePage() {
             ui->stackedWidget_4->setCurrentWidget(ui->payments);
     }
 }
-//----------------------------------------EMPLOYEE PAGE FUNCTIONS SECTION----------------------------------------------------------
-
-
-//--------------------------------LOAD INVENTORY [EMPLOYEE PAGE FUNCTIONS SUBSECTION]----------------------------------------------------------
-
-
-//-------------------------------VIEW CAR DETAILS [EMPLOYEE PAGE FUNCTIONS SUBSECTION]-------------------------------------------------------
-
-//----------------------------------------PAGE NAVIGATION SECTION----------------------------------------------------------
 
 void MainWindow::showCustomerPage() {
     // Get the sender button
@@ -175,7 +153,64 @@ void MainWindow::showCustomerPage() {
             ui->stackedWidget_2->setCurrentWidget(ui->carRental);
         else if (buttonName == "customerViewRentalDetsBtn")
             ui->stackedWidget_2->setCurrentWidget(ui->rent_dets);
-        }
+        ShowCarDetails();
+    }
+}
+
+//----------------------------------------CUSTOMER PAGE FUNCTIONS SECTION----------------------------------------------------------
+
+
+//--------------------------------LOAD INVENTORY [CUSTOMER PAGE FUNCTIONS SUBSECTION]----------------------------------------------------------
+
+void MainWindow::InventoryLoader(){
+    inv.loadInventory(mydb.getInventory());
+
+    // Get the list of cars from the inventory
+    QStringListModel *carListModel = new QStringListModel(this);
+
+    // Populate the model with formatted strings containing car details
+    QStringList carDetailsList;
+    for (const auto &car : inv.getCars()) {
+        QString availability = car.isAvailable() ? "true" : "false";
+        QString carDetails = QString("%1 %2, Year: %3, Availability: %4")
+                                 .arg(car.getmanufacture()).arg(car.getModel())
+                                 .arg(car.getYear()).arg(availability);
+        carDetailsList << carDetails;
+    }
+    carListModel->setStringList(carDetailsList);
+
+    // Set the model to the QListView
+    ui->carListView->setModel(carListModel);
+}
+
+//-------------------------------VIEW CAR DETAILS [CUSTOMER PAGE FUNCTIONS SUBSECTION]-------------------------------------------------------
+
+void MainWindow::ShowCarDetails(){
+    auto carData = mydb.getUserRentedCar(Customer.getUserID().toInt());
+
+    if (!carData.empty()){
+    QStringListModel *carListModel = new QStringListModel(this);
+    QStringList carDetailsList;
+
+    Car car(carData["Manufacturer"].toString(),
+            carData["Model"].toString(),
+            carData["Year"].toInt(),
+            carData["Color"].toString());
+    car.setRental_Price(carData["Rental_Price"].toInt());
+    car.setCarId(carData["CarID"].toInt());
+    car.setAvailability(carData["Availability_Status"].toString().trimmed() == "available");
+
+    carDetailsList << car.getCarDetails(car).append(", Rental_Status: " + carData["Rental_Status"].toString());
+    carListModel->setStringList(carDetailsList);
+    ui->listView->setModel(carListModel);
+
+    QDateTime startDateTime = carData["Start_Date"].toDateTime();
+    QDateTime returnDateTime = carData["Return_Date"].toDateTime();
+
+    ui->rentDetsStartDate->setDateTime(startDateTime);
+    ui->rentDetsReturnDate->setDateTime(returnDateTime);
+    ui->totalRentalCost->setText(carData["Total_Price"].toString());
+    }
 }
 
 //----------------------------------------ClOSE APPLICATION/LAST SECTION----------------------------------------------------------

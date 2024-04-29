@@ -188,7 +188,7 @@ border-radius:10px;
 color:black;</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="carsAvailable">
        <widget class="QLabel" name="label_5">
@@ -563,7 +563,7 @@ border-radius:10px;
        <string notr="true">background-color:gray</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="addCustomer">
        <widget class="QWidget" name="add_user" native="true">
@@ -1297,7 +1297,7 @@ background-color: #4981B0;</string>
        <string notr="true">Background-color:gray</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="addCar">
        <widget class="QLabel" name="label_16">

@@ -146,3 +146,48 @@ std::vector<std::map<QString, QVariant>> database::getInventory() {
 
     return inventory;
 }
+
+std::map<QString, QVariant> database::getUserRentedCar(int userId) {
+    std::map<QString, QVariant> carData;
+
+    QSqlQuery query(mydb);
+    query.prepare("SELECT c.*, i.Availability_Status, r.Start_Date, r.Return_Date, r.Total_Price, r.Rental_Status FROM rentals r "
+                  "INNER JOIN cars c ON r.CarID = c.CarID "
+                  "INNER JOIN inventory i ON r.CarID = i.CarID "
+                  "WHERE r.CostumerID = :userId");
+    query.bindValue(":userId", userId);
+    if (!query.exec()) {
+        qDebug() << "Error checking user's rented car:" << query.lastError().text();
+        return carData;
+    }
+
+    if (query.next()) {
+        carData["CarID"] = query.value("CarID");
+        carData["Manufacturer"] = query.value("Manufacturer");
+        carData["Model"] = query.value("Model");
+        carData["Year"] = query.value("Year");
+        carData["Color"] = query.value("Color");
+        carData["Rental_Price"] = query.value("Rental_price");
+        carData["Availability_Status"] = query.value("Availability_Status");
+        carData["Total_Price"] = query.value("Total_Price");
+        carData["Rental_Status"] = query.value("Rental_Status");
+
+        QString startDateString = query.value("Start_Date").toString();
+        QString returnDateString = query.value("Return_Date").toString();
+
+        // Convert QStrings to QDates
+        QDate startDate = QDate::fromString(startDateString, "yyyy-MM-dd");
+        QDate returnDate = QDate::fromString(returnDateString, "yyyy-MM-dd");
+
+        // Convert QDates to QDateTime objects
+        QDateTime startDateTime(startDate, QTime(0, 0, 0));
+        QDateTime returnDateTime(returnDate, QTime(23, 59, 59)); // Assuming you want end of day time
+
+        // Set the QDateTime objects in the map
+        carData["Start_Date"] = startDateTime;
+        carData["Return_Date"] = returnDateTime;
+    }
+
+    return carData;
+}
+

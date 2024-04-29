@@ -18,7 +18,7 @@ public:
     void initSQLITE();
 
     std::vector<std::map<QString, QVariant>> getInventory();
-
+    std::map<QString, QVariant> getUserRentedCar(int userId);
 private:
     QSqlDatabase mydb;
 

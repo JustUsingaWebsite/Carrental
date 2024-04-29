@@ -1,6 +1,7 @@
 #ifndef CAR_H
 #define CAR_H
 #include <QString>
+#include <QList>
 
 class Car {
 private:
@@ -39,6 +40,9 @@ public:
     void setCarId(int);
     void setYear(int);
     void setRental_Price(int);
+
+    //misc func
+    QString getCarDetails(Car&);
 };
 
 #endif // CAR_H
