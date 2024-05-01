@@ -2,6 +2,7 @@ debug/admin.o
 debug/car.o
 debug/carlistmodel.o
 debug/customer.o
+debug/customerlistmodel.o
 debug/database.o
 debug/employee.o
 debug/inventory.o

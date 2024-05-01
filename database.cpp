@@ -122,6 +122,51 @@ QStringList database::verifyUserMySQL(QString name, QString pass){
 }
 
 
+bool database::MakeCustomer(std::vector<QString> val){
+    // Check if the vector size is correct
+    if (val.size() != 5) {
+        qDebug() << "Incorrect number of values provided for creating a customer.";
+        return false;
+    }
+
+    // Extract values from the vector
+    QString name = val[0];
+    QString email = val[1];
+    QString phoneNum = val[2];
+    QString username = val[3];
+    QString password = val[4];
+
+    // Check if there's already a user with the same name, email, or phone number
+    QSqlQuery checkQuery(mydb);
+    checkQuery.prepare("SELECT * FROM users WHERE name = :name OR email = :email OR phoneNum = :phoneNum");
+    checkQuery.bindValue(":name", name);
+    checkQuery.bindValue(":email", email);
+    checkQuery.bindValue(":phoneNum", phoneNum);
+    if (checkQuery.exec() && checkQuery.next()) {
+        qDebug() << "A user with the same name, email, or phone number already exists.";
+        return false;
+    }
+
+    // Prepare the SQL query to insert a new row into the users table
+    QSqlQuery query(mydb);
+    query.prepare("INSERT INTO users (name, email, phoneNum, username, password, role_id) "
+                  "VALUES (:name, :email, :phoneNum, :username, :password, 2)");
+    query.bindValue(":name", name);
+    query.bindValue(":email", email);
+    query.bindValue(":phoneNum", phoneNum);
+    query.bindValue(":username", username);
+    query.bindValue(":password", password);
+
+    // Execute the query
+    if (!query.exec()) {
+        qDebug() << "Error creating customer:" << query.lastError().text();
+        return false;
+    }
+
+    return true;
+}
+
+
 std::vector<std::map<QString, QVariant>> database::getInventory() {
     std::vector<std::map<QString, QVariant>> inventory;
 
@@ -147,14 +192,42 @@ std::vector<std::map<QString, QVariant>> database::getInventory() {
     return inventory;
 }
 
+std::vector<std::map<QString, QVariant>> database::getUsers() {
+    std::vector<std::map<QString, QVariant>> inventory;
+
+    QSqlQuery query(mydb);
+    query.prepare("SELECT * FROM users WHERE role_id = 2"); // Assuming role_id 2 represents customers
+    if (!query.exec()) {
+        qDebug() << "Error loading inventory:" << query.lastError().text();
+        return inventory;
+    }
+
+    while (query.next()) {
+        std::map<QString, QVariant> userData;
+        userData["user_id"] = query.value("user_id");
+        userData["name"] = query.value("name");
+        userData["email"] = query.value("email");
+        userData["phoneNum"] = query.value("phoneNum");
+        userData["username"] = query.value("username");
+        userData["password"] = query.value("password");
+        userData["role_id"] = query.value("role_id");
+        inventory.push_back(userData);
+    }
+
+    return inventory;
+}
+
+
 std::map<QString, QVariant> database::getUserRentedCar(int userId) {
     std::map<QString, QVariant> carData;
 
     QSqlQuery query(mydb);
-    query.prepare("SELECT c.*, i.Availability_Status, r.Start_Date, r.Return_Date, r.Total_Price, r.Rental_Status FROM rentals r "
+    query.prepare("SELECT c.*, i.Availability_Status, r.Start_Date, r.Return_Date, r.Total_Price, r.Rental_Status "
+                  "FROM rentals r "
                   "INNER JOIN cars c ON r.CarID = c.CarID "
                   "INNER JOIN inventory i ON r.CarID = i.CarID "
-                  "WHERE r.CustomerID = :userId AND r.Rental_Status = 'active'");
+                  "WHERE r.CustomerID = :userId AND (r.Rental_Status = 'active' OR r.Rental_Status = 'pending')");
+
     query.bindValue(":userId", userId);
     if (!query.exec()) {
         qDebug() << "Error checking user's rented car:" << query.lastError().text();
@@ -216,7 +289,7 @@ std::tuple<bool, QString> database::cancelRental(int carId) {
 
     // Update the availability status in the inventory table to "available"
     QSqlQuery updateInventoryQuery(mydb);
-    updateInventoryQuery.prepare("UPDATE inventory SET Availability_Status = 'available' WHERE CarID = :carId");
+    updateInventoryQuery.prepare("UPDATE inventory SET CustomerID = 8, Availability_Status = 'available' WHERE CarID = :carId");
     updateInventoryQuery.bindValue(":carId", carId);
     if (!updateInventoryQuery.exec()) {
         qDebug() << "Error updating inventory:" << updateInventoryQuery.lastError().text();
@@ -234,6 +307,8 @@ bool database::RentCar(std::tuple<int, int, QDateTime, QDateTime, int> rentalDat
     QDateTime returnDate = std::get<3>(rentalData);
     int totalPrice = std::get<4>(rentalData);
 
+    qDebug() << customerId;
+
     // Check if the customer already has an entry
     QSqlQuery checkQuery(mydb);
     checkQuery.prepare("SELECT * FROM rentals WHERE CustomerID = :customerId");
@@ -245,14 +320,14 @@ bool database::RentCar(std::tuple<int, int, QDateTime, QDateTime, int> rentalDat
 
     if (checkQuery.next()) {
         // Customer already has an entry
-
-        if (checkQuery.value("Rental_Status").toString() == "active") {
+        qDebug() << checkQuery.value("Rental_Status").toString();
+        if (checkQuery.value("Rental_Status").toString() == "active" || checkQuery.value("Rental_Status").toString() == "pending") {
             // Active rental found, return false
             return false;
         } else {
             // Update existing entry
             QSqlQuery updateQuery(mydb);
-            updateQuery.prepare("UPDATE rentals SET EmployeeID = 8, CarID = :carId, Start_Date = :startDate, Return_Date = :returnDate, Total_Price = :totalPrice, Rental_Status = 'active' "
+            updateQuery.prepare("UPDATE rentals SET CarID = :carId, Start_Date = :startDate, Return_Date = :returnDate, Total_Price = :totalPrice, Rental_Status = 'pending' "
                                 "WHERE CustomerID = :customerId");
             updateQuery.bindValue(":carId", carId);
             updateQuery.bindValue(":startDate", startDate.toString("yyyy-MM-dd hh:mm:ss"));
@@ -265,10 +340,11 @@ bool database::RentCar(std::tuple<int, int, QDateTime, QDateTime, int> rentalDat
             }
         }
     } else {
+        qDebug() << checkQuery.value("Rental_Status").toString();
         // No entry found, insert a new entry
         QSqlQuery insertQuery(mydb);
-        insertQuery.prepare("INSERT INTO rentals (CostumerID, EmployeeID, CarID, Start_Date, Return_Date, Total_Price, Rental_Status) "
-                            "VALUES (:customerId, 8, :carId, :startDate, :returnDate, :totalPrice, 'active')");
+        insertQuery.prepare("INSERT INTO rentals (CustomerID, EmployeeID, CarID, Start_Date, Return_Date, Total_Price, Rental_Status) "
+                            "VALUES (:customerId, 8, :carId, :startDate, :returnDate, :totalPrice, 'pending')");
         insertQuery.bindValue(":customerId", customerId);
         insertQuery.bindValue(":carId", carId);
         insertQuery.bindValue(":startDate", startDate.toString("yyyy-MM-dd hh:mm:ss"));
@@ -314,6 +390,124 @@ bool database::RentCar(std::tuple<int, int, QDateTime, QDateTime, int> rentalDat
     return true;
 }
 
+bool database::UpdateUser(int userid, QString name, QString email, QString phone, QString username, QString password) {
+    QSqlQuery query(mydb);
 
+    // Check if the user exists
+    query.prepare("SELECT * FROM users WHERE user_id = :userid");
+    query.bindValue(":userid", userid);
+    if (!query.exec()) {
+        qDebug() << "Error checking user for update:" << query.lastError().text();
+        return false;
+    }
 
+    if (!query.next()) {
+        qDebug() << "User not found for update.";
+        return false;
+    }
+
+    // Update the user record
+    query.prepare("UPDATE users SET name = :name, email = :email, phoneNum = :phone, username = :username, password = :password WHERE user_id = :userid");
+    query.bindValue(":name", name);
+    query.bindValue(":email", email);
+    query.bindValue(":phone", phone);
+    query.bindValue(":username", username);
+    query.bindValue(":password", password);
+    query.bindValue(":userid", userid);
+
+    if (!query.exec()) {
+        qDebug() << "Error updating user:" << query.lastError().text();
+        return false;
+    }
+
+    return true;
+}
+
+bool database::DeleteUser(int userid) {
+    QSqlQuery query(mydb);
+
+    // Check if the user exists
+    query.prepare("SELECT * FROM users WHERE user_id = :userid");
+    query.bindValue(":userid", userid);
+    if (!query.exec()) {
+        qDebug() << "Error checking user for deletion:" << query.lastError().text();
+        return false;
+    }
+
+    if (!query.next()) {
+        qDebug() << "User not found for deletion.";
+        return false;
+    }
+
+    // Delete the user record
+    query.prepare("DELETE FROM users WHERE user_id = :userid");
+    query.bindValue(":userid", userid);
+
+    if (!query.exec()) {
+        qDebug() << "Error deleting user:" << query.lastError().text();
+        return false;
+    }
+
+    return true;
+}
+
+bool database::MakePayment(int customerid, int employeeid, QDateTime val, int total) {
+    // Step 1: Check if the customer has a valid rental entry
+    int rentalID = -1;
+    QSqlQuery rentalQuery(mydb);
+    rentalQuery.prepare("SELECT ID FROM rentals WHERE CustomerID = :customerId AND Rental_Status != 'cancelled'");
+    rentalQuery.bindValue(":customerId", customerid);
+    if (!rentalQuery.exec()) {
+        qDebug() << "Error checking rental for customer:" << rentalQuery.lastError().text();
+        return false;
+    }
+
+    if (rentalQuery.next()) {
+        rentalID = rentalQuery.value("ID").toInt();
+    } else {
+        qDebug() << "No active rental found for customer" << customerid;
+        return false;
+    }
+
+    // Step 2: Check if the customer has an existing payment entry
+    QSqlQuery paymentQuery(mydb);
+    paymentQuery.prepare("SELECT ID FROM payments WHERE CustomerID = :customerId");
+    paymentQuery.bindValue(":customerId", customerid);
+    if (!paymentQuery.exec()) {
+        qDebug() << "Error checking payment for customer:" << paymentQuery.lastError().text();
+        return false;
+    }
+
+    // Step 3: Make payment based on whether there's an existing payment entry or not
+    if (paymentQuery.next()) {
+        // Update existing payment entry
+        int paymentID = paymentQuery.value("ID").toInt();
+        QSqlQuery updatePaymentQuery(mydb);
+        updatePaymentQuery.prepare("UPDATE payments SET RentalID = :rentalId, EmployeeID = :employeeId, PaymentDate = :paymentDate, Amount = :amount WHERE ID = :paymentId");
+        updatePaymentQuery.bindValue(":rentalId", rentalID);
+        updatePaymentQuery.bindValue(":employeeId", employeeid);
+        updatePaymentQuery.bindValue(":paymentDate", val);
+        updatePaymentQuery.bindValue(":amount", total);
+        updatePaymentQuery.bindValue(":paymentId", paymentID);
+        if (!updatePaymentQuery.exec()) {
+            qDebug() << "Error updating payment:" << updatePaymentQuery.lastError().text();
+            return false;
+        }
+    } else {
+        // Create new payment entry
+        QSqlQuery insertPaymentQuery(mydb);
+        insertPaymentQuery.prepare("INSERT INTO payments (RentalID, CustomerID, EmployeeID, PaymentDate, Amount) VALUES (:rentalId, :customerId, :employeeId, :paymentDate, :amount)");
+        insertPaymentQuery.bindValue(":rentalId", rentalID);
+        insertPaymentQuery.bindValue(":customerId", customerid);
+        insertPaymentQuery.bindValue(":employeeId", employeeid);
+        insertPaymentQuery.bindValue(":paymentDate", val);
+        insertPaymentQuery.bindValue(":amount", total);
+        if (!insertPaymentQuery.exec()) {
+            qDebug() << "Error making payment:" << insertPaymentQuery.lastError().text();
+            return false;
+        }
+    }
+
+    return true;
+}
 

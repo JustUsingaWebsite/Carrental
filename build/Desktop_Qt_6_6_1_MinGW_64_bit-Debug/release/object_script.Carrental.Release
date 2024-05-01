@@ -2,6 +2,7 @@ release/admin.o
 release/car.o
 release/carlistmodel.o
 release/customer.o
+release/customerlistmodel.o
 release/database.o
 release/employee.o
 release/inventory.o

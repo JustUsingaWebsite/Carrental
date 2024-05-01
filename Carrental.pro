@@ -13,6 +13,7 @@ SOURCES += \
     car.cpp \
     carlistmodel.cpp \
     customer.cpp \
+    customerlistmodel.cpp \
     database.cpp \
     employee.cpp \
     inventory.cpp \
@@ -25,6 +26,7 @@ HEADERS += \
     car.h \
     carlistmodel.h \
     customer.h \
+    customerlistmodel.h \
     database.h \
     employee.h \
     inventory.h \

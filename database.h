@@ -18,6 +18,12 @@ public:
     void initMYSQL();
     void initSQLITE();
 
+    bool MakeCustomer(std::vector<QString>);
+    bool MakePayment(int customerid, int employeeid, QDateTime val, int total);
+    std::vector<std::map<QString, QVariant>> getUsers();
+    bool UpdateUser(int userid, QString name, QString email, QString phone, QString username, QString password);
+    bool DeleteUser(int userid);
+
     std::vector<std::map<QString, QVariant>> getInventory();
     std::map<QString, QVariant> getUserRentedCar(int userId);
     bool RentCar(std::tuple<int, int, QDateTime, QDateTime, int>);

@@ -4,6 +4,7 @@
 #include <QStringListModel>
 #include <car.h>
 
+
 class CarListModel : public QStringListModel {
 public:
     explicit CarListModel(QObject *parent = nullptr)

@@ -10,7 +10,7 @@ public:
     employee(QString, QString, QString, QString);
 
     bool payments();
-    QString addCustomer();
+    QString CheckCustomer(QString, QString, QString, QString, QString);
     QString editDelCustomer();
 };
 

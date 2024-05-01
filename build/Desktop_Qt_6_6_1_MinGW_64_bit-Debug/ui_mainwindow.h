@@ -117,25 +117,26 @@ public:
     QLabel *label_45;
     QWidget *gridLayoutWidget_9;
     QGridLayout *gridLayout_9;
-    QLineEdit *editCustomerName;
-    QLabel *label_40;
-    QLabel *label_42;
     QLineEdit *editCustomerUsername;
-    QLabel *label_41;
+    QLineEdit *editCustomerName;
     QLineEdit *editCustomerPhonenum;
-    QLineEdit *editCustomerEmail;
-    QLineEdit *editCustomerPassword;
     QLabel *label_44;
+    QLabel *label_40;
     QLabel *label_43;
+    QLineEdit *editCustomerPassword;
+    QLabel *label_42;
+    QLineEdit *editCustomerEmail;
+    QLabel *label_41;
     QWidget *horizontalLayoutWidget_6;
     QHBoxLayout *horizontalLayout_6;
     QPushButton *saveCustomerEditBtn;
     QPushButton *delCustomerBtn;
     QPushButton *cancelCustomerEditBtn;
-    QTableView *viewCustomerDets;
+    QTableView *background;
     QFrame *editUserSearchFrame_3;
     QLineEdit *edit_car_2;
     QLabel *editUser_SearchLabel_3;
+    QListView *viewCustomerDets;
     QWidget *payments;
     QWidget *paymentswidget;
     QLabel *label_58;
@@ -713,28 +714,10 @@ public:
 "Color:Black"));
         gridLayoutWidget_9 = new QWidget(edit_delete_user);
         gridLayoutWidget_9->setObjectName("gridLayoutWidget_9");
-        gridLayoutWidget_9->setGeometry(QRect(50, 90, 341, 162));
+        gridLayoutWidget_9->setGeometry(QRect(50, 90, 341, 202));
         gridLayout_9 = new QGridLayout(gridLayoutWidget_9);
         gridLayout_9->setObjectName("gridLayout_9");
         gridLayout_9->setContentsMargins(0, 0, 0, 0);
-        editCustomerName = new QLineEdit(gridLayoutWidget_9);
-        editCustomerName->setObjectName("editCustomerName");
-        editCustomerName->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
-"border-width: 1px;\n"
-"border-radius: 10px;"));
-
-        gridLayout_9->addWidget(editCustomerName, 0, 1, 1, 1);
-
-        label_40 = new QLabel(gridLayoutWidget_9);
-        label_40->setObjectName("label_40");
-
-        gridLayout_9->addWidget(label_40, 0, 0, 1, 1);
-
-        label_42 = new QLabel(gridLayoutWidget_9);
-        label_42->setObjectName("label_42");
-
-        gridLayout_9->addWidget(label_42, 2, 0, 1, 1);
-
         editCustomerUsername = new QLineEdit(gridLayoutWidget_9);
         editCustomerUsername->setObjectName("editCustomerUsername");
         editCustomerUsername->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
@@ -743,10 +726,13 @@ public:
 
         gridLayout_9->addWidget(editCustomerUsername, 3, 1, 1, 1);
 
-        label_41 = new QLabel(gridLayoutWidget_9);
-        label_41->setObjectName("label_41");
+        editCustomerName = new QLineEdit(gridLayoutWidget_9);
+        editCustomerName->setObjectName("editCustomerName");
+        editCustomerName->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+"border-width: 1px;\n"
+"border-radius: 10px;"));
 
-        gridLayout_9->addWidget(label_41, 1, 0, 1, 1);
+        gridLayout_9->addWidget(editCustomerName, 0, 1, 1, 1);
 
         editCustomerPhonenum = new QLineEdit(gridLayoutWidget_9);
         editCustomerPhonenum->setObjectName("editCustomerPhonenum");
@@ -756,13 +742,20 @@ public:
 
         gridLayout_9->addWidget(editCustomerPhonenum, 2, 1, 1, 1);
 
-        editCustomerEmail = new QLineEdit(gridLayoutWidget_9);
-        editCustomerEmail->setObjectName("editCustomerEmail");
-        editCustomerEmail->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
-"border-width: 1px;\n"
-"border-radius: 10px;"));
+        label_44 = new QLabel(gridLayoutWidget_9);
+        label_44->setObjectName("label_44");
 
-        gridLayout_9->addWidget(editCustomerEmail, 1, 1, 1, 1);
+        gridLayout_9->addWidget(label_44, 4, 0, 1, 1);
+
+        label_40 = new QLabel(gridLayoutWidget_9);
+        label_40->setObjectName("label_40");
+
+        gridLayout_9->addWidget(label_40, 0, 0, 1, 1);
+
+        label_43 = new QLabel(gridLayoutWidget_9);
+        label_43->setObjectName("label_43");
+
+        gridLayout_9->addWidget(label_43, 3, 0, 1, 1);
 
         editCustomerPassword = new QLineEdit(gridLayoutWidget_9);
         editCustomerPassword->setObjectName("editCustomerPassword");
@@ -772,15 +765,23 @@ public:
 
         gridLayout_9->addWidget(editCustomerPassword, 4, 1, 1, 1);
 
-        label_44 = new QLabel(gridLayoutWidget_9);
-        label_44->setObjectName("label_44");
+        label_42 = new QLabel(gridLayoutWidget_9);
+        label_42->setObjectName("label_42");
 
-        gridLayout_9->addWidget(label_44, 4, 0, 1, 1);
+        gridLayout_9->addWidget(label_42, 2, 0, 1, 1);
 
-        label_43 = new QLabel(gridLayoutWidget_9);
-        label_43->setObjectName("label_43");
+        editCustomerEmail = new QLineEdit(gridLayoutWidget_9);
+        editCustomerEmail->setObjectName("editCustomerEmail");
+        editCustomerEmail->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+"border-width: 1px;\n"
+"border-radius: 10px;"));
 
-        gridLayout_9->addWidget(label_43, 3, 0, 1, 1);
+        gridLayout_9->addWidget(editCustomerEmail, 1, 1, 1, 1);
+
+        label_41 = new QLabel(gridLayoutWidget_9);
+        label_41->setObjectName("label_41");
+
+        gridLayout_9->addWidget(label_41, 1, 0, 1, 1);
 
         horizontalLayoutWidget_6 = new QWidget(edit_delete_user);
         horizontalLayoutWidget_6->setObjectName("horizontalLayoutWidget_6");
@@ -845,11 +846,12 @@ public:
 
         horizontalLayout_6->addWidget(cancelCustomerEditBtn);
 
-        viewCustomerDets = new QTableView(edit_delete_user);
-        viewCustomerDets->setObjectName("viewCustomerDets");
-        viewCustomerDets->setGeometry(QRect(450, 131, 281, 221));
-        viewCustomerDets->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        background = new QTableView(edit_delete_user);
+        background->setObjectName("background");
+        background->setGeometry(QRect(450, 131, 281, 221));
+        background->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;"));
+        background->setLineWidth(1);
         editUserSearchFrame_3 = new QFrame(edit_delete_user);
         editUserSearchFrame_3->setObjectName("editUserSearchFrame_3");
         editUserSearchFrame_3->setGeometry(QRect(450, 70, 231, 38));
@@ -883,6 +885,26 @@ public:
         editUser_SearchLabel_3->setStyleSheet(QString::fromUtf8("border: none;"));
         editUser_SearchLabel_3->setPixmap(QPixmap(QString::fromUtf8(":/images/images/search.svg")));
         editUser_SearchLabel_3->setScaledContents(true);
+        viewCustomerDets = new QListView(edit_delete_user);
+        viewCustomerDets->setObjectName("viewCustomerDets");
+        viewCustomerDets->setGeometry(QRect(451, 132, 279, 219));
+        QPalette palette;
+        QBrush brush(QColor(128, 128, 128, 255));
+        brush.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::Button, brush);
+        palette.setBrush(QPalette::Active, QPalette::Base, brush);
+        palette.setBrush(QPalette::Active, QPalette::Window, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Button, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Base, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Window, brush);
+        palette.setBrush(QPalette::Disabled, QPalette::Button, brush);
+        palette.setBrush(QPalette::Disabled, QPalette::Base, brush);
+        palette.setBrush(QPalette::Disabled, QPalette::Window, brush);
+        viewCustomerDets->setPalette(palette);
+        viewCustomerDets->setAutoFillBackground(false);
+        viewCustomerDets->setStyleSheet(QString::fromUtf8("border-color: black"));
+        viewCustomerDets->setFrameShape(QFrame::Box);
+        viewCustomerDets->setFrameShadow(QFrame::Raised);
         stackedWidget_4->addWidget(editDelCustomer);
         payments = new QWidget();
         payments->setObjectName("payments");
@@ -1442,10 +1464,10 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(1);
-        stackedWidget_2->setCurrentIndex(1);
-        stackedWidget_4->setCurrentIndex(1);
-        stackedWidget_3->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(2);
+        stackedWidget_2->setCurrentIndex(2);
+        stackedWidget_4->setCurrentIndex(2);
+        stackedWidget_3->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1488,11 +1510,11 @@ public:
         empSaveCustomerBtn->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
         empCancelAddCustomerBtn->setText(QCoreApplication::translate("MainWindow", "Cancel ", nullptr));
         label_45->setText(QCoreApplication::translate("MainWindow", "Edit / Delete User", nullptr));
+        label_44->setText(QCoreApplication::translate("MainWindow", "Password", nullptr));
         label_40->setText(QCoreApplication::translate("MainWindow", "Name:", nullptr));
+        label_43->setText(QCoreApplication::translate("MainWindow", "Username:", nullptr));
         label_42->setText(QCoreApplication::translate("MainWindow", "Phone Number:", nullptr));
         label_41->setText(QCoreApplication::translate("MainWindow", "Email:", nullptr));
-        label_44->setText(QCoreApplication::translate("MainWindow", "Password", nullptr));
-        label_43->setText(QCoreApplication::translate("MainWindow", "Username:", nullptr));
         saveCustomerEditBtn->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
         delCustomerBtn->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
         cancelCustomerEditBtn->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
