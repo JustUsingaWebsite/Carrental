@@ -35,3 +35,15 @@ void Inventory::loadInventory(std::vector<std::map<QString, QVariant>> inventory
         addCar(car);
     }
 }
+
+Car Inventory::SearchInventory(QString val){
+
+    for (auto it = cars.begin(); it != cars.end(); ++it)
+    {
+        if (it->getmanufacture().toLower().contains(val) || it->getModel().toLower().contains(val)){
+            return *it;
+        }
+    }
+
+    return Car();
+}

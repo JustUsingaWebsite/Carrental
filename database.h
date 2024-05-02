@@ -20,14 +20,19 @@ public:
 
     bool MakeCustomer(std::vector<QString>);
     bool MakePayment(int customerid, int employeeid, QDateTime val, int total);
+    std::map<QString, QVariant> getUser(int userid);
     std::vector<std::map<QString, QVariant>> getUsers();
+    bool AddCar(QString manufacturer, QString model, int year, QString color, int adminID);
     bool UpdateUser(int userid, QString name, QString email, QString phone, QString username, QString password);
     bool DeleteUser(int userid);
 
     std::vector<std::map<QString, QVariant>> getInventory();
+    bool UpdateCar(int, QString, QString, int, QString, int);
     std::map<QString, QVariant> getUserRentedCar(int userId);
     bool RentCar(std::tuple<int, int, QDateTime, QDateTime, int>);
     std::tuple<bool, QString> cancelRental(int);
+
+    std::vector<std::map<QString, QVariant>> GetRentals();
 private:
     QSqlDatabase mydb;
 

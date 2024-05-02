@@ -42,6 +42,8 @@ MainWindow::MainWindow(QWidget *parent)
     // Connect the clicked signal of the QListView to a slot
     connect(ui->carListView, &QListView::clicked, this, &MainWindow::onCarListViewClicked);
     connect(ui->viewCustomerDets, &QListView::clicked, this, &MainWindow::OnCustomerListViewClicked);
+    connect(ui->viewRentalsList, &QListView::clicked, this, &MainWindow::OnRentListViewClicked);
+    connect(ui->AdminCarList, &QListView::clicked, this, &MainWindow::OnAdminListViewClicked);
 
 }
 
@@ -51,6 +53,7 @@ MainWindow::~MainWindow()
 }
 
 //----------------------------------------LOGIN/LOGOUT SECTION----------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
 
 QStringList userLogin;
 void MainWindow::on_login_clicked()
@@ -71,19 +74,12 @@ void MainWindow::on_login_clicked()
     {
         ui->stackedWidget->setCurrentWidget(ui->admin);
         ui->stackedWidget_3->setCurrentWidget(ui->report);
-    }
 
-
-    else if(userLogin.size() >= 5 && userLogin.at(4) == "Employee")
-    {
-
-        ui->stackedWidget->setCurrentWidget(ui->employee);
-        ui->stackedWidget_4->setCurrentWidget(ui->addCustomer);
-
-        UniversalEmployee.setUserID(userLogin.at(0));
-        UniversalEmployee.setName(userLogin.at(1));
-        UniversalEmployee.setPassword(userLogin.at(2));
-        UniversalEmployee.setUsername(userLogin.at(3));
+        UniversalAdmin.setUserID(userLogin.at(0));
+        UniversalAdmin.setName(userLogin.at(1));
+        UniversalAdmin.setPassword(userLogin.at(2));
+        UniversalAdmin.setUsername(userLogin.at(3));
+        RentalsLoader();
     }
 
     else if(userLogin.size() >= 5 && userLogin.at(4) == "Customer")
@@ -99,6 +95,20 @@ void MainWindow::on_login_clicked()
         InventoryLoader();
 
     }
+
+    else if(userLogin.size() >= 5 && userLogin.at(4) == "Employee")
+    {
+
+        ui->stackedWidget->setCurrentWidget(ui->employee);
+        ui->stackedWidget_4->setCurrentWidget(ui->addCustomer);
+
+        UniversalEmployee.setUserID(userLogin.at(0));
+        UniversalEmployee.setName(userLogin.at(1));
+        UniversalEmployee.setPassword(userLogin.at(2));
+        UniversalEmployee.setUsername(userLogin.at(3));
+    }
+
+
 
     // displays an error message if the user role does not match any of the 2 user roles or is empty
     else
@@ -127,34 +137,19 @@ void MainWindow::showAdminPage() {
         // Extract the page number from the object name
         QString buttonName = button->objectName();
 
-        if (buttonName == "addCarBtn")
+        if (buttonName == "addCarBtn"){
             ui->stackedWidget_3->setCurrentWidget(ui->addCar);
-        else if (buttonName == "editCarBtn")
-           ui->stackedWidget_3->setCurrentWidget(ui->editCar);
-        else if (buttonName == "reportBtn")
-          ui->stackedWidget_3->setCurrentWidget(ui->report);
-    }
-}
-
-void MainWindow::showEmployeePage() {
-    // Get the sender button
-    QPushButton *button = qobject_cast<QPushButton*>(sender());
-    if (button) {
-        // Extract the page number from the object name
-        QString buttonName = button->objectName();
-
-        if (buttonName == "empAddCustomerBtn"){
-            ui->stackedWidget_4->setCurrentWidget(ui->addCustomer);
         }
 
-        else if (buttonName == "empEditDelCustomerBtn"){
-            ui->stackedWidget_4->setCurrentWidget(ui->editDelCustomer);
-            CustomerLoader();
+        else if (buttonName == "editCarBtn"){
+            ui->stackedWidget_3->setCurrentWidget(ui->editCar);
+            CarLoader();
+
         }
 
-        else if (buttonName == "empPaymentsBtn"){
-            ui->stackedWidget_4->setCurrentWidget(ui->payments);
-            onPaymentsButtonClicked();
+        else if (buttonName == "reportBtn"){
+            ui->stackedWidget_3->setCurrentWidget(ui->report);
+            RentalsLoader();
         }
     }
 }
@@ -184,9 +179,216 @@ void MainWindow::showCustomerPage() {
     }
 }
 
-//----------------------------------------CUSTOMER PAGE FUNCTIONS SECTION----------------------------------------------------------
+void MainWindow::showEmployeePage() {
+    // Get the sender button
+    QPushButton *button = qobject_cast<QPushButton*>(sender());
+    if (button) {
+        // Extract the page number from the object name
+        QString buttonName = button->objectName();
+
+        if (buttonName == "empAddCustomerBtn"){
+            ui->stackedWidget_4->setCurrentWidget(ui->addCustomer);
+        }
+
+        else if (buttonName == "empEditDelCustomerBtn"){
+            ui->stackedWidget_4->setCurrentWidget(ui->editDelCustomer);
+            CustomerLoader();
+        }
+
+        else if (buttonName == "empPaymentsBtn"){
+            ui->stackedWidget_4->setCurrentWidget(ui->payments);
+            onPaymentsButtonClicked();
+        }
+    }
+}
+//-------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
 
 
+//----------------------------------------ADMIN REPORT PAGE----------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
+//--------------------------------LOAD RENTALS [ADMIN PAGE FUNCTIONS SUBSECTION]----------------------------------------------------------
+
+void MainWindow::RentalsLoader(){
+    MainWindowRental.StoreRentals(mydb.GetRentals());
+
+    MainWindowCustomer.StoreCustomers(mydb.getUsers());
+
+    qDebug() << MainWindowRental.getLoadedRentals().empty()<< " <-empty rental, " << MainWindowCustomer.getLoadedCustomers().empty() << " <-empty customer";
+
+    RentalsListModel *rentlistmodel = new RentalsListModel(this);
+    rentlistmodel->setRentalData(MainWindowRental.getLoadedRentals());
+
+    ui->viewRentalsList->setModel(rentlistmodel);
+}
+
+//--------------------------------OnRentListViewClicked [ADMIN PAGE FUNCTIONS SUBSECTION]----------------------------------------------------------
+
+void MainWindow:: OnRentListViewClicked(const QModelIndex &index){
+
+    QVariant data = ui->viewRentalsList->model()->data(index, Qt::UserRole);
+
+    if (data.isValid()){
+        UniversalRental = data.value<Rentals>();
+        UniversalCustomer.StoreCustomers({mydb.getUser(UniversalRental.getCustomerID())});
+        auto cardetails = mydb.getUserRentedCar(UniversalRental.getCustomerID());
+
+        ui->reportcustomername->setText(UniversalCustomer.getLoadedCustomers().at(0).getName());
+        ui->reportmodel->setText(cardetails["Model"].toString());
+        ui->reportyear->setText(cardetails["Year"].toString());
+        ui->reportcolor->setText(cardetails["Color"].toString());
+        ui->reportStartDate->setDateTime(UniversalRental.getStartDate());
+        ui->reportReturnDate->setDateTime(UniversalRental.getReturnDate());
+    }
+}
+
+//--------------------------------ADMIN REPORT SEARCH [ADMIN PAGE FUNCTIONS SUBSECTION]----------------------------------------------------------
+
+void MainWindow::on_RegisterFisherSearchLineEdir_textChanged(const QString &arg1)
+{
+    if (arg1 != ""){
+        customer result = MainWindowCustomer.Searchcustomer(arg1);
+        qDebug() << result.getName() << " userid: " << result.getUserID();
+        Rentals result2 = MainWindowRental.Searchrental(result.getUserID().toInt());
+        qDebug() << result2.getCustomerID() << ": customerid" << " rentalid:" << result2.getRentalID() << " " << result2.getLoadedRentals().empty();
+        RentalsListModel *rentlistmodel = new RentalsListModel(this);
+        rentlistmodel->setRentalData({result2});
+
+        if (result2.getCustomerID() != result.getUserID().toInt()){ui->viewRentalsList->setModel(new RentalsListModel(this)); return;}
+        ui->viewRentalsList->setModel(rentlistmodel);
+        return;
+    }
+
+    RentalsListModel *rentlistmodel = new RentalsListModel(this);
+    rentlistmodel->setRentalData({MainWindowRental.getLoadedRentals()});
+    ui->viewRentalsList->setModel(rentlistmodel);
+}
+//-------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
+
+//----------------------------------------ADMIN ADD CAR PAGE----------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
+//--------------------------------ADMIN ADD CAR [ADMIN PAGE FUNCTIONS SUBSECTION]----------------------------------------------------------
+
+void MainWindow::on_saveAddCarBtn_clicked()
+{
+    QString result = UniversalEmployee.CheckCustomer(
+        ui->addManufactorInput->text(),
+        ui->addModelInput->text(),
+        ui->addYearInput->text(),
+        ui->addColorInput->text(),
+        "blank");
+
+    if (result != "Everything looks fine"){
+        QMessageBox::warning(this, tr("Car Rental System"), result);
+        return;
+    }
+
+    bool result2 = mydb.AddCar(
+        ui->addManufactorInput->text(),
+        ui->addModelInput->text(),
+        ui->addYearInput->text().toInt(),
+        ui->addColorInput->text(),
+        UniversalAdmin.getUserID().toInt());
+
+    if (!result2){
+        QMessageBox::warning(this, tr("Car Rental System"), tr("Error trying to add car"));
+        return;
+    }
+
+    QMessageBox::warning(this, tr("Car Rental System"), tr("success"));
+}
+//-------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
+
+//----------------------------------------ADMIN EDIT CAR PAGE----------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
+//--------------------------------LOAD CAR [ADMIN PAGE FUNCTIONS SUBSECTION]----------------------------------------------------------
+
+void MainWindow::CarLoader(){
+    inv.loadInventory(mydb.getInventory());
+
+    CarListModel *carListModel = new CarListModel(this);
+    carListModel->setCarData(inv.getCars());
+
+    // Set the model to the QListView
+    ui->AdminCarList->setModel(carListModel);
+}
+
+//--------------------------------OnAdminListViewClicked [ADMIN PAGE FUNCTIONS SUBSECTION]----------------------------------------------------------
+
+void MainWindow::OnAdminListViewClicked(const QModelIndex &index){
+    QVariant data = ui->AdminCarList->model()->data(index, Qt::UserRole);
+
+    if (data.isValid()){
+        UniversalCar = data.value<Car>();
+
+        ui->editManufactorInput->setText(UniversalCar.getmanufacture());
+        ui->editModelInput->setText(UniversalCar.getModel());
+        ui->editYearInput->setText(QString::number(UniversalCar.getYear()));
+        ui->editColorInput->setText(UniversalCar.getColor());
+    }
+}
+
+//--------------------------------ADMIN CAR SEARCH [ADMIN PAGE FUNCTIONS SUBSECTION]----------------------------------------------------------
+
+void MainWindow::on_edit_carSearch_textChanged(const QString &arg1)
+{
+    if (arg1 != ""){
+        Car result = inv.SearchInventory(arg1);
+
+        CarListModel *carListModel = new CarListModel(this);
+        carListModel->setCarData({result});
+
+        if (result.getModel() == ""){ui->AdminCarList->setModel(new CarListModel(this)); return;}
+        // Set the model to the QListView
+        ui->AdminCarList->setModel(carListModel);
+        return;
+    }
+
+    CarListModel *carListModel = new CarListModel(this);
+    carListModel->setCarData(inv.getCars());
+
+    // Set the model to the QListView
+    ui->AdminCarList->setModel(carListModel);
+}
+
+//--------------------------------ADMIN SAVECAR BUTTON [ADMIN PAGE FUNCTIONS SUBSECTION]----------------------------------------------------------
+
+void MainWindow::on_SaveEditCar_clicked()
+{
+    QString result = UniversalEmployee.CheckCustomer(
+        ui->editManufactorInput->text(),
+        ui->editModelInput->text(),
+        ui->editYearInput->text(),
+        ui->editColorInput->text(),
+        "blank");
+
+    if (result != "Everything looks fine"){
+        QMessageBox::warning(this, tr("Car Rental System"), result);
+        return;
+    }
+
+    bool result2 = mydb.UpdateCar(
+        UniversalCar.getCarId(),
+        ui->editManufactorInput->text(),
+        ui->editModelInput->text(),
+        ui->editYearInput->text().toInt(),
+        ui->editColorInput->text(),
+        UniversalAdmin.getUserID().toInt());
+
+    if (!result2){
+        QMessageBox::warning(this, tr("Car Rental System"), tr("Error trying to update car"));
+        return;
+    }
+
+    QMessageBox::warning(this, tr("Car Rental System"), tr("success"));
+}
+//-------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
+
+//------------------------------------CUSTOMER VIEW CARS PAGE----------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
 //--------------------------------LOAD INVENTORY [CUSTOMER PAGE FUNCTIONS SUBSECTION]----------------------------------------------------------
 
 void MainWindow::InventoryLoader() {
@@ -199,20 +401,11 @@ void MainWindow::InventoryLoader() {
     // Set the model to the QListView
     ui->carListView->setModel(carListModel);
 }
+//-------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
 
-
-void MainWindow::CustomerLoader() {
-    MainWindowCustomer.StoreCustomers(mydb.getUsers());
-
-    // Create a custom model to associate Car objects with rows
-    CustomerListModel *cuslistmodel = new CustomerListModel(this);
-    cuslistmodel->setCustomerData(MainWindowCustomer.getLoadedCustomers());
-
-    // Set the model to the QListView
-    ui->viewCustomerDets->setModel(cuslistmodel);
-}
-
-
+//----------------------------------------CUSTOMER CAR RENTAL DETAILS PAGE----------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
 //-------------------------------VIEW CAR DETAILS [CUSTOMER PAGE FUNCTIONS SUBSECTION]-------------------------------------------------------
 
 void MainWindow::ShowCarDetails(){
@@ -243,14 +436,20 @@ void MainWindow::ShowCarDetails(){
     }
 }
 
-//----------------------------------------ClOSE APPLICATION/LAST SECTION----------------------------------------------------------
+//-------------------------------onCarListViewClicked [CUSTOMER PAGE FUNCTIONS SUBSECTION]-------------------------------------------------------
 
-void MainWindow::on_close_clicked()
-{
-    // Close the application
-    QApplication::quit();
+void MainWindow::onCarListViewClicked(const QModelIndex &index) {
+    // Retrieve the Car object associated with the clicked row
+    QVariant data = ui->carListView->model()->data(index, Qt::UserRole);
+    if (data.isValid()) {
+        UniversalCar = data.value<Car>();
+
+        // Now you have access to the selected Car object
+        // You can store it or process it further as needed
+    }
 }
 
+//--------------------------------CANCELRENTAL BUTTON [CUSTOMER PAGE FUNCTIONS SUBSECTION]----------------------------------------------------------
 
 void MainWindow::on_cancelRentalBtn_clicked()
 {
@@ -292,33 +491,12 @@ void MainWindow::on_cancelRentalBtn_clicked()
     }
 }
 
+//-------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
 
-void MainWindow::onCarListViewClicked(const QModelIndex &index) {
-    // Retrieve the Car object associated with the clicked row
-    QVariant data = ui->carListView->model()->data(index, Qt::UserRole);
-    if (data.isValid()) {
-        UniversalCar = data.value<Car>();
-
-        // Now you have access to the selected Car object
-        // You can store it or process it further as needed
-    }
-}
-
-void MainWindow::OnCustomerListViewClicked(const QModelIndex &index) {
-    // Retrieve the Car object associated with the clicked row
-    QVariant data = ui->viewCustomerDets->model()->data(index, Qt::UserRole);
-    if (data.isValid()) {
-        UniversalCustomer = data.value<customer>();
-
-        ui->editCustomerName->setText(UniversalCustomer.getName());
-        ui->editCustomerEmail->setText(UniversalCustomer.getEmail());
-        ui->editCustomerPhonenum->setText(UniversalCustomer.getPhone());
-        ui->editCustomerUsername->setText(UniversalCustomer.getUsername());
-        ui->editCustomerPassword->setText(UniversalCustomer.getPassword());
-        // Now you have access to the selected Car object
-        // You can store it or process it further as needed
-    }
-}
+//-----------------------------------------CUSTOMER RENT A CAR PAGE-------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
+//-------------------------------RENTACAR SIDE BUTTON [CUSTOMER PAGE FUNCTIONS SUBSECTION]-------------------------------------------------------
 
 void MainWindow::onPushButtonClicked() {
     // Retrieve the stored data and process it
@@ -344,6 +522,75 @@ void MainWindow::onPushButtonClicked() {
     ui->rentalReturnDate->setDateTime(QDateTime::currentDateTime().addSecs(24 * 3600));
 }
 
+//-------------------------------RENTACAR SAVE BUTTON [CUSTOMER PAGE FUNCTIONS SUBSECTION]-------------------------------------------------------
+
+void MainWindow::on_saveRentalBtn_clicked()
+{
+
+
+    bool response = mydb.RentCar(std::make_tuple(UniversalCustomer.getUserID().toInt(),
+                                                 UniversalCar.getCarId(),
+                                                 ui->rentalStartDate->dateTime(),
+                                                 ui->rentalReturnDate->dateTime(),
+                                                 UniversalCar.getRental_Price() * 2));
+
+    if (!response){
+        QMessageBox::warning(this, tr("Car Rental System"), tr("Error while trying to rent car"));
+        ui->stackedWidget_2->setCurrentWidget(ui->carsAvailable);
+        return;
+    }
+
+    QMessageBox::warning(this, tr("Car Rental System"), tr("Success!"));
+    ui->customerViewCarBtn->click();
+}
+
+//-------------------------------RENTACAR CANCEL BUTTON [CUSTOMER PAGE FUNCTIONS SUBSECTION]-------------------------------------------------------
+
+void MainWindow::on_canelRentalBtn2_clicked()
+{
+    ui->stackedWidget_2->setCurrentWidget(ui->carsAvailable);
+    ui->rentalCarName->setText("");
+}
+//-------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
+
+//-----------------------------------EMPLOYEE ADD CUSTOMER PAGE----------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
+//-------------------------------SAVEBUTTON [EMPLOYEE PAGE FUNCTIONS SUBSECTION]-------------------------------------------------------
+
+void MainWindow::on_empSaveCustomerBtn_clicked()
+{
+    QString result = UniversalEmployee.CheckCustomer(ui->addCustomerName->text(),
+                                                     ui->addCustomerEmail->text(),
+                                                     ui->addCustomerPhone->text(),
+                                                     ui->customerUsername->text(),
+                                                     ui->customerPassword->text());
+
+    if (result != "Everything looks fine"){
+        QMessageBox::warning(this, tr("Car Rental System"), result);
+        return;
+    }
+
+    bool result2 = mydb.MakeCustomer({ui->addCustomerName->text(),
+                                      ui->addCustomerEmail->text(), ui->addCustomerPhone->text(),
+                                      ui->customerUsername->text(),ui->customerPassword->text()});
+
+    if (!result2){QMessageBox::warning(this, tr("Car Rental System"), tr("Error while trying to add customer")); return;}
+    QMessageBox::warning(this, tr("Car Rental System"), tr("Success!"));
+}
+
+//-------------------------------CANCELBUTTON [EMPLOYEE PAGE FUNCTIONS SUBSECTION]-------------------------------------------------------
+
+void MainWindow::on_empCancelAddCustomerBtn_clicked()
+{
+    ui->addCustomerName->clear();
+    ui->addCustomerEmail->clear();
+    ui->addCustomerPhone->clear();
+    ui->customerUsername->clear();
+    ui->customerPassword->clear();
+}
+
+//-------------------------------PAYMENTS SIDEBUTTON [EMPLOYEE PAGE FUNCTIONS SUBSECTION]-------------------------------------------------------
 void MainWindow::onPaymentsButtonClicked(){
     qDebug() << "before crash";
 
@@ -384,77 +631,56 @@ void MainWindow::onPaymentsButtonClicked(){
     ui->customerName->setText(UniversalCustomer.getName());
     ui->totalPayment->setText(carData["Total_Price"].toString());
 }
+//-------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
 
-void MainWindow::on_canelRentalBtn2_clicked()
-{
-    ui->stackedWidget_2->setCurrentWidget(ui->carsAvailable);
-    ui->rentalCarName->setText("");
+//-----------------------------------EMPLOYEE EDIT/DELETE CUSTOMER PAGE----------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
+//-------------------------------LOAD CUSTOMERS [EMPLOYEE PAGE FUNCTIONS SUBSECTION]-------------------------------------------------------
+
+void MainWindow::CustomerLoader() {
+    MainWindowCustomer.StoreCustomers(mydb.getUsers());
+
+    // Create a custom model to associate Car objects with rows
+    CustomerListModel *cuslistmodel = new CustomerListModel(this);
+    cuslistmodel->setCustomerData(MainWindowCustomer.getLoadedCustomers());
+
+    // Set the model to the QListView
+    ui->viewCustomerDets->setModel(cuslistmodel);
 }
 
-void MainWindow::on_saveRentalBtn_clicked()
-{
+//-------------------------------OnCustomerListViewClicked [EMPLOYEE PAGE FUNCTIONS SUBSECTION]-------------------------------------------------------
 
+void MainWindow::OnCustomerListViewClicked(const QModelIndex &index) {
+    // Retrieve the Car object associated with the clicked row
+    QVariant data = ui->viewCustomerDets->model()->data(index, Qt::UserRole);
+    if (data.isValid()) {
+        UniversalCustomer = data.value<customer>();
 
-   bool response = mydb.RentCar(std::make_tuple(UniversalCustomer.getUserID().toInt(),
-                                 UniversalCar.getCarId(),
-                                 ui->rentalStartDate->dateTime(),
-                                 ui->rentalReturnDate->dateTime(),
-                                 UniversalCar.getRental_Price() * 2));
-
-    if (!response){
-       QMessageBox::warning(this, tr("Car Rental System"), tr("Error while trying to rent car"));
-        ui->stackedWidget_2->setCurrentWidget(ui->carsAvailable);
-       return;
-   }
-
-    QMessageBox::warning(this, tr("Car Rental System"), tr("Success!"));
-    ui->customerViewCarBtn->click();
-}
-
-
-void MainWindow::on_empSaveCustomerBtn_clicked()
-{
-    QString result = UniversalEmployee.CheckCustomer(ui->addCustomerName->text(),
-                                           ui->addCustomerEmail->text(),
-                                           ui->addCustomerPhone->text(),
-                                           ui->customerUsername->text(),
-                                           ui->customerPassword->text());
-
-    if (result != "Everything looks fine"){
-        QMessageBox::warning(this, tr("Car Rental System"), result);
-        return;
+        ui->editCustomerName->setText(UniversalCustomer.getName());
+        ui->editCustomerEmail->setText(UniversalCustomer.getEmail());
+        ui->editCustomerPhonenum->setText(UniversalCustomer.getPhone());
+        ui->editCustomerUsername->setText(UniversalCustomer.getUsername());
+        ui->editCustomerPassword->setText(UniversalCustomer.getPassword());
+        // Now you have access to the selected Car object
+        // You can store it or process it further as needed
     }
-
-    bool result2 = mydb.MakeCustomer({ui->addCustomerName->text(),
-    ui->addCustomerEmail->text(), ui->addCustomerPhone->text(),
-    ui->customerUsername->text(),ui->customerPassword->text()});
-
-    if (!result2){QMessageBox::warning(this, tr("Car Rental System"), tr("Error while trying to add customer")); return;}
-    QMessageBox::warning(this, tr("Car Rental System"), tr("Success!"));
 }
 
-
-void MainWindow::on_empCancelAddCustomerBtn_clicked()
-{
-    ui->addCustomerName->clear();
-    ui->addCustomerEmail->clear();
-    ui->addCustomerPhone->clear();
-    ui->customerUsername->clear();
-    ui->customerPassword->clear();
-}
-
+//-------------------------------CUSTOMER SEARCH [EMPLOYEE PAGE FUNCTIONS SUBSECTION]-------------------------------------------------------
 
 void MainWindow::on_edit_car_2_textChanged(const QString &arg1)
-{ 
+{
 
     if (arg1 != ""){
 
-    customer result = MainWindowCustomer.Searchcustomer(arg1);
-    CustomerListModel *cuslistmodel = new CustomerListModel(this);
-    cuslistmodel->setCustomerData({result});
-     //Set the model to the QListView
-    ui->viewCustomerDets->setModel(cuslistmodel);
-    return;
+        customer result = MainWindowCustomer.Searchcustomer(arg1);
+        CustomerListModel *cuslistmodel = new CustomerListModel(this);
+        cuslistmodel->setCustomerData({result});
+            //Set the model to the QListView
+        if (result.getName() == ""){ui->viewCustomerDets->setModel(new CustomerListModel(this));}
+        ui->viewCustomerDets->setModel(cuslistmodel);
+        return;
     }
 
     CustomerListModel *cuslistmodel = new CustomerListModel(this);
@@ -464,6 +690,7 @@ void MainWindow::on_edit_car_2_textChanged(const QString &arg1)
     ui->viewCustomerDets->setModel(cuslistmodel);
 }
 
+//-------------------------------SAVEBUTTON [EMPLOYEE PAGE FUNCTIONS SUBSECTION]-------------------------------------------------------
 
 void MainWindow::on_saveCustomerEditBtn_clicked()
 {
@@ -479,14 +706,15 @@ void MainWindow::on_saveCustomerEditBtn_clicked()
     }
 
     bool result2 = mydb.UpdateUser(UniversalCustomer.getUserID().toInt(),
-    ui->editCustomerName->text(), ui->editCustomerEmail->text(),
-    ui->editCustomerPhonenum->text(), ui->editCustomerUsername->text(),
-    ui->editCustomerPassword->text());
+                                   ui->editCustomerName->text(), ui->editCustomerEmail->text(),
+                                   ui->editCustomerPhonenum->text(), ui->editCustomerUsername->text(),
+                                   ui->editCustomerPassword->text());
 
     if (!result2){QMessageBox::warning(this, tr("Car Rental System"), tr("Error while trying to update customer")); return;}
     QMessageBox::warning(this, tr("Car Rental System"), tr("Success!"));
 }
 
+//-------------------------------DELETEBUTTON [EMPLOYEE PAGE FUNCTIONS SUBSECTION]-------------------------------------------------------
 
 void MainWindow::on_delCustomerBtn_clicked()
 {
@@ -498,6 +726,7 @@ void MainWindow::on_delCustomerBtn_clicked()
     QMessageBox::warning(this, tr("Car Rental System"), tr("Success!"));
 }
 
+//-------------------------------CANCELBUTTON [EMPLOYEE PAGE FUNCTIONS SUBSECTION]-------------------------------------------------------
 
 void MainWindow::on_cancelCustomerEditBtn_clicked()
 {
@@ -508,8 +737,13 @@ void MainWindow::on_cancelCustomerEditBtn_clicked()
     ui->editCustomerPassword->setText("");
     ui->edit_car_2->setText("");
 }
+//-------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
 
+//-----------------------------------EMPLOYEE PAYMENTS PAGE----------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
 
+//-------------------------------PAIDBUTTON [EMPLOYEE PAGE FUNCTIONS SUBSECTION]-------------------------------------------------------
 void MainWindow::on_paidBtn_clicked()
 {
     auto carData = mydb.getUserRentedCar(UniversalCustomer.getUserID().toInt());
@@ -528,4 +762,15 @@ void MainWindow::on_paidBtn_clicked()
     if (!result){QMessageBox::warning(this, tr("Car Rental System"), tr("Error trying to pay for car"));}
     QMessageBox::warning(this, tr("Car Rental System"), tr("Success!"));
 }
+//-------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
 
+//----------------------------------------ClOSE APPLICATION/LAST SECTION----------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
+void MainWindow::on_close_clicked()
+{
+    // Close the application
+    QApplication::quit();
+}
+//-------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------

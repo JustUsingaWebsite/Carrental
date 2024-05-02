@@ -7,9 +7,11 @@
 #include <admin.h>
 #include <employee.h>
 #include <customer.h>
+#include <rentals.h>
 #include <QMessageBox>
 #include <carlistmodel.h>
 #include <customerlistmodel.h>
+#include <rentalslistmodel.h>
 
 #include <QMainWindow>
 
@@ -49,11 +51,14 @@ private slots:
     void onPaymentsButtonClicked();
 
     void OnCustomerListViewClicked(const QModelIndex &index);
-
+    void OnRentListViewClicked(const QModelIndex &index);
+    void OnAdminListViewClicked(const QModelIndex &index);
     void on_canelRentalBtn2_clicked();
     void on_saveRentalBtn_clicked();
 
     void CustomerLoader();
+    void RentalsLoader();
+    void CarLoader();
 
     void on_empSaveCustomerBtn_clicked();
 
@@ -69,14 +74,26 @@ private slots:
 
     void on_paidBtn_clicked();
 
+    void on_RegisterFisherSearchLineEdir_textChanged(const QString &arg1);
+
+    void on_edit_carSearch_textChanged(const QString &arg1);
+
+    void on_SaveEditCar_clicked();
+
+    void on_saveAddCarBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     database mydb;
     Inventory inv;
+    admin UniversalAdmin;
     customer UniversalCustomer;
     customer MainWindowCustomer;
     employee UniversalEmployee;
+    Car MainWindowCar;
     Car UniversalCar;
+    Rentals UniversalRental;
+    Rentals MainWindowRental;
 
 };
 #endif // MAINWINDOW_H

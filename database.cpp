@@ -192,6 +192,31 @@ std::vector<std::map<QString, QVariant>> database::getInventory() {
     return inventory;
 }
 
+std::map<QString, QVariant> database::getUser(int userid) {
+    std::map<QString, QVariant> userData;
+
+    QSqlQuery query(mydb);
+    query.prepare("SELECT * FROM users WHERE user_id = :userid");
+    query.bindValue(":userid", userid);
+    if (!query.exec()) {
+        qDebug() << "Error retrieving user:" << query.lastError().text();
+        return userData;
+    }
+
+    if (query.next()) {
+        userData["user_id"] = query.value("user_id");
+        userData["name"] = query.value("name");
+        userData["email"] = query.value("email");
+        userData["phoneNum"] = query.value("phoneNum");
+        userData["username"] = query.value("username");
+        userData["password"] = query.value("password");
+        userData["role_id"] = query.value("role_id");
+    }
+
+    return userData;
+}
+
+
 std::vector<std::map<QString, QVariant>> database::getUsers() {
     std::vector<std::map<QString, QVariant>> inventory;
 
@@ -299,6 +324,84 @@ std::tuple<bool, QString> database::cancelRental(int carId) {
     // If update is successful, return true with success message
     return std::make_tuple(true, "Rental cancelled successfully.");
 }
+
+bool database::AddCar(QString manufacturer, QString model, int year, QString color, int adminID) {
+    // Check if the car already exists in the cars table
+    QSqlQuery checkQuery(mydb);
+    checkQuery.prepare("SELECT COUNT(*) FROM cars WHERE Manufacturer = :manufacturer AND Model = :model AND Year = :year");
+    checkQuery.bindValue(":manufacturer", manufacturer);
+    checkQuery.bindValue(":model", model);
+    checkQuery.bindValue(":year", year);
+    if (!checkQuery.exec()) {
+        qDebug() << "Error checking existing car:" << checkQuery.lastError().text();
+        return false;
+    }
+
+    checkQuery.next();
+    int count = checkQuery.value(0).toInt();
+    if (count > 0) {
+        qDebug() << "Car already exists in the database.";
+        return false;
+    }
+
+    // Generate a random number between 1 and 10 for rental price
+    int rentPrice = QRandomGenerator::global()->bounded(1, 11) * 10;
+
+    // Insert the new car into the cars table
+    QSqlQuery query(mydb);
+    query.prepare("INSERT INTO cars (Manufacturer, Model, Year, Color, Rental_price, AdminID) VALUES (:manufacturer, :model, :year, :color, :rentPrice, :adminID)");
+    query.bindValue(":manufacturer", manufacturer);
+    query.bindValue(":model", model);
+    query.bindValue(":year", year);
+    query.bindValue(":color", color);
+    query.bindValue(":rentPrice", rentPrice);
+    query.bindValue(":adminID", adminID);
+
+    if (!query.exec()) {
+        qDebug() << "Error adding car:" << query.lastError().text();
+        return false;
+    }
+
+    // Retrieve the CarID of the newly added car
+    int carID = query.lastInsertId().toInt();
+
+    // Insert the new car into the inventory table with availability set to "available"
+    QSqlQuery inventoryQuery(mydb);
+    inventoryQuery.prepare("INSERT INTO inventory (CarID, EmployeeID, CustomerID, Availability_Status) VALUES (:carID, :adminID, 8, 'available')");
+    inventoryQuery.bindValue(":carID", carID);
+    inventoryQuery.bindValue(":adminID", adminID);
+
+    if (!inventoryQuery.exec()) {
+        qDebug() << "Error adding car to inventory:" << inventoryQuery.lastError().text();
+        // Rollback the addition of the car to the cars table
+        QSqlQuery rollbackQuery(mydb);
+        rollbackQuery.exec("DELETE FROM cars WHERE CarID = " + QString::number(carID));
+        return false;
+    }
+
+    return true;
+}
+
+
+
+bool database::UpdateCar(int carid, QString manufacturer, QString model, int year, QString Color, int adminID) {
+    QSqlQuery query(mydb);
+    query.prepare("UPDATE cars SET Manufacturer = :manufacturer, Model = :model, Year = :year, Color = :color, AdminID = :adminID WHERE CarID = :carid");
+    query.bindValue(":manufacturer", manufacturer);
+    query.bindValue(":model", model);
+    query.bindValue(":year", year);
+    query.bindValue(":color", Color);
+    query.bindValue(":adminID", adminID);
+    query.bindValue(":carid", carid);
+
+    if (!query.exec()) {
+        qDebug() << "Error updating car:" << query.lastError().text();
+        return false;
+    }
+
+    return true;
+}
+
 
 bool database::RentCar(std::tuple<int, int, QDateTime, QDateTime, int> rentalData) {
     int customerId = std::get<0>(rentalData);
@@ -511,3 +614,32 @@ bool database::MakePayment(int customerid, int employeeid, QDateTime val, int to
     return true;
 }
 
+
+std::vector<std::map<QString, QVariant>> database::GetRentals() {
+    std::vector<std::map<QString, QVariant>> rentals;
+
+    QSqlQuery query(mydb);
+    query.prepare("SELECT * FROM rentals");
+    if (!query.exec()) {
+        qDebug() << "Error retrieving rentals:" << query.lastError().text();
+        return rentals;
+    }
+
+    while (query.next()) {
+        std::map<QString, QVariant> rentalData;
+        rentalData["ID"] = query.value("ID");
+        rentalData["CustomerID"] = query.value("CustomerID");
+        rentalData["EmployeeID"] = query.value("EmployeeID");
+        rentalData["CarID"] = query.value("CarID");
+        rentalData["Total_Price"] = query.value("Total_Price");
+        rentalData["Rental_Status"] = query.value("Rental_Status");
+
+        QString startdate = query.value("Start_Date").toString();
+        QString returndate = query.value("Return_Date").toString();
+        rentalData["Start_Date"] = startdate;
+        rentalData["Return_Date"] = returndate;
+        rentals.push_back(rentalData);
+    }
+
+    return rentals;
+}

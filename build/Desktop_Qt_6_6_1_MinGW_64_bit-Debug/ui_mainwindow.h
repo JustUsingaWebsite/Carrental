@@ -200,6 +200,7 @@ public:
     QPushButton *lastButton;
     QPushButton *SaveEditCar;
     QLabel *label_25;
+    QListView *AdminCarList;
     QWidget *report;
     QLabel *label_26;
     QFrame *viewcarrentals;
@@ -208,18 +209,19 @@ public:
     QTableView *tableView_2;
     QWidget *gridLayoutWidget_6;
     QGridLayout *gridLayout_6;
-    QLineEdit *lineEdit_9;
-    QLineEdit *lineEdit_10;
+    QLineEdit *reportmodel;
+    QLineEdit *reportyear;
     QLabel *label_31;
     QLabel *label_27;
-    QLineEdit *lineEdit_11;
+    QLineEdit *reportcustomername;
     QLabel *label_28;
     QLabel *label_30;
-    QLineEdit *lineEdit_12;
+    QLineEdit *reportcolor;
     QLabel *label_29;
     QLabel *label_32;
     QDateTimeEdit *reportStartDate;
     QDateTimeEdit *reportReturnDate;
+    QListView *viewRentalsList;
     QWidget *adminSideWidget;
     QVBoxLayout *verticalLayout_2;
     QPushButton *reportBtn;
@@ -1290,6 +1292,24 @@ public:
         label_25->setGeometry(QRect(290, 0, 111, 31));
         label_25->setStyleSheet(QString::fromUtf8("font: 900 16pt \"Segoe UI Black\";\n"
 "Color:Black;"));
+        AdminCarList = new QListView(widget);
+        AdminCarList->setObjectName("AdminCarList");
+        AdminCarList->setGeometry(QRect(451, 111, 299, 190));
+        QPalette palette1;
+        palette1.setBrush(QPalette::Active, QPalette::Button, brush);
+        palette1.setBrush(QPalette::Active, QPalette::Base, brush);
+        palette1.setBrush(QPalette::Active, QPalette::Window, brush);
+        palette1.setBrush(QPalette::Inactive, QPalette::Button, brush);
+        palette1.setBrush(QPalette::Inactive, QPalette::Base, brush);
+        palette1.setBrush(QPalette::Inactive, QPalette::Window, brush);
+        palette1.setBrush(QPalette::Disabled, QPalette::Button, brush);
+        palette1.setBrush(QPalette::Disabled, QPalette::Base, brush);
+        palette1.setBrush(QPalette::Disabled, QPalette::Window, brush);
+        AdminCarList->setPalette(palette1);
+        AdminCarList->setAutoFillBackground(false);
+        AdminCarList->setStyleSheet(QString::fromUtf8("border-color: black"));
+        AdminCarList->setFrameShape(QFrame::Box);
+        AdminCarList->setFrameShadow(QFrame::Raised);
         stackedWidget_3->addWidget(editCar);
         report = new QWidget();
         report->setObjectName("report");
@@ -1333,21 +1353,21 @@ public:
         gridLayout_6 = new QGridLayout(gridLayoutWidget_6);
         gridLayout_6->setObjectName("gridLayout_6");
         gridLayout_6->setContentsMargins(0, 0, 0, 0);
-        lineEdit_9 = new QLineEdit(gridLayoutWidget_6);
-        lineEdit_9->setObjectName("lineEdit_9");
-        lineEdit_9->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        reportmodel = new QLineEdit(gridLayoutWidget_6);
+        reportmodel->setObjectName("reportmodel");
+        reportmodel->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_6->addWidget(lineEdit_9, 1, 1, 1, 1);
+        gridLayout_6->addWidget(reportmodel, 1, 1, 1, 1);
 
-        lineEdit_10 = new QLineEdit(gridLayoutWidget_6);
-        lineEdit_10->setObjectName("lineEdit_10");
-        lineEdit_10->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        reportyear = new QLineEdit(gridLayoutWidget_6);
+        reportyear->setObjectName("reportyear");
+        reportyear->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_6->addWidget(lineEdit_10, 2, 1, 1, 1);
+        gridLayout_6->addWidget(reportyear, 2, 1, 1, 1);
 
         label_31 = new QLabel(gridLayoutWidget_6);
         label_31->setObjectName("label_31");
@@ -1361,13 +1381,13 @@ public:
 
         gridLayout_6->addWidget(label_27, 0, 0, 1, 1);
 
-        lineEdit_11 = new QLineEdit(gridLayoutWidget_6);
-        lineEdit_11->setObjectName("lineEdit_11");
-        lineEdit_11->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        reportcustomername = new QLineEdit(gridLayoutWidget_6);
+        reportcustomername->setObjectName("reportcustomername");
+        reportcustomername->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_6->addWidget(lineEdit_11, 0, 1, 1, 1);
+        gridLayout_6->addWidget(reportcustomername, 0, 1, 1, 1);
 
         label_28 = new QLabel(gridLayoutWidget_6);
         label_28->setObjectName("label_28");
@@ -1381,13 +1401,13 @@ public:
 
         gridLayout_6->addWidget(label_30, 2, 0, 1, 1);
 
-        lineEdit_12 = new QLineEdit(gridLayoutWidget_6);
-        lineEdit_12->setObjectName("lineEdit_12");
-        lineEdit_12->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
+        reportcolor = new QLineEdit(gridLayoutWidget_6);
+        reportcolor->setObjectName("reportcolor");
+        reportcolor->setStyleSheet(QString::fromUtf8("border-style: solid;\n"
 "border-width: 1px;\n"
 "border-radius: 10px;"));
 
-        gridLayout_6->addWidget(lineEdit_12, 3, 1, 1, 1);
+        gridLayout_6->addWidget(reportcolor, 3, 1, 1, 1);
 
         label_29 = new QLabel(gridLayoutWidget_6);
         label_29->setObjectName("label_29");
@@ -1411,6 +1431,24 @@ public:
 
         gridLayout_6->addWidget(reportReturnDate, 6, 1, 1, 1);
 
+        viewRentalsList = new QListView(report);
+        viewRentalsList->setObjectName("viewRentalsList");
+        viewRentalsList->setGeometry(QRect(441, 141, 328, 190));
+        QPalette palette2;
+        palette2.setBrush(QPalette::Active, QPalette::Button, brush);
+        palette2.setBrush(QPalette::Active, QPalette::Base, brush);
+        palette2.setBrush(QPalette::Active, QPalette::Window, brush);
+        palette2.setBrush(QPalette::Inactive, QPalette::Button, brush);
+        palette2.setBrush(QPalette::Inactive, QPalette::Base, brush);
+        palette2.setBrush(QPalette::Inactive, QPalette::Window, brush);
+        palette2.setBrush(QPalette::Disabled, QPalette::Button, brush);
+        palette2.setBrush(QPalette::Disabled, QPalette::Base, brush);
+        palette2.setBrush(QPalette::Disabled, QPalette::Window, brush);
+        viewRentalsList->setPalette(palette2);
+        viewRentalsList->setAutoFillBackground(false);
+        viewRentalsList->setStyleSheet(QString::fromUtf8("border-color: black"));
+        viewRentalsList->setFrameShape(QFrame::Box);
+        viewRentalsList->setFrameShadow(QFrame::Raised);
         stackedWidget_3->addWidget(report);
         adminSideWidget = new QWidget(admin);
         adminSideWidget->setObjectName("adminSideWidget");
@@ -1465,9 +1503,9 @@ public:
         retranslateUi(MainWindow);
 
         stackedWidget->setCurrentIndex(2);
-        stackedWidget_2->setCurrentIndex(2);
-        stackedWidget_4->setCurrentIndex(2);
-        stackedWidget_3->setCurrentIndex(2);
+        stackedWidget_2->setCurrentIndex(1);
+        stackedWidget_4->setCurrentIndex(0);
+        stackedWidget_3->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

@@ -8,5 +8,7 @@ release/employee.o
 release/inventory.o
 release/main.o
 release/mainwindow.o
+release/rentals.o
+release/rentalslistmodel.o
 release/users.o
 release/moc_mainwindow.o

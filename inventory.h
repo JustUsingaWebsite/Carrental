@@ -21,7 +21,7 @@ public:
     }
 
     void loadInventory(std::vector<std::map<QString, QVariant>>);
-
+    Car SearchInventory(QString);
     // Other functions for managing user's inventory
 };
 

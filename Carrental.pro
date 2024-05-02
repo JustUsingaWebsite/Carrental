@@ -19,6 +19,8 @@ SOURCES += \
     inventory.cpp \
     main.cpp \
     mainwindow.cpp \
+    rentals.cpp \
+    rentalslistmodel.cpp \
     users.cpp
 
 HEADERS += \
@@ -31,6 +33,8 @@ HEADERS += \
     employee.h \
     inventory.h \
     mainwindow.h \
+    rentals.h \
+    rentalslistmodel.h \
     users.h
 
 FORMS += \
