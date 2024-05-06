@@ -33,6 +33,8 @@ public:
     std::tuple<bool, QString> cancelRental(int);
 
     std::vector<std::map<QString, QVariant>> GetRentals();
+    void updateRentalHistory();
+    void UpdateData();
 private:
     QSqlDatabase mydb;
 

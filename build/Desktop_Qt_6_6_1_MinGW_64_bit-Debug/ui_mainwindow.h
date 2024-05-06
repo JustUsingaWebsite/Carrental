@@ -1502,7 +1502,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(0);
         stackedWidget_2->setCurrentIndex(1);
         stackedWidget_4->setCurrentIndex(0);
         stackedWidget_3->setCurrentIndex(0);

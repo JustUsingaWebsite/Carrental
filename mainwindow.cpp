@@ -44,11 +44,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->viewCustomerDets, &QListView::clicked, this, &MainWindow::OnCustomerListViewClicked);
     connect(ui->viewRentalsList, &QListView::clicked, this, &MainWindow::OnRentListViewClicked);
     connect(ui->AdminCarList, &QListView::clicked, this, &MainWindow::OnAdminListViewClicked);
-
+    mydb.UpdateData(); // update data to its updated form
 }
 
 MainWindow::~MainWindow()
 {
+    mydb.updateRentalHistory(); //update rental history if anything was changed
     delete ui;
 }
 
@@ -60,6 +61,7 @@ void MainWindow::on_login_clicked()
 {
     userLogin.clear();
     userLogin << mydb.verifyUserSQLITE(ui->user_login->text(), ui->pass_login->text());
+
 
 
     // checks if any of the login fields are empty or if the query for user information came back empty and displays an error message
@@ -213,8 +215,6 @@ void MainWindow::RentalsLoader(){
     MainWindowRental.StoreRentals(mydb.GetRentals());
 
     MainWindowCustomer.StoreCustomers(mydb.getUsers());
-
-    qDebug() << MainWindowRental.getLoadedRentals().empty()<< " <-empty rental, " << MainWindowCustomer.getLoadedCustomers().empty() << " <-empty customer";
 
     RentalsListModel *rentlistmodel = new RentalsListModel(this);
     rentlistmodel->setRentalData(MainWindowRental.getLoadedRentals());
