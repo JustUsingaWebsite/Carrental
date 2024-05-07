@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1150</width>
+    <width>1041</width>
     <height>665</height>
    </rect>
   </property>
@@ -31,9 +31,9 @@
 </string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
-    <widget class="QWidget" name="page">
+    <widget class="QWidget" name="login_2">
      <widget class="QWidget" name="login_page" native="true">
       <property name="geometry">
        <rect>
@@ -103,6 +103,12 @@ border-radius: 10px;</string>
 border-width: 1px;
 border-radius: 10px;</string>
           </property>
+          <property name="inputMask">
+           <string/>
+          </property>
+          <property name="echoMode">
+           <enum>QLineEdit::Password</enum>
+          </property>
          </widget>
         </item>
        </layout>
@@ -167,7 +173,7 @@ border-radius:10px;
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_2">
+    <widget class="QWidget" name="customer">
      <widget class="QStackedWidget" name="stackedWidget_2">
       <property name="geometry">
        <rect>
@@ -182,126 +188,9 @@ border-radius:10px;
 color:black;</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
-      <widget class="QWidget" name="page_3">
-       <widget class="QWidget" name="rental_details" native="true">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>20</y>
-          <width>721</width>
-          <height>371</height>
-         </rect>
-        </property>
-        <widget class="QLabel" name="label_10">
-         <property name="geometry">
-          <rect>
-           <x>290</x>
-           <y>30</y>
-           <width>131</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">font: 900 18pt &quot;Segoe UI Black&quot;;</string>
-         </property>
-         <property name="text">
-          <string>Your Car </string>
-         </property>
-        </widget>
-        <widget class="QWidget" name="gridLayoutWidget_3">
-         <property name="geometry">
-          <rect>
-           <x>200</x>
-           <y>100</y>
-           <width>291</width>
-           <height>208</height>
-          </rect>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="2" column="1">
-           <widget class="QDateTimeEdit" name="dateTimeEdit_4"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_12">
-            <property name="text">
-             <string>Start Date</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QPlainTextEdit" name="plainTextEdit_2">
-            <property name="styleSheet">
-             <string notr="true">background-color:white;</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_11">
-            <property name="text">
-             <string>Car details</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QDateTimeEdit" name="dateTimeEdit_3"/>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_13">
-            <property name="text">
-             <string>Return Date</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_14">
-            <property name="text">
-             <string>Total</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QTextEdit" name="textEdit_3">
-            <property name="styleSheet">
-             <string notr="true">background-color:white;</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QPushButton" name="pushButton_8">
-         <property name="geometry">
-          <rect>
-           <x>420</x>
-           <y>270</y>
-           <width>91</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">
-.QPushButton{
-background-color: rgb(255, 255, 255);
-border: 2px solid #f1f1f1;
-color:black;
-border-radius:10px;
-}
-
-.QPushButton::hover{
-color: black;
-	background-color: rgb(162, 162, 162);
-border: 2px solid #f1f1f1;
-border-radius:10px;
-}</string>
-         </property>
-         <property name="text">
-          <string>Cancel Rental</string>
-         </property>
-        </widget>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="page_4">
+      <widget class="QWidget" name="carsAvailable">
        <widget class="QLabel" name="label_5">
         <property name="geometry">
          <rect>
@@ -318,22 +207,18 @@ border-radius:10px;
          <string>Cars Available</string>
         </property>
        </widget>
-       <widget class="QPlainTextEdit" name="plainTextEdit">
+       <widget class="QListView" name="carListView">
         <property name="geometry">
          <rect>
-          <x>70</x>
-          <y>120</y>
-          <width>661</width>
-          <height>261</height>
+          <x>100</x>
+          <y>70</y>
+          <width>581</width>
+          <height>291</height>
          </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: white;
-</string>
         </property>
        </widget>
       </widget>
-      <widget class="QWidget" name="page_5">
+      <widget class="QWidget" name="carRental">
        <widget class="QWidget" name="car_rental" native="true">
         <property name="geometry">
          <rect>
@@ -363,9 +248,9 @@ border-radius:10px;
          <property name="geometry">
           <rect>
            <x>190</x>
-           <y>120</y>
-           <width>209</width>
-           <height>78</height>
+           <y>107</y>
+           <width>261</width>
+           <height>91</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
@@ -377,7 +262,7 @@ border-radius:10px;
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QDateTimeEdit" name="dateTimeEdit"/>
+           <widget class="QDateTimeEdit" name="rentalStartDate"/>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="label_8">
@@ -394,7 +279,10 @@ border-radius:10px;
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QDateTimeEdit" name="dateTimeEdit_2"/>
+           <widget class="QDateTimeEdit" name="rentalReturnDate"/>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="rentalCarName"/>
           </item>
          </layout>
         </widget>
@@ -409,7 +297,7 @@ border-radius:10px;
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QPushButton" name="pushButton_6">
+           <widget class="QPushButton" name="saveRentalBtn">
             <property name="styleSheet">
              <string notr="true">
 .QPushButton{
@@ -432,7 +320,7 @@ border-radius:10px;
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_7">
+           <widget class="QPushButton" name="canelRentalBtn2">
             <property name="styleSheet">
              <string notr="true">
 .QPushButton{
@@ -458,6 +346,123 @@ border-radius:10px;
         </widget>
        </widget>
       </widget>
+      <widget class="QWidget" name="rent_dets">
+       <widget class="QWidget" name="rental_details" native="true">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>721</width>
+          <height>371</height>
+         </rect>
+        </property>
+        <widget class="QLabel" name="label_10">
+         <property name="geometry">
+          <rect>
+           <x>270</x>
+           <y>10</y>
+           <width>131</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 900 18pt &quot;Segoe UI Black&quot;;</string>
+         </property>
+         <property name="text">
+          <string>Your Car </string>
+         </property>
+        </widget>
+        <widget class="QWidget" name="gridLayoutWidget_3">
+         <property name="geometry">
+          <rect>
+           <x>180</x>
+           <y>50</y>
+           <width>291</width>
+           <height>221</height>
+          </rect>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="2" column="1">
+           <widget class="QDateTimeEdit" name="rentDetsReturnDate"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>Start Date</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>Car details</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QDateTimeEdit" name="rentDetsStartDate">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_13">
+            <property name="text">
+             <string>Return Date</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_14">
+            <property name="text">
+             <string>Total</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QListView" name="listView"/>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLabel" name="totalRentalCost">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QPushButton" name="cancelRentalBtn">
+         <property name="geometry">
+          <rect>
+           <x>430</x>
+           <y>290</y>
+           <width>91</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+.QPushButton{
+background-color: rgb(255, 255, 255);
+border: 2px solid #f1f1f1;
+color:black;
+border-radius:10px;
+}
+
+.QPushButton::hover{
+color: black;
+	background-color: rgb(162, 162, 162);
+border: 2px solid #f1f1f1;
+border-radius:10px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Cancel Rental</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
      </widget>
      <widget class="QLabel" name="label_4">
       <property name="geometry">
@@ -477,7 +482,7 @@ background-color: #4981B0;</string>
        <string>Customer</string>
       </property>
      </widget>
-     <widget class="QWidget" name="verticalWidget" native="true">
+     <widget class="QWidget" name="customerSideWidget" native="true">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -505,7 +510,7 @@ border-radius:10px;
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QPushButton" name="pushButton_3">
+        <widget class="QPushButton" name="customerViewCarBtn">
          <property name="styleSheet">
           <string notr="true">color:black;</string>
          </property>
@@ -515,7 +520,7 @@ border-radius:10px;
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_4">
+        <widget class="QPushButton" name="customerViewRentalDetsBtn">
          <property name="styleSheet">
           <string notr="true">color:black;
 </string>
@@ -526,7 +531,7 @@ border-radius:10px;
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_5">
+        <widget class="QPushButton" name="customerRentCarBtn">
          <property name="styleSheet">
           <string notr="true">color:balck;</string>
          </property>
@@ -535,10 +540,20 @@ border-radius:10px;
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QPushButton" name="customerLogoutBtn">
+         <property name="styleSheet">
+          <string notr="true">color:balck;</string>
+         </property>
+         <property name="text">
+          <string>Logout</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_10">
+    <widget class="QWidget" name="employee">
      <widget class="QStackedWidget" name="stackedWidget_4">
       <property name="geometry">
        <rect>
@@ -554,7 +569,7 @@ border-radius:10px;
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="page_11">
+      <widget class="QWidget" name="addCustomer">
        <widget class="QWidget" name="add_user" native="true">
         <property name="geometry">
          <rect>
@@ -606,7 +621,7 @@ Color:black;</string>
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QLineEdit" name="lineEdit_16">
+           <widget class="QLineEdit" name="customerUsername">
             <property name="styleSheet">
              <string notr="true">border-style: solid;
 border-width: 1px;
@@ -615,7 +630,7 @@ border-radius: 10px;</string>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QLineEdit" name="lineEdit_17">
+           <widget class="QLineEdit" name="customerPassword">
             <property name="styleSheet">
              <string notr="true">border-style: solid;
 border-width: 1px;
@@ -657,7 +672,7 @@ border-radius: 10px;</string>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="lineEdit_13">
+           <widget class="QLineEdit" name="addCustomerName">
             <property name="styleSheet">
              <string notr="true">border-style: solid;
 border-width: 1px;
@@ -666,7 +681,7 @@ border-radius: 10px;</string>
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QLineEdit" name="lineEdit_14">
+           <widget class="QLineEdit" name="addCustomerEmail">
             <property name="styleSheet">
              <string notr="true">border-style: solid;
 border-width: 1px;
@@ -675,7 +690,7 @@ border-radius: 10px;</string>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QLineEdit" name="lineEdit_15">
+           <widget class="QLineEdit" name="addCustomerPhone">
             <property name="styleSheet">
              <string notr="true">border-style: solid;
 border-width: 1px;
@@ -696,7 +711,7 @@ border-radius: 10px;</string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_5">
           <item>
-           <widget class="QPushButton" name="pushButton_17">
+           <widget class="QPushButton" name="empSaveCustomerBtn">
             <property name="styleSheet">
              <string notr="true">
 .QPushButton{
@@ -719,7 +734,7 @@ border-radius:10px;
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_16">
+           <widget class="QPushButton" name="empCancelAddCustomerBtn">
             <property name="styleSheet">
              <string notr="true">
 .QPushButton{
@@ -745,7 +760,7 @@ border-radius:10px;
         </widget>
        </widget>
       </widget>
-      <widget class="QWidget" name="page_12">
+      <widget class="QWidget" name="editDelCustomer">
        <widget class="QWidget" name="edit_delete_user" native="true">
         <property name="geometry">
          <rect>
@@ -778,35 +793,12 @@ Color:Black</string>
            <x>50</x>
            <y>90</y>
            <width>341</width>
-           <height>162</height>
+           <height>202</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_9">
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="lineEdit_18">
-            <property name="styleSheet">
-             <string notr="true">border-style: solid;
-border-width: 1px;
-border-radius: 10px;</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_40">
-            <property name="text">
-             <string>Name:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_42">
-            <property name="text">
-             <string>Phone Number:</string>
-            </property>
-           </widget>
-          </item>
           <item row="3" column="1">
-           <widget class="QLineEdit" name="lineEdit_21">
+           <widget class="QLineEdit" name="editCustomerUsername">
             <property name="styleSheet">
              <string notr="true">border-style: solid;
 border-width: 1px;
@@ -814,33 +806,17 @@ border-radius: 10px;</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_41">
-            <property name="text">
-             <string>Email:</string>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="editCustomerName">
+            <property name="styleSheet">
+             <string notr="true">border-style: solid;
+border-width: 1px;
+border-radius: 10px;</string>
             </property>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QLineEdit" name="lineEdit_20">
-            <property name="styleSheet">
-             <string notr="true">border-style: solid;
-border-width: 1px;
-border-radius: 10px;</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="lineEdit_19">
-            <property name="styleSheet">
-             <string notr="true">border-style: solid;
-border-width: 1px;
-border-radius: 10px;</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QLineEdit" name="lineEdit_22">
+           <widget class="QLineEdit" name="editCustomerPhonenum">
             <property name="styleSheet">
              <string notr="true">border-style: solid;
 border-width: 1px;
@@ -855,10 +831,49 @@ border-radius: 10px;</string>
             </property>
            </widget>
           </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_40">
+            <property name="text">
+             <string>Name:</string>
+            </property>
+           </widget>
+          </item>
           <item row="3" column="0">
            <widget class="QLabel" name="label_43">
             <property name="text">
              <string>Username:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLineEdit" name="editCustomerPassword">
+            <property name="styleSheet">
+             <string notr="true">border-style: solid;
+border-width: 1px;
+border-radius: 10px;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_42">
+            <property name="text">
+             <string>Phone Number:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="editCustomerEmail">
+            <property name="styleSheet">
+             <string notr="true">border-style: solid;
+border-width: 1px;
+border-radius: 10px;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_41">
+            <property name="text">
+             <string>Email:</string>
             </property>
            </widget>
           </item>
@@ -875,7 +890,7 @@ border-radius: 10px;</string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_6">
           <item>
-           <widget class="QPushButton" name="pushButton_20">
+           <widget class="QPushButton" name="saveCustomerEditBtn">
             <property name="styleSheet">
              <string notr="true">
 .QPushButton{
@@ -898,7 +913,7 @@ border-radius:10px;
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_19">
+           <widget class="QPushButton" name="delCustomerBtn">
             <property name="styleSheet">
              <string notr="true">
 .QPushButton{
@@ -921,7 +936,7 @@ border-radius:10px;
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_18">
+           <widget class="QPushButton" name="cancelCustomerEditBtn">
             <property name="styleSheet">
              <string notr="true">
 .QPushButton{
@@ -945,7 +960,7 @@ border-radius:10px;
           </item>
          </layout>
         </widget>
-        <widget class="QTableView" name="tableView_3">
+        <widget class="QTableView" name="background">
          <property name="geometry">
           <rect>
            <x>450</x>
@@ -957,6 +972,9 @@ border-radius:10px;
          <property name="styleSheet">
           <string notr="true">border-style: solid;
 border-width: 1px;</string>
+         </property>
+         <property name="lineWidth">
+          <number>1</number>
          </property>
         </widget>
         <widget class="QFrame" name="editUserSearchFrame_3">
@@ -1050,10 +1068,123 @@ border-radius: 10px;</string>
           </property>
          </widget>
         </widget>
+        <widget class="QListView" name="viewCustomerDets">
+         <property name="geometry">
+          <rect>
+           <x>451</x>
+           <y>132</y>
+           <width>279</width>
+           <height>219</height>
+          </rect>
+         </property>
+         <property name="palette">
+          <palette>
+           <active>
+            <colorrole role="Button">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>128</red>
+               <green>128</green>
+               <blue>128</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Base">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>128</red>
+               <green>128</green>
+               <blue>128</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Window">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>128</red>
+               <green>128</green>
+               <blue>128</blue>
+              </color>
+             </brush>
+            </colorrole>
+           </active>
+           <inactive>
+            <colorrole role="Button">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>128</red>
+               <green>128</green>
+               <blue>128</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Base">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>128</red>
+               <green>128</green>
+               <blue>128</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Window">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>128</red>
+               <green>128</green>
+               <blue>128</blue>
+              </color>
+             </brush>
+            </colorrole>
+           </inactive>
+           <disabled>
+            <colorrole role="Button">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>128</red>
+               <green>128</green>
+               <blue>128</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Base">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>128</red>
+               <green>128</green>
+               <blue>128</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Window">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>128</red>
+               <green>128</green>
+               <blue>128</blue>
+              </color>
+             </brush>
+            </colorrole>
+           </disabled>
+          </palette>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-color: black</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Box</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
        </widget>
       </widget>
-      <widget class="QWidget" name="page_15">
-       <widget class="QWidget" name="widget_2" native="true">
+      <widget class="QWidget" name="payments">
+       <widget class="QWidget" name="paymentswidget" native="true">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -1085,7 +1216,7 @@ font: 900 18pt &quot;Segoe UI Black&quot;;</string>
            <x>200</x>
            <y>110</y>
            <width>291</width>
-           <height>116</height>
+           <height>154</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_13">
@@ -1104,7 +1235,7 @@ font: 900 18pt &quot;Segoe UI Black&quot;;</string>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="lineEdit_33">
+           <widget class="QLineEdit" name="customerName">
             <property name="styleSheet">
              <string notr="true">border-style: solid;
 border-width: 1px;
@@ -1113,7 +1244,7 @@ border-radius: 10px;</string>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QDateTimeEdit" name="dateTimeEdit_8"/>
+           <widget class="QDateTimeEdit" name="paymentsReturnDate"/>
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="label_61">
@@ -1130,26 +1261,18 @@ border-radius: 10px;</string>
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QLineEdit" name="lineEdit_34">
-            <property name="styleSheet">
-             <string notr="true">border-style: solid;
-border-width: 1px;
-border-radius: 10px;</string>
-            </property>
-           </widget>
+           <widget class="QListView" name="paymentsCarDetsView"/>
           </item>
           <item row="3" column="1">
-           <widget class="QLineEdit" name="lineEdit_35">
-            <property name="styleSheet">
-             <string notr="true">border-style: solid;
-border-width: 1px;
-border-radius: 10px;</string>
+           <widget class="QLabel" name="totalPayment">
+            <property name="text">
+             <string/>
             </property>
            </widget>
           </item>
          </layout>
         </widget>
-        <widget class="QPushButton" name="pushButton_26">
+        <widget class="QPushButton" name="paidBtn">
          <property name="geometry">
           <rect>
            <x>480</x>
@@ -1182,7 +1305,7 @@ border-radius:10px;
        </widget>
       </widget>
      </widget>
-     <widget class="QWidget" name="verticalWidget_2" native="true">
+     <widget class="QWidget" name="employeeSideWidget" native="true">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1210,26 +1333,33 @@ border-radius:10px;
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
-        <widget class="QPushButton" name="pushButton_14">
+        <widget class="QPushButton" name="empAddCustomerBtn">
          <property name="styleSheet">
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>ADD</string>
+          <string>Add</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_12">
+        <widget class="QPushButton" name="empEditDelCustomerBtn">
          <property name="text">
           <string>Edit/ Delete</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_15">
+        <widget class="QPushButton" name="empPaymentsBtn">
          <property name="text">
           <string>Payments</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="empLogoutBtn">
+         <property name="text">
+          <string>Logut</string>
          </property>
         </widget>
        </item>
@@ -1255,7 +1385,7 @@ background-color: #4981B0;</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_6">
+    <widget class="QWidget" name="admin">
      <widget class="QLabel" name="label_15">
       <property name="geometry">
        <rect>
@@ -1289,7 +1419,7 @@ background-color: #4981B0;</string>
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="page_7">
+      <widget class="QWidget" name="addCar">
        <widget class="QLabel" name="label_16">
         <property name="geometry">
          <rect>
@@ -1346,7 +1476,7 @@ color:black;</string>
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLineEdit" name="lineEdit_2">
+          <widget class="QLineEdit" name="addModelInput">
            <property name="styleSheet">
             <string notr="true">border-style: solid;
 border-width: 1px;
@@ -1355,7 +1485,7 @@ border-radius: 10px;</string>
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QLineEdit" name="lineEdit_3">
+          <widget class="QLineEdit" name="addYearInput">
            <property name="styleSheet">
             <string notr="true">border-style: solid;
 border-width: 1px;
@@ -1364,7 +1494,7 @@ border-radius: 9px;</string>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="lineEdit">
+          <widget class="QLineEdit" name="addManufactorInput">
            <property name="styleSheet">
             <string notr="true">border-style: solid;
 border-width: 1px;
@@ -1373,7 +1503,7 @@ border-radius: 10px;</string>
           </widget>
          </item>
          <item row="3" column="1">
-          <widget class="QLineEdit" name="lineEdit_4">
+          <widget class="QLineEdit" name="addColorInput">
            <property name="styleSheet">
             <string notr="true">border-style: solid;
 border-width: 1px;
@@ -1394,7 +1524,7 @@ border-radius: 10px;</string>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
-          <widget class="QPushButton" name="pushButton_13">
+          <widget class="QPushButton" name="saveAddCarBtn">
            <property name="styleSheet">
             <string notr="true">
 .QPushButton{
@@ -1419,7 +1549,7 @@ border-radius:10px;
         </layout>
        </widget>
       </widget>
-      <widget class="QWidget" name="page_8">
+      <widget class="QWidget" name="editCar">
        <widget class="QWidget" name="widget" native="true">
         <property name="geometry">
          <rect>
@@ -1450,7 +1580,7 @@ border-radius:10px;
           <rect>
            <x>450</x>
            <y>40</y>
-           <width>271</width>
+           <width>291</width>
            <height>38</height>
           </rect>
          </property>
@@ -1459,6 +1589,11 @@ border-radius:10px;
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <bold>false</bold>
+          </font>
          </property>
          <property name="focusPolicy">
           <enum>Qt::NoFocus</enum>
@@ -1474,7 +1609,7 @@ border-radius: 10px;</string>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <widget class="QLineEdit" name="edit_car">
+         <widget class="QLineEdit" name="edit_carSearch">
           <property name="geometry">
            <rect>
             <x>50</x>
@@ -1547,7 +1682,7 @@ border-radius: 10px;</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_5">
           <item row="1" column="1">
-           <widget class="QLineEdit" name="lineEdit_5">
+           <widget class="QLineEdit" name="editModelInput">
             <property name="styleSheet">
              <string notr="true">border-style: solid;
 border-width: 1px;
@@ -1566,7 +1701,7 @@ border-radius: 10px;</string>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QLineEdit" name="lineEdit_6">
+           <widget class="QLineEdit" name="editYearInput">
             <property name="styleSheet">
              <string notr="true">border-style: solid;
 border-width: 1px;
@@ -1575,7 +1710,7 @@ border-radius: 10px;</string>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="lineEdit_7">
+           <widget class="QLineEdit" name="editManufactorInput">
             <property name="styleSheet">
              <string notr="true">border-style: solid;
 border-width: 1px;
@@ -1614,7 +1749,7 @@ border-radius: 10px;</string>
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="QLineEdit" name="lineEdit_8">
+           <widget class="QLineEdit" name="editColorInput">
             <property name="styleSheet">
              <string notr="true">border-style: solid;
 border-width: 1px;
@@ -1678,7 +1813,7 @@ border-width: 1px;
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="Save">
+           <widget class="QPushButton" name="SaveEditCar">
             <property name="text">
              <string>Save</string>
             </property>
@@ -1703,9 +1838,122 @@ Color:Black;</string>
           <string>EDIT CAR</string>
          </property>
         </widget>
+        <widget class="QListView" name="AdminCarList">
+         <property name="geometry">
+          <rect>
+           <x>451</x>
+           <y>111</y>
+           <width>299</width>
+           <height>190</height>
+          </rect>
+         </property>
+         <property name="palette">
+          <palette>
+           <active>
+            <colorrole role="Button">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>128</red>
+               <green>128</green>
+               <blue>128</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Base">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>128</red>
+               <green>128</green>
+               <blue>128</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Window">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>128</red>
+               <green>128</green>
+               <blue>128</blue>
+              </color>
+             </brush>
+            </colorrole>
+           </active>
+           <inactive>
+            <colorrole role="Button">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>128</red>
+               <green>128</green>
+               <blue>128</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Base">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>128</red>
+               <green>128</green>
+               <blue>128</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Window">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>128</red>
+               <green>128</green>
+               <blue>128</blue>
+              </color>
+             </brush>
+            </colorrole>
+           </inactive>
+           <disabled>
+            <colorrole role="Button">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>128</red>
+               <green>128</green>
+               <blue>128</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Base">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>128</red>
+               <green>128</green>
+               <blue>128</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Window">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>128</red>
+               <green>128</green>
+               <blue>128</blue>
+              </color>
+             </brush>
+            </colorrole>
+           </disabled>
+          </palette>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-color: black</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Box</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
        </widget>
       </widget>
-      <widget class="QWidget" name="page_9">
+      <widget class="QWidget" name="report">
        <widget class="QLabel" name="label_26">
         <property name="geometry">
          <rect>
@@ -1831,7 +2079,7 @@ border-width: 1px;
         </property>
         <layout class="QGridLayout" name="gridLayout_6">
          <item row="1" column="1">
-          <widget class="QLineEdit" name="lineEdit_9">
+          <widget class="QLineEdit" name="reportmodel">
            <property name="styleSheet">
             <string notr="true">border-style: solid;
 border-width: 1px;
@@ -1840,7 +2088,7 @@ border-radius: 10px;</string>
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QLineEdit" name="lineEdit_10">
+          <widget class="QLineEdit" name="reportyear">
            <property name="styleSheet">
             <string notr="true">border-style: solid;
 border-width: 1px;
@@ -1869,7 +2117,7 @@ border-radius: 10px;</string>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="lineEdit_11">
+          <widget class="QLineEdit" name="reportcustomername">
            <property name="styleSheet">
             <string notr="true">border-style: solid;
 border-width: 1px;
@@ -1898,7 +2146,7 @@ border-radius: 10px;</string>
           </widget>
          </item>
          <item row="3" column="1">
-          <widget class="QLineEdit" name="lineEdit_12">
+          <widget class="QLineEdit" name="reportcolor">
            <property name="styleSheet">
             <string notr="true">border-style: solid;
 border-width: 1px;
@@ -1927,16 +2175,129 @@ border-radius: 10px;</string>
           </widget>
          </item>
          <item row="5" column="1">
-          <widget class="QDateTimeEdit" name="dateTimeEdit_5"/>
+          <widget class="QDateTimeEdit" name="reportStartDate"/>
          </item>
          <item row="6" column="1">
-          <widget class="QDateTimeEdit" name="dateTimeEdit_6"/>
+          <widget class="QDateTimeEdit" name="reportReturnDate"/>
          </item>
         </layout>
        </widget>
+       <widget class="QListView" name="viewRentalsList">
+        <property name="geometry">
+         <rect>
+          <x>441</x>
+          <y>141</y>
+          <width>328</width>
+          <height>190</height>
+         </rect>
+        </property>
+        <property name="palette">
+         <palette>
+          <active>
+           <colorrole role="Button">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>128</red>
+              <green>128</green>
+              <blue>128</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Base">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>128</red>
+              <green>128</green>
+              <blue>128</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Window">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>128</red>
+              <green>128</green>
+              <blue>128</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </active>
+          <inactive>
+           <colorrole role="Button">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>128</red>
+              <green>128</green>
+              <blue>128</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Base">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>128</red>
+              <green>128</green>
+              <blue>128</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Window">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>128</red>
+              <green>128</green>
+              <blue>128</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </inactive>
+          <disabled>
+           <colorrole role="Button">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>128</red>
+              <green>128</green>
+              <blue>128</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Base">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>128</red>
+              <green>128</green>
+              <blue>128</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Window">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>128</red>
+              <green>128</green>
+              <blue>128</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </disabled>
+         </palette>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-color: black</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+       </widget>
       </widget>
      </widget>
-     <widget class="QWidget" name="verticalWidget_2" native="true">
+     <widget class="QWidget" name="adminSideWidget" native="true">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1964,23 +2325,30 @@ border-radius:10px;
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QPushButton" name="pushButton_10">
+        <widget class="QPushButton" name="reportBtn">
+         <property name="text">
+          <string>Report</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="addCarBtn">
          <property name="text">
           <string>Add</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_9">
+        <widget class="QPushButton" name="editCarBtn">
          <property name="text">
           <string>Edit</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_11">
+        <widget class="QPushButton" name="adminLogoutBtn">
          <property name="text">
-          <string>Report</string>
+          <string>Logout</string>
          </property>
         </widget>
        </item>
@@ -1994,7 +2362,7 @@ border-radius:10px;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1150</width>
+     <width>1041</width>
      <height>21</height>
     </rect>
    </property>

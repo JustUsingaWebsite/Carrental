@@ -9,13 +9,33 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    admin.cpp \
+    car.cpp \
+    carlistmodel.cpp \
+    customer.cpp \
+    customerlistmodel.cpp \
     database.cpp \
+    employee.cpp \
+    inventory.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    rentals.cpp \
+    rentalslistmodel.cpp \
+    users.cpp
 
 HEADERS += \
+    admin.h \
+    car.h \
+    carlistmodel.h \
+    customer.h \
+    customerlistmodel.h \
     database.h \
-    mainwindow.h
+    employee.h \
+    inventory.h \
+    mainwindow.h \
+    rentals.h \
+    rentalslistmodel.h \
+    users.h
 
 FORMS += \
     mainwindow.ui
