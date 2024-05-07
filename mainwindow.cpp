@@ -473,6 +473,12 @@ void MainWindow::on_cancelRentalBtn_clicked()
     // Extract the CarID from the selected data (assuming the CarID is the first part of the details)
     QStringList parts = carDetails.split(", ");
     int carId = parts.first().split(": ").last().toInt();
+    QString val = parts.last().split(": ").last();
+
+    if (val != "pending"){
+        QMessageBox::information(this, tr("Car Rental System"), "You cannot cancel a " + val + " rental.");
+        return;
+    }
 
 
     // Update the rental status in the database to "cancelled" for the selected car
