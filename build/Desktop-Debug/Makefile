@@ -291,7 +291,10 @@ Makefile: ../../Carrental.pro C:/Qt/6.7.0/mingw_64/mkspecs/win32-g++/qmake.conf 
 		../../Carrental.pro \
 		C:/Qt/6.7.0/mingw_64/lib/Qt6Widgets.prl \
 		C:/Qt/6.7.0/mingw_64/lib/Qt6Gui.prl \
+<<<<<<< HEAD
 		C:/Qt/6.7.0/mingw_64/lib/Qt6Sql.prl \
+=======
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
 		C:/Qt/6.7.0/mingw_64/lib/Qt6Core.prl \
 		C:/Qt/6.7.0/mingw_64/lib/Qt6EntryPoint.prl \
 		C:/Qt/6.7.0/mingw_64/mkspecs/features/build_pass.prf
@@ -517,7 +520,10 @@ C:/Qt/6.7.0/mingw_64/mkspecs/features/lex.prf:
 ../../Carrental.pro:
 C:/Qt/6.7.0/mingw_64/lib/Qt6Widgets.prl:
 C:/Qt/6.7.0/mingw_64/lib/Qt6Gui.prl:
+<<<<<<< HEAD
 C:/Qt/6.7.0/mingw_64/lib/Qt6Sql.prl:
+=======
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
 C:/Qt/6.7.0/mingw_64/lib/Qt6Core.prl:
 C:/Qt/6.7.0/mingw_64/lib/Qt6EntryPoint.prl:
 C:/Qt/6.7.0/mingw_64/mkspecs/features/build_pass.prf:

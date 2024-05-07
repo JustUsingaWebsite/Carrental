@@ -31,9 +31,15 @@
 </string>
     </property>
     <property name="currentIndex">
+<<<<<<< HEAD
      <number>0</number>
     </property>
     <widget class="QWidget" name="login_2">
+=======
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="login">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
      <widget class="QWidget" name="login_page" native="true">
       <property name="geometry">
        <rect>
@@ -88,7 +94,11 @@ font: 600 28pt &quot;Segoe UI Semibold&quot;;</string>
          </widget>
         </item>
         <item row="0" column="1">
+<<<<<<< HEAD
          <widget class="QLineEdit" name="user_login">
+=======
+         <widget class="QLineEdit" name="usernameInput">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
           <property name="styleSheet">
            <string notr="true">border-style: solid;
 border-width: 1px;
@@ -97,7 +107,11 @@ border-radius: 10px;</string>
          </widget>
         </item>
         <item row="1" column="1">
+<<<<<<< HEAD
          <widget class="QLineEdit" name="pass_login">
+=======
+         <widget class="QLineEdit" name="passwordInput">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
           <property name="styleSheet">
            <string notr="true">border-style: solid;
 border-width: 1px;
@@ -124,7 +138,11 @@ border-radius: 10px;</string>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
+<<<<<<< HEAD
          <widget class="QPushButton" name="close">
+=======
+         <widget class="QPushButton" name="closeButton">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
           <property name="styleSheet">
            <string notr="true">
 .QPushButton{
@@ -190,7 +208,128 @@ color:black;</string>
       <property name="currentIndex">
        <number>1</number>
       </property>
+<<<<<<< HEAD
       <widget class="QWidget" name="carsAvailable">
+=======
+      <widget class="QWidget" name="page_3">
+       <widget class="QWidget" name="rental_details" native="true">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>721</width>
+          <height>371</height>
+         </rect>
+        </property>
+        <widget class="QLabel" name="label_10">
+         <property name="geometry">
+          <rect>
+           <x>290</x>
+           <y>30</y>
+           <width>131</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 900 18pt &quot;Segoe UI Black&quot;;</string>
+         </property>
+         <property name="text">
+          <string>Your Car </string>
+         </property>
+        </widget>
+        <widget class="QWidget" name="gridLayoutWidget_3">
+         <property name="geometry">
+          <rect>
+           <x>200</x>
+           <y>100</y>
+           <width>291</width>
+           <height>208</height>
+          </rect>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="2" column="1">
+           <widget class="QDateTimeEdit" name="dateTimeEdit_4"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>Start Date</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPlainTextEdit" name="plainTextEdit_2">
+            <property name="styleSheet">
+             <string notr="true">background-color:white;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>Car details</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QDateTimeEdit" name="dateTimeEdit_3"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_13">
+            <property name="text">
+             <string>Return Date</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_14">
+            <property name="text">
+             <string>Total</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QTextEdit" name="textEdit_3">
+            <property name="styleSheet">
+             <string notr="true">background-color:white;</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QPushButton" name="pushButton_8">
+         <property name="geometry">
+          <rect>
+           <x>420</x>
+           <y>270</y>
+           <width>91</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+.QPushButton{
+background-color: rgb(255, 255, 255);
+border: 2px solid #f1f1f1;
+color:black;
+border-radius:10px;
+}
+
+.QPushButton::hover{
+color: black;
+	background-color: rgb(162, 162, 162);
+border: 2px solid #f1f1f1;
+border-radius:10px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Cancel Rental</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="cars_available">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
        <widget class="QLabel" name="label_5">
         <property name="geometry">
          <rect>
@@ -248,9 +387,15 @@ color:black;</string>
          <property name="geometry">
           <rect>
            <x>190</x>
+<<<<<<< HEAD
            <y>107</y>
            <width>261</width>
            <height>91</height>
+=======
+           <y>120</y>
+           <width>212</width>
+           <height>78</height>
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
@@ -464,7 +609,7 @@ border-radius:10px;
        </widget>
       </widget>
      </widget>
-     <widget class="QLabel" name="label_4">
+     <widget class="QLabel" name="customer_label">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -510,7 +655,11 @@ border-radius:10px;
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
+<<<<<<< HEAD
         <widget class="QPushButton" name="customerViewCarBtn">
+=======
+        <widget class="QPushButton" name="customerViewCarButton">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
          <property name="styleSheet">
           <string notr="true">color:black;</string>
          </property>
@@ -520,7 +669,11 @@ border-radius:10px;
         </widget>
        </item>
        <item>
+<<<<<<< HEAD
         <widget class="QPushButton" name="customerViewRentalDetsBtn">
+=======
+        <widget class="QPushButton" name="customerViewRentsDetsButton">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
          <property name="styleSheet">
           <string notr="true">color:black;
 </string>
@@ -531,7 +684,11 @@ border-radius:10px;
         </widget>
        </item>
        <item>
+<<<<<<< HEAD
         <widget class="QPushButton" name="customerRentCarBtn">
+=======
+        <widget class="QPushButton" name="customerRentButton">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
          <property name="styleSheet">
           <string notr="true">color:balck;</string>
          </property>
@@ -567,9 +724,13 @@ border-radius:10px;
        <string notr="true">background-color:gray</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
+<<<<<<< HEAD
       <widget class="QWidget" name="addCustomer">
+=======
+      <widget class="QWidget" name="add_costumer">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
        <widget class="QWidget" name="add_user" native="true">
         <property name="geometry">
          <rect>
@@ -760,7 +921,11 @@ border-radius:10px;
         </widget>
        </widget>
       </widget>
+<<<<<<< HEAD
       <widget class="QWidget" name="editDelCustomer">
+=======
+      <widget class="QWidget" name="editDel_costumer">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
        <widget class="QWidget" name="edit_delete_user" native="true">
         <property name="geometry">
          <rect>
@@ -1184,7 +1349,11 @@ border-radius: 10px;</string>
        </widget>
       </widget>
       <widget class="QWidget" name="payments">
+<<<<<<< HEAD
        <widget class="QWidget" name="paymentswidget" native="true">
+=======
+       <widget class="QWidget" name="widget_2" native="true">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -1333,7 +1502,11 @@ border-radius:10px;
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
+<<<<<<< HEAD
         <widget class="QPushButton" name="empAddCustomerBtn">
+=======
+        <widget class="QPushButton" name="empAddButton">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
          <property name="styleSheet">
           <string notr="true"/>
          </property>
@@ -1343,14 +1516,22 @@ border-radius:10px;
         </widget>
        </item>
        <item>
+<<<<<<< HEAD
         <widget class="QPushButton" name="empEditDelCustomerBtn">
+=======
+        <widget class="QPushButton" name="empEditDelButton">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
          <property name="text">
           <string>Edit/ Delete</string>
          </property>
         </widget>
        </item>
        <item>
+<<<<<<< HEAD
         <widget class="QPushButton" name="empPaymentsBtn">
+=======
+        <widget class="QPushButton" name="empPayButton">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
          <property name="text">
           <string>Payments</string>
          </property>
@@ -1365,7 +1546,7 @@ border-radius:10px;
        </item>
       </layout>
      </widget>
-     <widget class="QLabel" name="label_33">
+     <widget class="QLabel" name="emp_label">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1386,7 +1567,11 @@ background-color: #4981B0;</string>
      </widget>
     </widget>
     <widget class="QWidget" name="admin">
+<<<<<<< HEAD
      <widget class="QLabel" name="label_15">
+=======
+     <widget class="QLabel" name="admin_label">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1419,7 +1604,11 @@ background-color: #4981B0;</string>
       <property name="currentIndex">
        <number>0</number>
       </property>
+<<<<<<< HEAD
       <widget class="QWidget" name="addCar">
+=======
+      <widget class="QWidget" name="add_car">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
        <widget class="QLabel" name="label_16">
         <property name="geometry">
          <rect>
@@ -1549,7 +1738,11 @@ border-radius:10px;
         </layout>
        </widget>
       </widget>
+<<<<<<< HEAD
       <widget class="QWidget" name="editCar">
+=======
+      <widget class="QWidget" name="edit_car_3">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
        <widget class="QWidget" name="widget" native="true">
         <property name="geometry">
          <rect>
@@ -1953,7 +2146,11 @@ Color:Black;</string>
         </widget>
        </widget>
       </widget>
+<<<<<<< HEAD
       <widget class="QWidget" name="report">
+=======
+      <widget class="QWidget" name="rentalReport">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
        <widget class="QLabel" name="label_26">
         <property name="geometry">
          <rect>
@@ -2325,6 +2522,7 @@ border-radius:10px;
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
+<<<<<<< HEAD
         <widget class="QPushButton" name="reportBtn">
          <property name="text">
           <string>Report</string>
@@ -2333,20 +2531,31 @@ border-radius:10px;
        </item>
        <item>
         <widget class="QPushButton" name="addCarBtn">
+=======
+        <widget class="QPushButton" name="adminAddButton">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
          <property name="text">
           <string>Add</string>
          </property>
         </widget>
        </item>
        <item>
+<<<<<<< HEAD
         <widget class="QPushButton" name="editCarBtn">
+=======
+        <widget class="QPushButton" name="adminEditButton">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
          <property name="text">
           <string>Edit</string>
          </property>
         </widget>
        </item>
        <item>
+<<<<<<< HEAD
         <widget class="QPushButton" name="adminLogoutBtn">
+=======
+        <widget class="QPushButton" name="adminReportButton">
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
          <property name="text">
           <string>Logout</string>
          </property>

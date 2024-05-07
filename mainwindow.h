@@ -14,7 +14,13 @@
 #include <rentalslistmodel.h>
 
 #include <QMainWindow>
+#include<QtSql/QSqlDatabase>
+#include<QStringList>
+#include <QMainWindow>
+#include <QMessageBox>
 
+#include <admin.h>
+#include <database.h>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -30,6 +36,7 @@ public:
     ~MainWindow();
 
 private slots:
+<<<<<<< HEAD
     void on_login_clicked();
 
     void onLogoutButtonClicked();
@@ -95,5 +102,14 @@ private:
     Rentals UniversalRental;
     Rentals MainWindowRental;
 
+=======
+    void on_pushButton_clicked();
+
+private:
+    Ui::MainWindow *ui;
+    database db;
+    users users;
+    admin admin;
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
 };
 #endif // MAINWINDOW_H

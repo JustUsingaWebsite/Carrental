@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     admin.cpp \
+<<<<<<< HEAD
     car.cpp \
     carlistmodel.cpp \
     customer.cpp \
@@ -21,10 +22,15 @@ SOURCES += \
     mainwindow.cpp \
     rentals.cpp \
     rentalslistmodel.cpp \
+=======
+    main.cpp \
+    mainwindow.cpp \
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
     users.cpp
 
 HEADERS += \
     admin.h \
+<<<<<<< HEAD
     car.h \
     carlistmodel.h \
     customer.h \
@@ -35,6 +41,9 @@ HEADERS += \
     mainwindow.h \
     rentals.h \
     rentalslistmodel.h \
+=======
+    mainwindow.h \
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
     users.h
 
 FORMS += \

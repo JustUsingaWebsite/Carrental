@@ -8,11 +8,23 @@
 #include <QMessageBox>
 #include <tuple>
 
+#include <QImageWriter>
+#include <QtSql/QSqlDatabase>
+#include <QtSql/QSqlQuery>
+#include <QtSql/QSqlError>
+#include <QBuffer>
+#include <QtSql/QSqlQueryModel>
+#include <QImageWriter>
+#include <QImageReader>
+#include <QImage>
+#include <qmessagebox.h>
+
 class database
 {
 public:
     database();
     ~database();
+<<<<<<< HEAD
     QStringList verifyUserMySQL(QString, QString);
     QStringList verifyUserSQLITE(QString, QString);
     void initMYSQL();
@@ -38,6 +50,14 @@ public:
 private:
     QSqlDatabase mydb;
 
+=======
+
+    QStringList verifyUser(QString userName, QString password);
+
+private:
+    QSqlDatabase db;
+    QString userID;
+>>>>>>> e1e7b2ac5259d0328859f1261550dc6348ad5e33
 };
 
 #endif // DATABASE_H
