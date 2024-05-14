@@ -251,7 +251,7 @@ std::map<QString, QVariant> database::getUserRentedCar(int userId) {
                   "FROM rentals r "
                   "INNER JOIN cars c ON r.CarID = c.CarID "
                   "INNER JOIN inventory i ON r.CarID = i.CarID "
-                  "WHERE r.CustomerID = :userId");
+                  "WHERE r.CustomerID = :userId AND r.Rental_Status != finished"); // AND r.Rental_Status != finished
 
     query.bindValue(":userId", userId);
     if (!query.exec()) {
